@@ -6,19 +6,20 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web;
+using Microsoft.AspNet.Identity;
 namespace SmallCRM.Data
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ApplicationDbContext db;
         private readonly DbSet<T> entities;
-        private readonly Guid currentUserId;
-        public Repository(ApplicationDbContext context, Guid currentUserId)
+        private readonly HttpContext httpContext;
+        public Repository(ApplicationDbContext context, HttpContext httpContext)
         {
             this.db = context;
             this.entities = context.Set<T>();
-            this.currentUserId = currentUserId;
+            this.httpContext = httpContext;
         }
         public bool Any(Expression<Func<T, bool>> where)
         {
@@ -34,10 +35,10 @@ namespace SmallCRM.Data
         {
             entity.IsDeleted = true;
             entity.DeletedAt = DateTime.Now;
-            entity.DeletedBy = currentUserId;
-            entity.IpAddress = "127.0.0.1";
-            entity.UserAgent = "";
-            entity.Location = "";
+            entity.DeletedBy = httpContext.User.Identity.GetUserId();
+            entity.IpAddress = httpContext.Request.UserHostAddress;
+            entity.UserAgent = httpContext.Request.UserAgent;
+            entity.Location = ""; // ip veritabanı indirilip üzerinde sorgu yapılarak lokasyon belirlenecek
             Update(entity);
         }
 
@@ -84,11 +85,11 @@ namespace SmallCRM.Data
         public void Insert(T entity)
         {
             entity.CreatedAt = DateTime.Now;
-            entity.CreatedBy = currentUserId;
+            entity.CreatedBy = httpContext.User.Identity.GetUserId();
             entity.UpdatedAt = entity.CreatedAt;
-            entity.UpdatedBy = currentUserId;
-            entity.IpAddress = "127.0.0.1";
-            entity.UserAgent = "";
+            entity.UpdatedBy = entity.CreatedBy;
+            entity.IpAddress = HttpContext.Current.Request.UserHostAddress;
+            entity.UserAgent = HttpContext.Current.Request.UserAgent;
             entity.Location = "";
             entities.Add(entity);
         }
@@ -101,9 +102,9 @@ namespace SmallCRM.Data
         public void Update(T entity)
         {
             entity.UpdatedAt = DateTime.Now;
-            entity.UpdatedBy = currentUserId;
-            entity.IpAddress = "127.0.0.1";
-            entity.UserAgent = "";
+            entity.UpdatedBy = httpContext.User.Identity.GetUserId();
+            entity.IpAddress = HttpContext.Current.Request.UserHostAddress;
+            entity.UserAgent = HttpContext.Current.Request.UserAgent;
             entity.Location = "";
             db.Entry(entity).State = EntityState.Modified; // entity'yi güncellemek üzere işaretle
         }
