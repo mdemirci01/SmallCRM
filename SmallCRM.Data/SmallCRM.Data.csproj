@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201907290657504_InitialCreate.cs" />
-    <Compile Include="Migrations\201907290657504_InitialCreate.Designer.cs">
-      <DependentUpon>201907290657504_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201907300739328_InitialCreate.cs" />
+    <Compile Include="Migrations\201907300739328_InitialCreate.Designer.cs">
+      <DependentUpon>201907300739328_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,8 +67,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907290657504_InitialCreate.resx">
-      <DependentUpon>201907290657504_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907300739328_InitialCreate.resx">
+      <DependentUpon>201907300739328_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

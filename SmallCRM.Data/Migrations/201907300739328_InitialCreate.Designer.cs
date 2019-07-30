@@ -13,7 +13,7 @@ namespace SmallCRM.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201907290657504_InitialCreate"; }
+            get { return "201907300739328_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

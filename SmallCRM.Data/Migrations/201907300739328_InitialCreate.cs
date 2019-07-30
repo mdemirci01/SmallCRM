@@ -8,6 +8,29 @@ namespace SmallCRM.Data.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Customers",
+                c => new
+                    {
+                        Id = c.Guid(nullable: false),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Email = c.String(),
+                        MobilePhone = c.String(),
+                        CreatedBy = c.String(),
+                        CreatedAt = c.DateTime(nullable: false),
+                        UpdatedBy = c.String(),
+                        UpdatedAt = c.DateTime(nullable: false),
+                        IsDeleted = c.Boolean(nullable: false),
+                        DeletedBy = c.String(),
+                        DeletedAt = c.DateTime(),
+                        IsActive = c.Boolean(nullable: false),
+                        IpAddress = c.String(),
+                        UserAgent = c.String(),
+                        Location = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -94,6 +117,7 @@ namespace SmallCRM.Data.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Customers");
         }
     }
 }
