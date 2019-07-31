@@ -46,6 +46,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="Feed.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Lead.cs" />
     <Compile Include="LeadSource.cs" />
