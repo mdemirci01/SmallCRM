@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="CallDetail.cs" />
+    <Compile Include="CallResult.cs" />
+    <Compile Include="CallDirection.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Country.cs" />
@@ -52,6 +56,8 @@
     <Compile Include="LeadStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
+    <Compile Include="RelatedRecord.cs" />
+    <Compile Include="CallReason.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="TitleOfCourtesy.cs" />
