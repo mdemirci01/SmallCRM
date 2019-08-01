@@ -43,7 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Builders\CampaignSourceBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Builders\LeadSourceBuilder.cs" />
+    <Compile Include="Builders\LeadStatusBuilder.cs" />
+    <Compile Include="Builders\ProjectBuilder.cs" />
     <Compile Include="Builders\LeadBuilder.cs" />
     <Compile Include="Builders\WorkItemBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
