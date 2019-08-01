@@ -73,6 +73,12 @@ namespace SmallCRM.Model
         public string Description { get; set; }
 
 
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; }
+        public virtual ICollection<Lead> Leads { get; set; }
+        public virtual ICollection<Opportunity> Opportunities { get; set; }
+
+
 
 
 
