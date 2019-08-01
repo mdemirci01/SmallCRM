@@ -14,7 +14,7 @@ namespace SmallCRM.Model
         public Guid? MainCompanyId { get; set; }
         public virtual Company MainCompany { get; set; }
 
-        public string Number { get; set; }
+        public string CompanyNumber { get; set; }
         public Guid? CompanyTypeId { get; set; }
         public virtual CompanyType CompanyType { get; set; }
 

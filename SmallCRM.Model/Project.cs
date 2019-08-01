@@ -9,8 +9,8 @@ namespace SmallCRM.Model
     public class Project:BaseEntity
     {
         public Project()
-        {           
-            Tasks = new HashSet<Task>();
+        {
+            WorkItems = new HashSet<WorkItem>();
             TimeSpendings = new HashSet<TimeSpending>();
         }        
         public string Name { get; set; }        
@@ -19,7 +19,7 @@ namespace SmallCRM.Model
         public string BussinessAnalyists { get; set; }        
         public string Developers { get; set; }        
         public DateTime? StartDate { get; set; }   
-        public TaskStatus? TaskStatus { get; set; }
+        public WorkItemStatus? WorkItemStatus { get; set; }
         public ICollection<WorkItem> WorkItems { get; set; }
         public ICollection<TimeSpending> TimeSpendings { get; set; }    
         public decimal TotalTimeSpent { get { return TimeSpendings.Sum(s => s.TimeSpent); } }
