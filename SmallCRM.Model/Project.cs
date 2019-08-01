@@ -20,7 +20,7 @@ namespace SmallCRM.Model
         public string Developers { get; set; }        
         public DateTime? StartDate { get; set; }   
         public TaskStatus? TaskStatus { get; set; }
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<WorkItem> WorkItems { get; set; }
         public ICollection<TimeSpending> TimeSpendings { get; set; }    
         public decimal TotalTimeSpent { get { return TimeSpendings.Sum(s => s.TimeSpent); } }
     }
