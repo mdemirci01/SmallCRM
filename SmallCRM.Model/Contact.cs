@@ -9,6 +9,7 @@ namespace SmallCRM.Model
     public class Contact:BaseEntity
     {
         public string Owner { get; set; }
+        public string FullName {  get { return FirstName + " " + LastName;  } }
         public string FirstName { get; set; } // required
         public string LastName { get; set; }
         public TitleOfCourtesy? TitleOfCourtesy { get; set; }
@@ -33,10 +34,12 @@ namespace SmallCRM.Model
         public string Twitter { get; set; }
         public string SecondaryEmail { get; set; }
 
-        public Guid? ReportsTo { get; set; }
+        public Guid? ReportsToContactId { get; set; }
         public virtual Contact ReportsToContact { get; set; }
 
         public virtual ICollection<Contact> ChildContacts { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Opportunity> Opportunities { get; set; }
 
         public string Photo { get; set; }
 

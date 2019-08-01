@@ -9,6 +9,7 @@ namespace SmallCRM.Model
    public class CampaignSource:BaseEntity
     {
         public string Name { get; set; }
-        public virtual ICollection<Campaign> Campaigns { get; set; }
+        public virtual ICollection<Opportunity> Opportunities { get; set; }
+
     }
 }

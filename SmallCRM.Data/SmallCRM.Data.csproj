@@ -43,16 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Builders\CustomerBuilder.cs" />
+    <Compile Include="Builders\CityBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
-    <Compile Include="Migrations\201907300739328_InitialCreate.cs" />
-    <Compile Include="Migrations\201907300739328_InitialCreate.Designer.cs">
-      <DependentUpon>201907300739328_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907301155184_AddCustomerBuilder.cs" />
-    <Compile Include="Migrations\201907301155184_AddCustomerBuilder.Designer.cs">
-      <DependentUpon>201907301155184_AddCustomerBuilder.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -68,14 +60,6 @@
     <PackageReference Include="System.Linq.Dynamic">
       <Version>1.0.7</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907300739328_InitialCreate.resx">
-      <DependentUpon>201907300739328_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907301155184_AddCustomerBuilder.resx">
-      <DependentUpon>201907301155184_AddCustomerBuilder.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmallCRM.Model\SmallCRM.Model.csproj">

@@ -11,10 +11,9 @@ namespace SmallCRM.Model
         public string Name { get; set; }
         public string File { get; set; }     
         public string Description { get; set; }
-        public FileType Type { get; set; }
+        public FileType FileType { get; set; }
         public string Extension { get; set; }
         public int Size { get; set; }
-        
-
+        public virtual ICollection<Feed> Feeds { get; set; }
     }
 }

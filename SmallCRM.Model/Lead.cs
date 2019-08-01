@@ -12,6 +12,7 @@ namespace SmallCRM.Model
         public string Owner { get; set; }
         public string FirstName { get; set; } // required
         public string LastName { get; set; }
+        public string FullName { get { return FirstName + " " + LastName; } }
         public string Company { get; set; } // required
         public TitleOfCourtesy? TitleOfCourtesy { get; set; }
         public Gender? Gender { get; set; }

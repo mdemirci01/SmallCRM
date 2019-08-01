@@ -14,10 +14,10 @@ namespace SmallCRM.Model
             public Guid ProjectId { get; set; }          
             public Project Project { get; set; }            
             public Guid? WorkItemId { get; set; }           
-            public Task WorkItem { get; set; }            
+            public virtual WorkItem WorkItem { get; set; }          
             public string Worker { get; set; }
             public decimal TimeSpent { get; set; }            
-            public TaskStatus? WorkItemStatus { get; set; }                        
+            public WorkItemStatus? WorkItemStatus { get; set; }                        
         }
     }
 
