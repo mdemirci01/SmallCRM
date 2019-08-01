@@ -9,6 +9,7 @@ namespace SmallCRM.Model
     public class Contact:BaseEntity
     {
         public string Owner { get; set; }
+        public string FullName {  get { return FirstName + " " + LastName;  } }
         public string FirstName { get; set; } // required
         public string LastName { get; set; }
         public TitleOfCourtesy? TitleOfCourtesy { get; set; }
