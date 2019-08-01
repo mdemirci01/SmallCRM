@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using SmallCRM.Admin.Models;
-using SmallCRM.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,16 +8,9 @@ namespace SmallCRM.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICustomerService customerService;
-        public HomeController(ICustomerService customerService)
-        {
-            this.customerService = customerService;
-        }
         public ActionResult Index()
         {
-            var customers = Mapper.Map<IEnumerable<CustomerViewModel>>(customerService.GetAll());
-
-            return View(customers);
+            return View();
         }
 
         public ActionResult About()

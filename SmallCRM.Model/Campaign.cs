@@ -10,10 +10,11 @@ namespace SmallCRM.Model
     {
         public string Owner { get; set; }
         public OpportunityType OpportunityType { get; set; }
-        public CampaignStatus? CampaignStatus { get; set; }
+        public Guid? CampaignStatusId { get; set; }
+        public virtual CampaignStatus CampaignStatus { get; set; }
         public string Name { get; set; }
         public DateTime? StartDate { get; set; }
-        public decimal? ExpectedEndorsement { get; set; } //Beklenen ciro
+        public decimal? ExpectedRevenue { get; set; } //Beklenen ciro
         public decimal? Cost { get; set; } //Maliyet(Gerçekleşen masraf)
         public string SendPhoneNumbers { get; set; } //Gönderilen Numaralar
         public DateTime? EndDate { get; set; }

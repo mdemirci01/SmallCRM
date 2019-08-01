@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public enum TaskStatus
+    public enum WorkItemStatus
     {    
         NotStarted = 0,        
         Continuing = 1,        

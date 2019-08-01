@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class Task:BaseEntity
+    public class WorkItem:BaseEntity
     {
-        public Task()
+        public WorkItem()
         {           
             TimeSpendings = new HashSet<TimeSpending>();
         }                     
@@ -20,7 +20,7 @@ namespace SmallCRM.Model
         public DateTime? StartDate { get; set; }        
         public DateTime? EndDate { get; set; }        
         public string Category { get; set; }        
-        public TaskStatus? TaskStatus { get; set; }        
+        public WorkItemStatus? WorkItemStatus { get; set; }        
         public Guid ProjectId { get; set; }        
         public Project Project { get; set; }
         public ICollection<TimeSpending> TimeSpendings { get; set; }       

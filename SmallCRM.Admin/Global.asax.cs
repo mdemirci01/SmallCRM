@@ -1,11 +1,6 @@
-using Autofac;
-using Autofac.Integration.Mvc;
-using SmallCRM.Data;
-using SmallCRM.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,21 +13,6 @@ namespace SmallCRM.Admin
     {
         protected void Application_Start()
         {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-
-            builder.RegisterType<ApplicationDbContext>().AsSelf();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
-            builder.Register(c => HttpContext.Current).InstancePerRequest();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<CustomerService>().As<ICustomerService>();
-
-            IContainer container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-
-            new AutoMapperConfig().Initialize();
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

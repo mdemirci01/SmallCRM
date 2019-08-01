@@ -22,12 +22,31 @@ namespace SmallCRM.Data
             return new ApplicationDbContext();
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Campaign> Campaigns { get; set; }
+        public virtual DbSet<CampaignSource> CampaignSources { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<CompanyType> CompanyTypes { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
+        public virtual DbSet<Feed> Feeds { get; set; }
+        public virtual DbSet<Lead> Leads { get; set; }
+        public virtual DbSet<LeadSource> LeadSources { get; set; }
+        public virtual DbSet<LeadStatus> LeadStatuses { get; set; }
+        public virtual DbSet<Opportunity> Opportunities { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
+        public virtual DbSet<Report> Reports { get; set; }
+        public virtual DbSet<Sector> Sectors { get; set; }
+        public virtual DbSet<TimeSpending> TimeSpendings { get; set; }
+        public virtual DbSet<WorkItem> WorkItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            new CustomerBuilder(modelBuilder.Entity<Customer>());
+            //new CustomerBuilder(modelBuilder.Entity<Customer>());
         }
     }
 }

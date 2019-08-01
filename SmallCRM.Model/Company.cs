@@ -12,7 +12,7 @@ namespace SmallCRM.Model
         public string Name { get; set; }
 
         public Guid? MainCompanyId { get; set; }
-        public virtual MainCompany MainCompany { get; set; }
+        public virtual Company MainCompany { get; set; }
 
         public string Number { get; set; }
         public Guid? CompanyTypeId { get; set; }
@@ -29,7 +29,7 @@ namespace SmallCRM.Model
         public string Fax { get; set; }
         public string Website { get; set; }
         public string ImkbCode { get; set; }
-        public OwnerShip OwnerShip { get; set; }
+        public Ownership? OwnerShip { get; set; }
         public string NaceCode { get; set; }
 
 

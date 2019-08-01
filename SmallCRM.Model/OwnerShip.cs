@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-     public enum OwnerShip
+     public enum Ownership
     {
         None =0,
         Other=1,

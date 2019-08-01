@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Service
 {
+    /*
     public class CustomerService : ICustomerService
     {
         private readonly IRepository<Customer> customerRepository;
@@ -64,4 +65,5 @@ namespace SmallCRM.Service
         void Delete(Guid id);
         bool Any(Guid id);
     }
+    */
 }

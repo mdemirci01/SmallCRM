@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class LeadStatus
+    public class LeadStatus:BaseEntity
     {
         public string Name { get; set; }
         public virtual ICollection<Lead> Leads { get; set; }
