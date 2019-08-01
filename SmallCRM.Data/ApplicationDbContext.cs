@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SmallCRM.Data.Builders;
 using SmallCRM.Model;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,11 @@ namespace SmallCRM.Data
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            new CustomerBuilder(modelBuilder.Entity<Customer>());
+        }
     }
 }
