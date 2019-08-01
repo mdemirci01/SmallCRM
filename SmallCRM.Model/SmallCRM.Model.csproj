@@ -56,6 +56,7 @@
     <Compile Include="Lead.cs" />
     <Compile Include="LeadSource.cs" />
     <Compile Include="LeadStatus.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
     <Compile Include="RelatedRecord.cs" />
@@ -63,6 +64,9 @@
     <Compile Include="Report.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="Stage.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TaskStatus.cs" />
+    <Compile Include="TimeSpending.cs" />
     <Compile Include="TitleOfCourtesy.cs" />
   </ItemGroup>
   <ItemGroup>
