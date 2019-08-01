@@ -35,5 +35,8 @@ namespace SmallCRM.Model
         public Guid? CampaignSourceId { get; set; }
         public CampaignSource CampaignSource { get; set; }
         public string Description { get; set; }
+
+        public virtual ICollection<Activity> Activities { get; set; }
+
     }
 }

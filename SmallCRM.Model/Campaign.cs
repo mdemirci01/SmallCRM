@@ -10,8 +10,8 @@ namespace SmallCRM.Model
     {
         public string Owner { get; set; }
         public OpportunityType OpportunityType { get; set; }
-        public Guid? CampaignStatusId { get; set; }        
-        public virtual CampaignStatus CampaignStatus { get; set; }
+        public Guid? CampaignStatusId { get; set; }
+        public CampaignStatus CampaignStatus { get; set; }
         public string Name { get; set; }
         public DateTime? StartDate { get; set; }
         public decimal? ExpectedRevenue { get; set; } //Beklenen ciro
@@ -21,7 +21,6 @@ namespace SmallCRM.Model
         public decimal? PlannedCost { get; set; } //Bütçelenmiş masraf
         public string ExpectedResponse { get; set; } //Beklenen tepki
         public string Description { get; set; }
-
         public virtual ICollection<Activity> Activities { get; set; }
     }
 }
