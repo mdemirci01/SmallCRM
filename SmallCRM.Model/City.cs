@@ -11,12 +11,12 @@ namespace SmallCRM.Model
         public string Name { get; set; }
         public Guid CountryId { get; set; }
         public virtual Country Country { get; set; }
-
         public virtual ICollection<Region> Regions { get; set; }
-
         public virtual ICollection<Lead> Leads { get; set; }
 
         public virtual ICollection<Contact> PostalContacts { get; set; }
         public virtual ICollection<Contact> OtherContacts { get; set; }
+
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }
