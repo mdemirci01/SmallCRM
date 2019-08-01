@@ -49,10 +49,6 @@
       <Project>{d96c56a8-e270-41c6-8e51-f2d108373cac}</Project>
       <Name>SmallCRM.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SmallCRM.Model\SmallCRM.Model.csproj">
-      <Project>{e9e2abaf-fb6e-4753-ac3d-59d81ff86572}</Project>
-      <Name>SmallCRM.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

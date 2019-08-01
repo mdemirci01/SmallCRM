@@ -59,12 +59,6 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmallCRM.Model\SmallCRM.Model.csproj">
-      <Project>{e9e2abaf-fb6e-4753-ac3d-59d81ff86572}</Project>
-      <Name>SmallCRM.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="EntityFramework">
       <Version>6.2.0</Version>
     </PackageReference>
