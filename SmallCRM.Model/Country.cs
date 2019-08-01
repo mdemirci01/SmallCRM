@@ -15,6 +15,7 @@ namespace SmallCRM.Model
 
         public virtual ICollection<Contact> PostalContacts { get; set; }
         public virtual ICollection<Contact> OtherContacts { get; set; }
-        public virtual ICollection<Company> Companies { get; set; }
+        public virtual ICollection<Company> InvoiceCountries { get; set; }
+        public virtual ICollection<Company> DeliveryCountries { get; set; }
     }
 }
