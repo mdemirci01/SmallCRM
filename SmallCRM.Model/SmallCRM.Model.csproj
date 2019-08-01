@@ -41,24 +41,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="CallDetail.cs" />
+    <Compile Include="CallResult.cs" />
+    <Compile Include="CallDirection.cs" />
     <Compile Include="Campaign.cs" />
     <Compile Include="CampaignSource.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Contact.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="FileType.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Lead.cs" />
     <Compile Include="LeadSource.cs" />
     <Compile Include="LeadStatus.cs" />
+    <Compile Include="Project.cs" />
     <Compile Include="Opportunity.cs" />
     <Compile Include="OpportunityStage.cs" />
     <Compile Include="OpportunityType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
+    <Compile Include="RelatedRecord.cs" />
+    <Compile Include="CallReason.cs" />
+    <Compile Include="Report.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="Stage.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TaskStatus.cs" />
+    <Compile Include="TimeSpending.cs" />
     <Compile Include="TitleOfCourtesy.cs" />
   </ItemGroup>
   <ItemGroup>
