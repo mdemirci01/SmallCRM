@@ -37,6 +37,8 @@ namespace SmallCRM.Model
         public virtual Contact ReportsToContact { get; set; }
 
         public virtual ICollection<Contact> ChildContacts { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Opportunity> Opportunities { get; set; }
 
         public string Photo { get; set; }
 
