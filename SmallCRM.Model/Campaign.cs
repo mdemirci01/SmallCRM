@@ -21,5 +21,6 @@ namespace SmallCRM.Model
         public decimal? PlannedCost { get; set; } //Bütçelenmiş masraf
         public string ExpectedResponse { get; set; } //Beklenen tepki
         public string Description { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
     }
 }
