@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class Reports:BaseEntity
+    public class Report:BaseEntity
     {
         
         public string Name { get; set; }

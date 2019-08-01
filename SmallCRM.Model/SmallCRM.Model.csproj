@@ -60,9 +60,9 @@
    
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
-    <Compile Include="Reports.cs" />
     <Compile Include="RelatedRecord.cs" />
     <Compile Include="CallReason.cs" />
+    <Compile Include="Report.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="Task.cs" />
