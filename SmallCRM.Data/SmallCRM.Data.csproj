@@ -45,6 +45,8 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Builders\CampaignSourceBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Builders\LeadSourceBuilder.cs" />
+    <Compile Include="Builders\LeadStatusBuilder.cs" />
     <Compile Include="Builders\ProjectBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
