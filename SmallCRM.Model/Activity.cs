@@ -8,7 +8,7 @@ namespace SmallCRM.Model
 {
     public class Activity:BaseEntity
     {
-        public string ContactName { get; set; }
+        public string ContactFullName { get; set; }
         public string Subject { get; set; }
         public CallReason? CallReason { get; set; }
         public RelatedRecord? RelatedRecord { get; set; }
