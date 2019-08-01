@@ -59,6 +59,9 @@
     <Compile Include="LeadSource.cs" />
     <Compile Include="LeadStatus.cs" />
     <Compile Include="Project.cs" />
+   
+    
+   
     <Compile Include="MainCompany.cs" />
     <Compile Include="OwnerShip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
