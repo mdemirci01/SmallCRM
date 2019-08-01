@@ -54,6 +54,7 @@
     <Compile Include="Region.cs" />
     <Compile Include="Sector.cs" />
     <Compile Include="Stage.cs" />
+    <Compile Include="CampaignStatus.cs" />
     <Compile Include="TitleOfCourtesy.cs" />
   </ItemGroup>
   <ItemGroup>
