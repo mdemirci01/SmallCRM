@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Builders\CampaignSourceBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
+    <Compile Include="Builders\ProjectBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
