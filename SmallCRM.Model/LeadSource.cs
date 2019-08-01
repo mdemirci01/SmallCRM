@@ -10,5 +10,7 @@ namespace SmallCRM.Model
     {
         public string Name { get; set; }
         public virtual ICollection<Lead> Leads { get; set; }
+        public virtual ICollection<Contact> Contacts { get; set; } // updateDate : 01.08.2019
+        public virtual ICollection<Opportunity> Opportunities { get; set; } // updateDate : 01.08.2019
     }
 }
