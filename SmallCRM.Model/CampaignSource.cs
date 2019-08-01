@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class Sector:BaseEntity
+   public class CampaignSource:BaseEntity
     {
         public string Name { get; set; }
-        public virtual ICollection<Lead> Leads { get; set; }
-        public virtual ICollection<Company> Companies { get; set; }
+        ICollection<Campaign> Campaigns { get; set; }
     }
 }

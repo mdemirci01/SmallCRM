@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class Sector:BaseEntity
+    public class Report:BaseEntity
     {
+        
         public string Name { get; set; }
-        public virtual ICollection<Lead> Leads { get; set; }
-        public virtual ICollection<Company> Companies { get; set; }
+        public string Description { get; set; }
+        public DateTime LastExecutionDate { get; set; }
     }
 }
