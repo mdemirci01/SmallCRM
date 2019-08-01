@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Model
 {
-    public class Reports:BaseEntity
+    public class CompanyType:BaseEntity
     {
-        
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime LastExecutionDate { get; set; }
+        public virtual ICollection<Company> Companies { get; set; }
     }
 }
