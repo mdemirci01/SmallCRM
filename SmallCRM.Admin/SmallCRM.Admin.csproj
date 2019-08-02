@@ -186,6 +186,7 @@
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\FeedsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeadSourcesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TimeSpendingsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -267,6 +268,11 @@
     <Content Include="Views\Contacts\Details.cshtml" />
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\LeadSources\Create.cshtml" />
+    <Content Include="Views\LeadSources\Delete.cshtml" />
+    <Content Include="Views\LeadSources\Details.cshtml" />
+    <Content Include="Views\LeadSources\Edit.cshtml" />
+    <Content Include="Views\LeadSources\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
