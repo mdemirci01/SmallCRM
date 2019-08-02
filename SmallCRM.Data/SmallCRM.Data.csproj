@@ -52,10 +52,13 @@
     <Compile Include="Builders\LeadStatusBuilder.cs" />
     <Compile Include="Builders\ProjectBuilder.cs" />
     <Compile Include="Builders\LeadBuilder.cs" />
+    <Compile Include="Builders\RegionBuilder.cs" />
     <Compile Include="Builders\SectorBuilder.cs" />
     <Compile Include="Builders\WorkItemBuilder.cs" />
     <Compile Include="Builders\OpportunityBuilder.cs" />
     <Compile Include="Builders\ContactBuilder.cs" />
+    <Compile Include="Builders\FeedBuilder.cs" />
+    <Compile Include="Builders\TimeSpendingBuilder.cs" />
     <Compile Include="EntityFrameworkExtensions.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
