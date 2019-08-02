@@ -1,0 +1,328 @@
+﻿@model SmallCRM.Model.Company
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Company</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryCity.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryCity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryCountry.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryCountry.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryRegion.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryRegion.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceCity.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceCity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceCountry.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceCountry.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceRegion.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceRegion.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MainCompany.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainCompany.Owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sector.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sector.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnualIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnualIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImkbCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImkbCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerShip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerShip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NaceCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NaceCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoicePostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoicePostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryPostalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryPostalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IpAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IpAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAgent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAgent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
