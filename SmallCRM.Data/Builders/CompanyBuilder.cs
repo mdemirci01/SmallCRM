@@ -39,11 +39,11 @@ namespace SmallCRM.Data.Builders
 
             builder.HasOptional(a => a.InvoiceCity).WithMany(b => b.InvoiceCompanies).HasForeignKey(a => a.InvoiceCityId);
             builder.HasOptional(a => a.InvoiceRegion).WithMany(b => b.InvoiceCompanies).HasForeignKey(a=>a.InvoiceRegionId);
-            builder.HasOptional(a => a.InvoiceCountry).WithMany(b => b.InvoiceCountries).HasForeignKey(a => a.InvoiceCountryId);
+            builder.HasOptional(a => a.InvoiceCountry).WithMany(b => b.InvoiceCompanies).HasForeignKey(a => a.InvoiceCountryId);
 
             builder.HasOptional(a => a.DeliveryCity).WithMany(b => b.DeliveryCompanies).HasForeignKey(a =>a.DeliveryCityId);
             builder.HasOptional(a => a.DeliveryRegion).WithMany(b => b.DeliveryCompanies).HasForeignKey(a =>a.DeliveryRegionId);
-            builder.HasOptional(a => a.DeliveryCountry).WithMany(b => b.InvoiceCountries).HasForeignKey(a =>a.DeliveryCountryId);
+            builder.HasOptional(a => a.DeliveryCountry).WithMany(b => b.DeliveryCompanies).HasForeignKey(a =>a.DeliveryCountryId);
 
         }
     }

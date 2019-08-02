@@ -46,7 +46,26 @@ namespace SmallCRM.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //new CustomerBuilder(modelBuilder.Entity<Customer>());
+            new ActivityBuilder(modelBuilder.Entity<Activity>());
+            new CampaignBuilder(modelBuilder.Entity<Campaign>());
+            new CampaignSourceBuilder(modelBuilder.Entity<CampaignSource>());
+            new CityBuilder(modelBuilder.Entity<City>());
+            new CompanyBuilder(modelBuilder.Entity<Company>());
+            new CompanyTypeBuilder(modelBuilder.Entity<CompanyType>());
+            new ContactBuilder(modelBuilder.Entity<Contact>());
+            new CountryBuilder(modelBuilder.Entity<Country>());
+            new DocumentBuilder(modelBuilder.Entity<Document>());
+            new FeedBuilder(modelBuilder.Entity<Feed>());
+            new LeadBuilder(modelBuilder.Entity<Lead>());
+            new LeadSourceBuilder(modelBuilder.Entity<LeadSource>());
+            new LeadStatusBuilder(modelBuilder.Entity<LeadStatus>());
+            new OpportunityBuilder(modelBuilder.Entity<Opportunity>());
+            new ProjectBuilder(modelBuilder.Entity<Project>());
+            new RegionBuilder(modelBuilder.Entity<Region>());
+            new ReportBuilder(modelBuilder.Entity<Report>());
+            new SectorBuilder(modelBuilder.Entity<Sector>());
+            new TimeSpendingBuilder(modelBuilder.Entity<TimeSpending>());
+            new WorkItemBuilder(modelBuilder.Entity<WorkItem>());
         }
     }
 }
