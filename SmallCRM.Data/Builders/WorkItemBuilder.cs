@@ -13,6 +13,10 @@ namespace SmallCRM.Data.Builders
         public WorkItemBuilder(EntityTypeConfiguration<WorkItem> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.Description).HasMaxLength(4000);
+            builder.Property(b => b.AssignedTo).HasMaxLength(100);
+            builder.Property(b => b.Category).HasMaxLength(100);
+           
             builder.HasRequired(p => p.Project).WithMany(w => w.WorkItems).HasForeignKey(p => p.ProjectId);
             
         }

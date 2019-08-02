@@ -12,7 +12,22 @@ namespace SmallCRM.Data.Builders
     {
         public LeadBuilder(EntityTypeConfiguration<Lead> builder)
         {
-            builder.Property(b => b.FirstName).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.Owner).HasMaxLength(100);
+            builder.Property(b => b.LastName).HasMaxLength(50);
+            builder.Property(b => b.Company).HasMaxLength(100);
+            builder.Property(b => b.Title).HasMaxLength(100);
+            builder.Property(b => b.Telephone).HasMaxLength(50);
+            builder.Property(b => b.MobilePhone).HasMaxLength(50);
+            builder.Property(b => b.Email).HasMaxLength(100);
+            builder.Property(b => b.Fax).HasMaxLength(50);
+            builder.Property(b => b.SkypeId).HasMaxLength(100);
+            builder.Property(b => b.Twitter).HasMaxLength(100);
+            builder.Property(b => b.SecondaryEmail).HasMaxLength(100);
+            builder.Property(b => b.Photo).HasMaxLength(100);
+            builder.Property(b => b.Address).HasMaxLength(500);
+            builder.Property(b => b.PostalCode).HasMaxLength(50);
+            builder.Property(b => b.Description).HasMaxLength(4000);
+            builder.Property(b => b.FirstName).HasMaxLength(50).IsRequired();         
             builder.Property(b => b.Company).HasMaxLength(100).IsRequired();
             builder.HasOptional(p => p.LeadSource).WithMany(w => w.Leads).HasForeignKey(p => p.LeadSourceId);
             builder.HasOptional(p => p.Sector).WithMany(w => w.Leads).HasForeignKey(p => p.SectorId);
