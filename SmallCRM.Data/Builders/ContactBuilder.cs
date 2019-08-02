@@ -23,10 +23,32 @@ namespace SmallCRM.Data.Builders
             builder.HasOptional(a => a.OtherCountry).WithMany(b => b.OtherContacts).HasForeignKey(a => a.OtherCountryId);
             builder.HasOptional(a => a.OtherCity).WithMany(b => b.OtherContacts).HasForeignKey(a => a.OtherCityId);
             builder.HasOptional(a => a.OtherRegion).WithMany(b => b.OtherContacts).HasForeignKey(a => a.OtherRegionId);
-            
+
+            builder.Property(b => b.Owner).HasMaxLength(100);
+            builder.Property(b => b.Email).HasMaxLength(100);
+            builder.Property(b => b.Telephone).HasMaxLength(100);
+            builder.Property(b => b.OtherPhone).HasMaxLength(100);
+            builder.Property(b => b.HomePhone).HasMaxLength(100);
+            builder.Property(b => b.MobilePhone).HasMaxLength(100);
+            builder.Property(b => b.AssistantName).HasMaxLength(100);
+            builder.Property(b => b.AssistantPhone).HasMaxLength(100);
+            builder.Property(b => b.Title).HasMaxLength(100);
+            builder.Property(b => b.Department).HasMaxLength(100);
+            builder.Property(b => b.Fax).HasMaxLength(100);
+            builder.Property(b => b.SkypeId).HasMaxLength(100);
+            builder.Property(b => b.Twitter).HasMaxLength(100);
+            builder.Property(b => b.SecondaryEmail).HasMaxLength(100);
+            builder.Property(b => b.Photo).HasMaxLength(100);
+            builder.Property(b => b.Address).HasMaxLength(500);
+            builder.Property(b => b.PostalCode).HasMaxLength(100);
+            builder.Property(b => b.OtherAddress).HasMaxLength(500);
+            builder.Property(b => b.OtherPostalCode).HasMaxLength(100);
+            builder.Property(b => b.Description).HasMaxLength(4000);
            
-            
-           
+
+
+
+
         }
     }
 }
