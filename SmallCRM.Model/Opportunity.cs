@@ -10,8 +10,8 @@ namespace SmallCRM.Model
     public class Opportunity:BaseEntity
     {
         public string Owner { get; set; } 
-        public string Name { get; set; } //required
-        public Guid CompanyId { get; set; } //required
+        public string Name { get; set; } 
+        public Guid CompanyId { get; set; } 
         public virtual Company Company { get; set; }
         public OpportunityType? OpportunityType { get; set; }
 
