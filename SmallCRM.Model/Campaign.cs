@@ -10,8 +10,7 @@ namespace SmallCRM.Model
     {
         public string Owner { get; set; }
         public OpportunityType OpportunityType { get; set; }
-        public Guid? CampaignStatusId { get; set; }
-        public CampaignStatus CampaignStatus { get; set; }
+        public CampaignStatus? CampaignStatus { get; set; }
         public string Name { get; set; }
         public DateTime? StartDate { get; set; }
         public decimal? ExpectedRevenue { get; set; } //Beklenen ciro
