@@ -13,7 +13,6 @@ namespace SmallCRM.Data.Builders
         public CampaignSourceBuilder(EntityTypeConfiguration<CampaignSource> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
-
         }
     }
 }
