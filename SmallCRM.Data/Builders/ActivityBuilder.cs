@@ -20,7 +20,6 @@ namespace SmallCRM.Data.Builders
             builder.Property(b => b.CompanyName).IsRequired();
             builder.HasOptional(a => a.Company).WithMany(b => b.Activities).HasForeignKey(a => a.CompanyId);
 
-
             builder.Property(b => b.OpportunityName).IsRequired();
             builder.Property(b => b.OpportunityCloseDate).IsRequired();
             builder.Property(b => b.OpportunityStage).IsRequired();
