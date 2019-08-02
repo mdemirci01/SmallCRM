@@ -25,14 +25,14 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Fonts -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
-			WebFont.load({
-				google: {
-					"families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
-				},
-				active: function() {
-					sessionStorage.fonts = true;
-				}
-			});
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
     </script>
 
     <!--end::Fonts -->
@@ -182,7 +182,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </svg>
                                     </span><span class="kt-menu__link-text">Müşteri Adayları</span>
                                 </a>
-                                
+
                             </li>
                             <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
@@ -202,11 +202,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Applications</span></span></li>
                                         <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                             <a href="@Url.Action("Index","Countries")" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Ülkeler</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
-                                            
+
                                         </li>
                                         <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                             <a href="@Url.Action("Index","Cities")" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Şehirler</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
-                                            
+
+                                        </li>
+                                        <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                            <a href="@Url.Action("Index","Regions")" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">İlçeler</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+
                                         </li>
                                         <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                             <a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Chat</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
@@ -2810,24 +2814,24 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--ENd:: Chat-->
     <!-- begin::Global Config(global config for global JS sciprts) -->
     <script>
-			var KTAppOptions = {
-				"colors": {
-					"state": {
-						"brand": "#5d78ff",
-						"dark": "#282a3c",
-						"light": "#ffffff",
-						"primary": "#5867dd",
-						"success": "#34bfa3",
-						"info": "#36a3f7",
-						"warning": "#ffb822",
-						"danger": "#fd3995"
-					},
-					"base": {
-						"label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
-						"shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
-					}
-				}
-			};
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#5d78ff",
+                    "dark": "#282a3c",
+                    "light": "#ffffff",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
     </script>
 
     <!-- end::Global Config -->
@@ -2910,7 +2914,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="/assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
 
     <!--end::Page Scripts -->
-    @RenderSection("scripts", required:false)
+    @RenderSection("scripts", required: false)
 </body>
 
 <!-- end::Body -->
