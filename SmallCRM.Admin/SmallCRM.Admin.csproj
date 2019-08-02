@@ -181,9 +181,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampaignsController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
+
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OpportunitiesController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,11 +258,6 @@
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
-    <Content Include="Views\Reports\Create.cshtml" />
-    <Content Include="Views\Reports\Delete.cshtml" />
-    <Content Include="Views\Reports\Details.cshtml" />
-    <Content Include="Views\Reports\Edit.cshtml" />
-    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
