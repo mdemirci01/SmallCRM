@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmallCRM.Model;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace SmallCRM.Data.Builders
 {
     public class CampaignSourceBuilder
     {
-        public CampaignSourceBuilder(EntityTypeConfiguration<CampaignSourceBuilder> builder)
+        public CampaignSourceBuilder(EntityTypeConfiguration<CampaignSource> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
 
