@@ -16,7 +16,6 @@ namespace SmallCRM.Data.Builders
 
 
             builder.Property(a => a.Owner).HasMaxLength(100);
-            builder.Property(a => a.Name).HasMaxLength(50);
             builder.Property(a => a.CompanyNumber).HasMaxLength(20);
             builder.Property(a => a.Telephone).HasMaxLength(20);
             builder.Property(a => a.Fax).HasMaxLength(20);
