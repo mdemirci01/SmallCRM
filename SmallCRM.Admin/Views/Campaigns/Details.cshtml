@@ -1,0 +1,202 @@
+﻿@model SmallCRM.Model.Campaign
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Campaign</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpportunityType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpportunityType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpectedRevenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpectedRevenue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SendPhoneNumbers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SendPhoneNumbers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlannedCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlannedCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpectedResponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpectedResponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IpAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IpAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAgent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserAgent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
