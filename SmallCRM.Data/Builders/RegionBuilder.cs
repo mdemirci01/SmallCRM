@@ -13,6 +13,7 @@ namespace SmallCRM.Data.Builders
         public RegionBuilder(EntityTypeConfiguration<Region> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
+            builder.HasRequired(a => a.City).WithMany(b => b.Regions).HasForeignKey(a => a.CityId);
         }
     }
 }
