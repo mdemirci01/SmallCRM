@@ -8,7 +8,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace SmallCRM.Data.Builders
 {
-    class CountryBuilder
+    public class CountryBuilder
     {
         public CountryBuilder(EntityTypeConfiguration<Country> builder)
         {
