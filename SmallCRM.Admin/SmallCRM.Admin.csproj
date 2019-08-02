@@ -255,16 +255,6 @@
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
-    <Content Include="Views\Campaigns\Create.cshtml" />
-    <Content Include="Views\Campaigns\Delete.cshtml" />
-    <Content Include="Views\Campaigns\Details.cshtml" />
-    <Content Include="Views\Campaigns\Edit.cshtml" />
-    <Content Include="Views\Campaigns\Index.cshtml" />
-    <Content Include="Views\Documents\Create.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
-    <Content Include="Views\Documents\Details.cshtml" />
-    <Content Include="Views\Documents\Edit.cshtml" />
-    <Content Include="Views\Documents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
