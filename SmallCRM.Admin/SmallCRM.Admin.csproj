@@ -181,6 +181,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActivitiesController.cs" />
+    <Compile Include="Controllers\CampaignsController.cs" />
     <Compile Include="Controllers\CitiesController.cs" />
     <Compile Include="Controllers\FeedsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -255,16 +257,6 @@
     <Content Include="Views\Cities\Details.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
-    <Content Include="Views\Feeds\Create.cshtml" />
-    <Content Include="Views\Feeds\Delete.cshtml" />
-    <Content Include="Views\Feeds\Details.cshtml" />
-    <Content Include="Views\Feeds\Edit.cshtml" />
-    <Content Include="Views\Feeds\Index.cshtml" />
-    <Content Include="Views\TimeSpendings\Create.cshtml" />
-    <Content Include="Views\TimeSpendings\Delete.cshtml" />
-    <Content Include="Views\TimeSpendings\Details.cshtml" />
-    <Content Include="Views\TimeSpendings\Edit.cshtml" />
-    <Content Include="Views\TimeSpendings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
