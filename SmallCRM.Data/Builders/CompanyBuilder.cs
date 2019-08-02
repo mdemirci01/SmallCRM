@@ -29,7 +29,7 @@ namespace SmallCRM.Data.Builders
             builder.Property(a => a.InvoicePostalCode).HasMaxLength(50);
             builder.Property(a => a.InvoiceDescription).HasMaxLength(4000);
             builder.Property(a => a.Description).HasMaxLength(4000);
-            builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
 
 
 

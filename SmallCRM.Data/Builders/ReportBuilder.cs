@@ -13,7 +13,7 @@ namespace SmallCRM.Data.Builders
         public ReportBuilder(EntityTypeConfiguration<Report> builder)
         {       
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
-            builder.Property(b => b.LastExecutionDate).IsRequired();
+            builder.Property(b => b.LastExecutionDate);
             builder.Property(b => b.Description).HasMaxLength(4000).IsRequired();
 
         }
