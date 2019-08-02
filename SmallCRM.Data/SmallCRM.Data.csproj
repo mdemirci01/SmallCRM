@@ -51,6 +51,7 @@
     <Compile Include="Builders\LeadStatusBuilder.cs" />
     <Compile Include="Builders\ProjectBuilder.cs" />
     <Compile Include="Builders\LeadBuilder.cs" />
+    <Compile Include="Builders\SectorBuilder.cs" />
     <Compile Include="Builders\WorkItemBuilder.cs" />
     <Compile Include="Builders\OpportunityBuilder.cs" />
     <Compile Include="Builders\ContactBuilder.cs" />
