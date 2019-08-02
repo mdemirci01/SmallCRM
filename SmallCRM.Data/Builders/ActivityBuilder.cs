@@ -16,7 +16,7 @@ namespace SmallCRM.Data.Builders
             builder.Property(b => b.Subject).HasMaxLength(100).IsRequired();
             builder.HasOptional(a => a.Contact).WithMany(b => b.Activities).HasForeignKey(a => a.ContactId);
 
-            //    builder.Property(b => b.CallDirection).HasMaxLength(200).IsRequired();
+
             builder.Property(b => b.CompanyName).IsRequired();
             builder.HasOptional(a => a.Company).WithMany(b => b.Activities).HasForeignKey(a => a.CompanyId);
 
