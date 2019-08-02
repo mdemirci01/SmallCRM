@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace SmallCRM.Data.Builders
 {
-    public class CampaignSourceBuilder
+    public class CompanyTypeBuilder
     {
-        public CampaignSourceBuilder(EntityTypeConfiguration<CampaignSource> builder)
+        public CompanyTypeBuilder(EntityTypeConfiguration<CompanyType> builder)
         {
-            builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
+            builder.Property(b => b.Name).HasMaxLength(50).IsRequired();            
         }
     }
 }
+

@@ -12,9 +12,9 @@ namespace SmallCRM.Data.Builders
     {
         public DocumentBuilder(EntityTypeConfiguration<Document> builder)
         {            
-            builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
             builder.Property(b => b.File).HasMaxLength(200).IsRequired();
-            builder.Property(b => b.Description).HasMaxLength(200);
+            builder.Property(b => b.Description).HasMaxLength(4000);
         }
     }
 }

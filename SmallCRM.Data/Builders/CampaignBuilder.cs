@@ -12,10 +12,10 @@ namespace SmallCRM.Data.Builders
     {
         public CampaignBuilder(EntityTypeConfiguration<Campaign> builder)
         {
-            builder.Property(b => b.Owner).HasMaxLength(50);
-            builder.Property(b => b.Name).HasMaxLength(50).IsRequired();            
-            builder.Property(b => b.ExpectedResponse).HasMaxLength(30);
-            builder.Property(b => b.Description).HasMaxLength(200);
+            builder.Property(b => b.Owner).HasMaxLength(100);
+            builder.Property(b => b.Name).HasMaxLength(100).IsRequired();            
+            builder.Property(b => b.ExpectedResponse).HasMaxLength(100);
+            builder.Property(b => b.Description).HasMaxLength(4000);
         }
     }
 }

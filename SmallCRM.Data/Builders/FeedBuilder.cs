@@ -12,9 +12,9 @@ namespace SmallCRM.Data.Builders
     {
         public FeedBuilder(EntityTypeConfiguration<Feed> builder)
         {
-            builder.Property(b => b.Message).HasMaxLength(200).IsRequired();
+            builder.Property(b => b.Message).HasMaxLength(4000).IsRequired();
             builder.HasOptional(a => a.Document).WithMany(b => b.Feeds).HasForeignKey(a => a.DocumentId);
-            builder.Property(b => b.TargetUser).IsRequired();
+            builder.Property(b => b.TargetUser).HasMaxLength(100).IsRequired();
 
         }
     }

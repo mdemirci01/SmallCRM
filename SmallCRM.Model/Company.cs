@@ -13,8 +13,9 @@ namespace SmallCRM.Model
 
         public Guid? MainCompanyId { get; set; }
         public virtual Company MainCompany { get; set; }
-
+        public virtual ICollection<Company> ChildCompanies { get; set; }
         public string CompanyNumber { get; set; }
+
         public Guid? CompanyTypeId { get; set; }
         public virtual CompanyType CompanyType { get; set; }
 
@@ -71,8 +72,6 @@ namespace SmallCRM.Model
         public virtual Country DeliveryCountry { get; set; }
 
         public string Description { get; set; }
-
-
         public virtual ICollection<Activity> Activities { get; set; }
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual ICollection<Lead> Leads { get; set; }

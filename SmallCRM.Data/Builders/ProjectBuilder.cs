@@ -13,6 +13,10 @@ namespace SmallCRM.Data.Builders
         public ProjectBuilder(EntityTypeConfiguration<Project> builder)
         {
             builder.Property(b => b.Name).HasMaxLength(100).IsRequired();
+            builder.Property(b => b.Description);
+            builder.Property(b => b.Managers).HasMaxLength(4000);
+            builder.Property(b => b.BussinessAnalyists).HasMaxLength(4000);
+            builder.Property(b => b.Developers).HasMaxLength(4000);
             
         }
     }
