@@ -15,7 +15,7 @@ namespace SmallCRM.Data.Builders
             builder.Property(b => b.Name).HasMaxLength(50).IsRequired();
             builder.HasRequired(a => a.Project).WithMany(b => b.TimeSpendings).HasForeignKey(a => a.ProjectId);
             builder.HasOptional(a => a.Project).WithMany(b => b.TimeSpendings).HasForeignKey(a => a.ProjectId);
-            builder.Property(b => b.Worker).HasMaxLength(50).IsRequired();
+            builder.Property(b => b.Worker).HasMaxLength(100).IsRequired();
         }
     }
 }
