@@ -20,6 +20,5 @@ namespace SmallCRM.Model
         public virtual ICollection<Company> InvoiceCompanies { get; set; }
         public virtual ICollection<Company> DeliveryCompanies { get; set; }
 
-
     }
 }
