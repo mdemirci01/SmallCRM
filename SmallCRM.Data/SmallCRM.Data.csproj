@@ -45,6 +45,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Builders\CampaignSourceBuilder.cs" />
     <Compile Include="Builders\CampaignBuilder.cs" />
+    <Compile Include="Builders\ReportBuilder.cs" />
     <Compile Include="Builders\CityBuilder.cs" />
     <Compile Include="Builders\CountryBuilder.cs" />
     <Compile Include="Builders\LeadSourceBuilder.cs" />
