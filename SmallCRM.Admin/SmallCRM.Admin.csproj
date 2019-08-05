@@ -213,6 +213,8 @@
     <Compile Include="Models\TimeSpendingViewModel.cs" />
     <Compile Include="Models\RegionViewModels.cs" />
     <Compile Include="Models\SectorViewModels.cs" />
+    <Compile Include="Models\SectorViewModel.cs" />
+    <Compile Include="Models\OpportunityViewModel.cs" />
   
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
