@@ -30,5 +30,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Boyutu")]
         [Required]
         public int Size { get; set; }
+        [Display(Name = "Aktif Mi?")]
+        public bool IsActive { get; set; }
     }
 }
