@@ -207,6 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ActivityViewModels.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
@@ -218,6 +219,8 @@
     <Compile Include="Models\TimeSpendingViewModel.cs" />
     <Compile Include="Models\RegionViewModels.cs" />
     <Compile Include="Models\SectorViewModel.cs" />
+    <Compile Include="Models\OpportunityViewModel.cs" />
+  
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
