@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class ActivityViewModels
+    public class ActivityViewModel
     {
 
         public Guid Id { get; set; }
