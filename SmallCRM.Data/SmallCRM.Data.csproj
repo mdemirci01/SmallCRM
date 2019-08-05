@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201908050724412_DescSilindi.Designer.cs">
       <DependentUpon>201908050724412_DescSilindi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908050836425_dbfix.cs" />
+    <Compile Include="Migrations\201908050836425_dbfix.Designer.cs">
+      <DependentUpon>201908050836425_dbfix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908050724412_DescSilindi.resx">
       <DependentUpon>201908050724412_DescSilindi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908050836425_dbfix.resx">
+      <DependentUpon>201908050836425_dbfix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
