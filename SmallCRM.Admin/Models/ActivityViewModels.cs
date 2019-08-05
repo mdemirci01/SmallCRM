@@ -28,6 +28,7 @@ namespace SmallCRM.Admin.Models
         public CallDetail? CallDetail { get; set; }
         [Display(Name = "Arama Sonucu")]
         public CallResult? CallResult { get; set; }
+        [Display(Name = "İrtibat")]
         public Guid? ContactId { get; set; }
 
         
@@ -43,6 +44,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Web Sitesi")]
         [EmailAddress]
         public string CompanyWebsite { get; set; }
+        [Display(Name = "Firma")]
         public Guid? CompanyId { get; set; }
 
         [MaxLength(100)]
@@ -60,6 +62,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Aşama")]
         [Required]
         public OpportunityStage OpportunityStage { get; set; }
+        [Display(Name = "Satış Fırsatı")]
         public Guid? OpportunityId { get; set; }
 
         [Display(Name = "Kampanya Adı")]
@@ -75,6 +78,7 @@ namespace SmallCRM.Admin.Models
         public DateTime? CampaignEndDate { get; set; }
         [Display(Name = "Beklenen Ciro")]
         public decimal? CampaignExpectedRevenue { get; set; } //Beklenen ciro
+        [Display(Name = "Kampanya")]
         public Guid? CampaignId { get; set; }
 
     }
