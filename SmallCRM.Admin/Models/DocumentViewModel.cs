@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class DocumentViewModels
+    public class DocumentViewModel
     {
         public Guid Id { get; set; }
         [Display(Name = "Dosya Adı")]

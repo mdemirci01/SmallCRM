@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class CampaignViewModels
+    public class CampaignViewModel
     {
         public Guid Id { get; set; }
         [MaxLength(100)]
