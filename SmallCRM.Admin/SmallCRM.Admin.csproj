@@ -207,6 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ActivityViewModel.cs" />
     <Compile Include="Models\LeadSourceViewModel.cs" />
     <Compile Include="Models\LeadStatusViewModel.cs" />
     <Compile Include="Models\CountryViewModels.cs" />
