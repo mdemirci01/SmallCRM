@@ -6,11 +6,12 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class LeadSourceViewModel
+    public class CompanyTypeViewModel
     {
+        public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
-        [Display(Name="Müşteri Adayı Kaynağı")]
+        [Display(Name="Firma Tipi")]
+        [MaxLength(100)]
         public string Name { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace SmallCRM.Admin.Models
         
         [Display(Name = "Açıklama")]
         public string Description { get; set; }
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "Firma Adı")]
         [Required]
         public string CompanyName { get; set; }
@@ -42,7 +42,7 @@ namespace SmallCRM.Admin.Models
         [Phone]
         public string CompanyTelephone { get; set; }
         [Display(Name = "Web Sitesi")]
-        [EmailAddress]
+        [Url]
         public string CompanyWebsite { get; set; }
         [Display(Name = "Firma")]
         public Guid? CompanyId { get; set; }
