@@ -10,7 +10,7 @@ namespace SmallCRM.Admin.Models
     {
         [Required]
         [MaxLength(50)]
-        [Display(Name="Müşteri Kaynağı")]
+        [Display(Name="Müşteri Adayı Kaynağı")]
         public string Name { get; set; }
     }
 }

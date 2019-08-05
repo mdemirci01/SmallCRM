@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class CompanyTypeViewModels
+    public class CompanyTypeViewModel
     {
         public Guid Id { get; set; }
         [Required]
