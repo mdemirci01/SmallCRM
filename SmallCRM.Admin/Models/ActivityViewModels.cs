@@ -12,7 +12,6 @@ namespace SmallCRM.Admin.Models
 
         public Guid Id { get; set; }
         [Display(Name = "İrtibat Adı")]
-        [MaxLength(50)]
         public string ContactFullName { get; set; }
         [MaxLength(100)]
         [Display(Name = "Konu")]
@@ -20,7 +19,6 @@ namespace SmallCRM.Admin.Models
         public string Subject { get; set; }
         [Display(Name = "Arama Nedeni")]
         public CallReason? CallReason { get; set; }
-        [MaxLength(20)]
         [Display(Name = "İlgilisi")]
         public RelatedRecord? RelatedRecord { get; set; }
         [Display(Name = "Arama Tipi")]
@@ -32,14 +30,13 @@ namespace SmallCRM.Admin.Models
         public CallResult? CallResult { get; set; }
         public Guid? ContactId { get; set; }
 
-        [MaxLength(4000)]
+        
         [Display(Name = "Açıklama")]
         public string Description { get; set; }
         [MaxLength(50)]
         [Display(Name = "Firma Adı")]
         [Required]
         public string CompanyName { get; set; }
-        [MaxLength(20)]
         [Display(Name = "Telefon")]
         [Phone]
         public string CompanyTelephone { get; set; }
@@ -67,6 +64,7 @@ namespace SmallCRM.Admin.Models
 
         [Display(Name = "Kampanya Adı")]
         [Required]
+        [MaxLength(100)]
         public string CampaignName { get; set; }
 
         [Display(Name = "Durum")]
