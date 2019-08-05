@@ -62,6 +62,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Durum")]
         public Guid? LeadStatusId { get; set; }
         public Stage? Stage { get; set; }
+        [MaxLength(100)]
         [Display(Name = "Skype")]
         public string SkypeId { get; set; }
         [MaxLength(100)]

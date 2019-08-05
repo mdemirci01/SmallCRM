@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class ContactViewModels
+    public class ContactViewModel
     {
         [Required]
         public Guid Id { get; set; }
