@@ -92,5 +92,7 @@ namespace SmallCRM.Admin.Models
         public string Description { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
+        [Display(Name = "Şehir Adı")]
+        public string CityName { get; set; }
     }
 }
