@@ -6,12 +6,12 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class RegionViewModels
+    public class CompanyTypeViewModels
     {
+        public Guid Id { get; set; }
         [Required]
-        [MaxLength(50)]
-        [Display(Name = "İlçe Adı")]
+        [Display(Name="Firma Tipi")]
+        [MaxLength(100)]
         public string Name { get; set; }
-        public Guid CityId { get; set; }
     }
 }
