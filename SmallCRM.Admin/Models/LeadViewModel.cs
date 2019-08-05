@@ -90,5 +90,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
         public string Description { get; set; }
+        [Display(Name = "Aktif Mi?")]
+        public bool IsActive { get; set; }
     }
 }
