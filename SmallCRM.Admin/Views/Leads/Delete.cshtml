@@ -1,4 +1,4 @@
-﻿@model SmallCRM.Model.Lead
+﻿﻿@model SmallCRM.Admin.Models.LeadViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,51 +12,51 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.City.Name)
+            @Html.DisplayNameFor(model => model.CityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City.Name)
+            @Html.DisplayFor(model => model.CityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Country.Name)
+            @Html.DisplayNameFor(model => model.CountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Country.Name)
+            @Html.DisplayFor(model => model.CountryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LeadSource.Name)
+            @Html.DisplayNameFor(model => model.LeadSourceName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LeadSource.Name)
+            @Html.DisplayFor(model => model.LeadSourceName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LeadStatus.Name)
+            @Html.DisplayNameFor(model => model.LeadStatusName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LeadStatus.Name)
+            @Html.DisplayFor(model => model.LeadStatusName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Region.Name)
+            @Html.DisplayNameFor(model => model.RegionName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Region.Name)
+            @Html.DisplayFor(model => model.RegionName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sector.Name)
+            @Html.DisplayNameFor(model => model.SectorName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sector.Name)
+            @Html.DisplayFor(model => model.SectorName)
         </dd>
 
         <dt>
@@ -245,7 +245,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
