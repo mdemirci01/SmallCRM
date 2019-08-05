@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmallCRM.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace SmallCRM.Admin.Models
 
         public Guid Id { get; set; }
         [Display(Name = "İrtibat Adı")]
-        [MaxLength(50)]
         public string ContactFullName { get; set; }
         [MaxLength(100)]
         [Display(Name = "Konu")]
@@ -19,7 +19,6 @@ namespace SmallCRM.Admin.Models
         public string Subject { get; set; }
         [Display(Name = "Arama Nedeni")]
         public CallReason? CallReason { get; set; }
-        [MaxLength(20)]
         [Display(Name = "İlgilisi")]
         public RelatedRecord? RelatedRecord { get; set; }
         [Display(Name = "Arama Tipi")]
@@ -29,22 +28,23 @@ namespace SmallCRM.Admin.Models
         public CallDetail? CallDetail { get; set; }
         [Display(Name = "Arama Sonucu")]
         public CallResult? CallResult { get; set; }
+        [Display(Name = "İrtibat")]
         public Guid? ContactId { get; set; }
 
-        [MaxLength(4000)]
+        
         [Display(Name = "Açıklama")]
         public string Description { get; set; }
         [MaxLength(50)]
         [Display(Name = "Firma Adı")]
         [Required]
         public string CompanyName { get; set; }
-        [MaxLength(20)]
         [Display(Name = "Telefon")]
         [Phone]
         public string CompanyTelephone { get; set; }
         [Display(Name = "Web Sitesi")]
         [EmailAddress]
         public string CompanyWebsite { get; set; }
+        [Display(Name = "Firma")]
         public Guid? CompanyId { get; set; }
 
         [MaxLength(100)]
@@ -62,10 +62,12 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Aşama")]
         [Required]
         public OpportunityStage OpportunityStage { get; set; }
+        [Display(Name = "Satış Fırsatı")]
         public Guid? OpportunityId { get; set; }
 
         [Display(Name = "Kampanya Adı")]
         [Required]
+        [MaxLength(100)]
         public string CampaignName { get; set; }
 
         [Display(Name = "Durum")]
@@ -76,6 +78,7 @@ namespace SmallCRM.Admin.Models
         public DateTime? CampaignEndDate { get; set; }
         [Display(Name = "Beklenen Ciro")]
         public decimal? CampaignExpectedRevenue { get; set; } //Beklenen ciro
+        [Display(Name = "Kampanya")]
         public Guid? CampaignId { get; set; }
 
     }

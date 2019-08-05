@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class CountryViewModels
+    public class CountryViewModel
     {
         public Guid Id { get; set; }
         [Required]

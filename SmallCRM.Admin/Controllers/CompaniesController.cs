@@ -57,7 +57,7 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceDescription,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryDescription,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Create([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceDescription,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryDescription,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Edit([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
         {
             if (ModelState.IsValid)
             {

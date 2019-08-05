@@ -6,11 +6,17 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class LeadStatusViewModel
+    public class CityViewModel
     {
+        
+        public Guid Id { get; set; }
+
         [Required]
         [MaxLength(50)]
-        [Display(Name="Müşteri Adayı Durumu")]
+        [Display(Name = "Şehir Adı")]
         public string Name { get; set; }
+
+        [Display(Name = "Ülke")]
+        public Guid CountryId { get; set; }
     }
 }

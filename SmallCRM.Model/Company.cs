@@ -47,7 +47,7 @@ namespace SmallCRM.Model
 
    
         public string InvoicePostalCode { get; set; }
-        public string InvoiceDescription { get; set; }
+     
 
         public Guid? InvoiceCountryId { get; set; }
         public virtual Country InvoiceCountry { get; set; }
@@ -66,7 +66,7 @@ namespace SmallCRM.Model
 
      
         public string DeliveryPostalCode { get; set; }
-        public string DeliveryDescription { get; set; }
+
 
         public Guid? DeliveryCountryId { get; set; }
         public virtual Country DeliveryCountry { get; set; }
