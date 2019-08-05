@@ -211,7 +211,7 @@
     <Compile Include="Models\LeadStatusViewModel.cs" />
     <Compile Include="Models\CountryViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\RegionViewModels.cs" />
+    <Compile Include="Models\RegionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
