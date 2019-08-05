@@ -6,8 +6,9 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class SectorViewModels
+    public class SectorViewModel
     {
+       
         public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
