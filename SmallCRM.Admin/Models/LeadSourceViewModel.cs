@@ -9,6 +9,8 @@ namespace SmallCRM.Admin.Models
     public class LeadSourceViewModel
     {
         [Required]
+        [MaxLength(50)]
+        [Display(Name="Müşteri Kaynağı")]
         public string Name { get; set; }
     }
 }
