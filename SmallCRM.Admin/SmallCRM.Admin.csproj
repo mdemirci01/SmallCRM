@@ -212,6 +212,9 @@
     <Compile Include="Models\LeadStatusViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\ActivityViewModels.cs" />
+    <Compile Include="Models\CampaignSourceViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\ActivityViewModels.cs" />
     <Compile Include="Models\CampaignViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\DocumentViewModel.cs" />
