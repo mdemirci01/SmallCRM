@@ -25,7 +25,7 @@ namespace SmallCRM.Admin.Models
         [Required]
         public FileType FileType { get; set; }
         [Display(Name = "Uzantısı")]
-        [Required]
+        
         public string Extension { get; set; }
         [Display(Name = "Boyutu")]
         [Required]
