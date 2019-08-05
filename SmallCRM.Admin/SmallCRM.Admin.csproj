@@ -217,6 +217,17 @@
     <Compile Include="Models\FeedViewModel.cs" />
     <Compile Include="Models\LeadSourceViewModel.cs" />
     <Compile Include="Models\LeadStatusViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\ActivityViewModels.cs" />
+    <Compile Include="Models\CampaignSourceViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
+    <Compile Include="Models\ActivityViewModels.cs" />
+    <Compile Include="Models\CampaignViewModel.cs" />
+    <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\DocumentViewModel.cs" />
+    <Compile Include="Models\FeedViewModel.cs" />
+    <Compile Include="Models\LeadSourceViewModel.cs" />
+    <Compile Include="Models\LeadStatusViewModel.cs" />
     <Compile Include="Models\LeadViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\TimeSpendingViewModel.cs" />
