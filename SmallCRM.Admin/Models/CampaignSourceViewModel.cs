@@ -6,11 +6,13 @@ using System.Web;
 
 namespace SmallCRM.Admin.Models
 {
-    public class LeadStatusViewModel
+    public class CampaignSourceViewModel
     {
         [Required]
-        [MaxLength(50)]
-        [Display(Name="Müşteri Adayı Durumu")]
+        public Guid Id { get; set; }
+        [Required]
+        [MaxLength(100)]
+        [Display(Name ="Kampanya Kaynağı Adı")]
         public string Name { get; set; }
     }
 }
