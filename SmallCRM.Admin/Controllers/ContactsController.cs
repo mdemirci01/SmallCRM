@@ -6,20 +6,43 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
+using static SmallCRM.Service.ContactService;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class ContactsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IContactService contactService;
+        private readonly ICityService cityService;
+        private readonly ICompanyService companyService;
+        private readonly ICountryService countryService;
+        private readonly ILeadSourceService leadSourceService;
+        private readonly IRegionService regionService;
+        private readonly IReportService reportService;
+       
+        
+
+        public ContactsController(IContactService contactService, ICityService cityService, ICompanyService companyService, ICountryService countryService, ILeadSourceService leadSourceService, IReportService reportService)
+        {
+            this.contactService = contactService;
+            this.cityService = cityService;
+            this.companyService = companyService;
+            this.leadSourceService = leadSourceService;
+            this.countryService = countryService;
+            this.regionService = regionService;
+            this.reportService = reportService;
+        }
 
         // GET: Contacts
         public ActionResult Index()
         {
-            var contacts = db.Contacts.Include(c => c.City).Include(c => c.Company).Include(c => c.Country).Include(c => c.LeadSource).Include(c => c.OtherCity).Include(c => c.OtherCountry).Include(c => c.OtherRegion).Include(c => c.Region).Include(c => c.ReportsToContact);
-            return View(contacts.ToList());
+            var contacts = Mapper.Map<IEnumerable<ContactViewModel>>(contactService.GetAll());
+            return View(contacts);
         }
 
         // GET: Contacts/Details/5
@@ -29,7 +52,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            ContactViewModel contact = Mapper.Map<ContactViewModel>(contactService.Get(id.Value));
             if (contact == null)
             {
                 return HttpNotFound();
@@ -40,15 +63,15 @@ namespace SmallCRM.Admin.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner");
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name");
-            ViewBag.OtherCityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.OtherCountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.OtherRegionId = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.ReportsToContactId = new SelectList(db.Contacts, "Id", "Owner");
+            ViewBag.CityId = new SelectList(contactService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
+            ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner");
             return View();
         }
 
@@ -61,21 +84,20 @@ namespace SmallCRM.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                contact.Id = Guid.NewGuid();
-                db.Contacts.Add(contact);
-                db.SaveChanges();
+                var entity = Mapper.Map<Contact>(contact);
+                contactService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", contact.CompanyId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", contact.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", contact.LeadSourceId);
-            ViewBag.OtherCityId = new SelectList(db.Cities, "Id", "Name", contact.OtherCityId);
-            ViewBag.OtherCountryId = new SelectList(db.Countries, "Id", "Name", contact.OtherCountryId);
-            ViewBag.OtherRegionId = new SelectList(db.Regions, "Id", "Name", contact.OtherRegionId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(db.Contacts, "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
+            ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
+            ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
+            ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
             return View(contact);
         }
 
@@ -86,20 +108,20 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            ContactViewModel contact = Mapper.Map<ContactViewModel>(contactService.Get(id.Value));
             if (contact == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", contact.CompanyId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", contact.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", contact.LeadSourceId);
-            ViewBag.OtherCityId = new SelectList(db.Cities, "Id", "Name", contact.OtherCityId);
-            ViewBag.OtherCountryId = new SelectList(db.Countries, "Id", "Name", contact.OtherCountryId);
-            ViewBag.OtherRegionId = new SelectList(db.Regions, "Id", "Name", contact.OtherRegionId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(db.Contacts, "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
+            ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
+            ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
+            ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
             return View(contact);
         }
 
@@ -108,23 +130,23 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Owner,FirstName,LastName,TitleOfCourtesy,CompanyId,Email,Telephone,OtherPhone,HomePhone,MobilePhone,AssistantName,AssistantPhone,LeadSourceId,Title,Department,Fax,BirthDate,NotSendEmail,NotSendSms,SkypeId,Twitter,SecondaryEmail,ReportsToContactId,Photo,Address,CountryId,CityId,RegionId,PostalCode,OtherAddress,OtherCountryId,OtherCityId,OtherRegionId,OtherPostalCode,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Contact contact)
+        public ActionResult Edit(ContactViewModel contact)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(contact).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Contact>(contact);
+                contactService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", contact.CompanyId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", contact.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", contact.LeadSourceId);
-            ViewBag.OtherCityId = new SelectList(db.Cities, "Id", "Name", contact.OtherCityId);
-            ViewBag.OtherCountryId = new SelectList(db.Countries, "Id", "Name", contact.OtherCountryId);
-            ViewBag.OtherRegionId = new SelectList(db.Regions, "Id", "Name", contact.OtherRegionId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(db.Contacts, "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
+            ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
+            ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
+            ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
             return View(contact);
         }
 
@@ -135,7 +157,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            ContactViewModel contact = Mapper.Map<ContactViewModel>(contactService.Get(id.Value));
             if (contact == null)
             {
                 return HttpNotFound();
@@ -148,19 +170,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Contact contact = db.Contacts.Find(id);
-            db.Contacts.Remove(contact);
-            db.SaveChanges();
+            contactService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

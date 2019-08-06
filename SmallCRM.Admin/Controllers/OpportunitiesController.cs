@@ -11,17 +11,26 @@ using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
 using SmallCRM.Service;
+using static SmallCRM.Service.ContactService;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class OpportunitiesController : Controller
     {
         private readonly IOpportunityService opportunityService;
+        private readonly ICampaignSourceService campaignSourceService;
+        private readonly ICompanyService companyService;
+        private readonly IContactService contactService;
+        private readonly ILeadSourceService leadSourceService;
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public OpportunitiesController(IOpportunityService opportunityService)
+        public OpportunitiesController(IOpportunityService opportunityService, ICampaignSourceService campaignSourceService, ICompanyService companyService, IContactService contactService, ILeadSourceService leadSourceService)
         {
             this.opportunityService = opportunityService;
+            this.campaignSourceService = campaignSourceService;
+            this.companyService = companyService;
+            this.contactService = contactService;
+            this.leadSourceService = leadSourceService;
         }
 
         // GET: Opportunities
@@ -49,10 +58,10 @@ namespace SmallCRM.Admin.Controllers
         // GET: Opportunities/Create
         public ActionResult Create()
         {
-            ViewBag.CampaignSourceId = new SelectList(db.CampaignSources, "Id", "Name");
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner");
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner");
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name");
+            ViewBag.CampaignSourceId = new SelectList(campaignSourceService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -70,10 +79,10 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CampaignSourceId = new SelectList(db.CampaignSources, "Id", "Name", opportunity.CampaignSourceId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", opportunity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", opportunity.ContactId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", opportunity.LeadSourceId);
+            ViewBag.CampaignSourceId = new SelectList(campaignSourceService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             return View(opportunity);
         }
 
@@ -90,10 +99,10 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CampaignSourceId = new SelectList(db.CampaignSources, "Id", "Name", opportunity.CampaignSourceId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", opportunity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", opportunity.ContactId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", opportunity.LeadSourceId);
+            ViewBag.CampaignSourceId = new SelectList(campaignSourceService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             return View(opportunity);
         }
 
@@ -110,10 +119,10 @@ namespace SmallCRM.Admin.Controllers
                 opportunityService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CampaignSourceId = new SelectList(db.CampaignSources, "Id", "Name", opportunity.CampaignSourceId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", opportunity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", opportunity.ContactId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", opportunity.LeadSourceId);
+            ViewBag.CampaignSourceId = new SelectList(campaignSourceService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             return View(opportunity);
         }
 

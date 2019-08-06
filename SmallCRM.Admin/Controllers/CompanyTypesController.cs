@@ -6,19 +6,31 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class CompanyTypesController : Controller
     {
+        private readonly ICompanyTypeService companyTypeService;
+
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public CompanyTypesController(ICompanyTypeService companyTypeService)
+        {
+            this.companyTypeService = companyTypeService;
+        }
+
 
         // GET: CompanyTypes
         public ActionResult Index()
         {
-            return View(db.CompanyTypes.ToList());
+            var companyTypes = Mapper.Map<IEnumerable<CompanyTypeViewModel>>(companyTypeService.GetAll());
+            return View(companyTypes);
         }
 
         // GET: CompanyTypes/Details/5
@@ -28,7 +40,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CompanyType companyType = db.CompanyTypes.Find(id);
+            CompanyTypeViewModel companyType = Mapper.Map<CompanyTypeViewModel>(companyTypeService.Get(id.Value));
             if (companyType == null)
             {
                 return HttpNotFound();
@@ -47,13 +59,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] CompanyType companyType)
+        public ActionResult Create(CompanyTypeViewModel companyType)
         {
             if (ModelState.IsValid)
             {
-                companyType.Id = Guid.NewGuid();
-                db.CompanyTypes.Add(companyType);
-                db.SaveChanges();
+                var entity = Mapper.Map<CompanyType>(companyType);
+                companyTypeService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +78,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CompanyType companyType = db.CompanyTypes.Find(id);
+            CompanyTypeViewModel companyType = Mapper.Map<CompanyTypeViewModel>(companyTypeService.Get(id.Value));
             if (companyType == null)
             {
                 return HttpNotFound();
@@ -84,8 +95,8 @@ namespace SmallCRM.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(companyType).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<CompanyType>(companyType);
+                companyTypeService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(companyType);
@@ -98,7 +109,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CompanyType companyType = db.CompanyTypes.Find(id);
+            CompanyTypeViewModel companyType = Mapper.Map<CompanyTypeViewModel>(companyTypeService.Get(id.Value));            
             if (companyType == null)
             {
                 return HttpNotFound();
@@ -111,19 +122,19 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            CompanyType companyType = db.CompanyTypes.Find(id);
-            db.CompanyTypes.Remove(companyType);
-            db.SaveChanges();
+            companyTypeService.Delete(id);
             return RedirectToAction("Index");
         }
+        
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
+
     }
 }
