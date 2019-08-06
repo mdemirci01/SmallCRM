@@ -32,6 +32,8 @@ namespace SmallCRM.Admin
             builder.RegisterType<CampaignService>().As<ICampaignService>();
             builder.RegisterType<DocumentService>().As<IDocumentService>();
             builder.RegisterType<OpportunityService>().As<IOpportunityService>();
+            builder.RegisterType<ProjectService>().As<IProjectService>();
+            builder.RegisterType<CampaignSourceService>().As<ICampaignSourceService>();
             builder.RegisterType<CountryService>().As<ICountryService>();
 
             IContainer container = builder.Build();
