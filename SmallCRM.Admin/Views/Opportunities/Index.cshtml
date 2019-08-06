@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmallCRM.Model.Opportunity>
+﻿@model IEnumerable<SmallCRM.Admin.Models.OpportunityViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,16 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CampaignSource.Name)
+            @Html.DisplayNameFor(model => model.CampaignSourceName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Company.Owner)
+            @Html.DisplayNameFor(model => model.CompanyOwner)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Contact.Owner)
+            @Html.DisplayNameFor(model => model.ContactOwner)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LeadSource.Name)
+            @Html.DisplayNameFor(model => model.LeadSourceName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Owner)
@@ -53,55 +53,29 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
+       
+       
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IpAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
+      
+       
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.CampaignSource.Name)
+            @Html.DisplayFor(modelItem => item.CampaignSourceName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Company.Owner)
+            @Html.DisplayFor(modelItem => item.CompanyOwner)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.Owner)
+            @Html.DisplayFor(modelItem => item.ContactOwner)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LeadSource.Name)
+            @Html.DisplayFor(modelItem => item.LeadSourceName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Owner)
@@ -133,39 +107,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IpAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
+       
+       
+        
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

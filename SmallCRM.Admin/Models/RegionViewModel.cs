@@ -8,6 +8,7 @@ namespace SmallCRM.Admin.Models
 {
     public class RegionViewModel
     {
+        public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
         [Display(Name = "İlçe Adı")]
@@ -15,5 +16,8 @@ namespace SmallCRM.Admin.Models
 
         [Display(Name = "Şehir")]
         public Guid CityId { get; set; }
+        public bool IsActive { get; set; }
+        [Display(Name="Şehir Adı")]
+        public string CityName { get; set; }
     }
 }

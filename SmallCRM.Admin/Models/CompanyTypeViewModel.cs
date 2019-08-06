@@ -13,5 +13,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name="Firma Tipi")]
         [MaxLength(100)]
         public string Name { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

@@ -9,12 +9,17 @@ namespace SmallCRM.Admin.Models
 {
     public class CompanyViewModel
     {
+        [Display(Name ="Aktif Mi?")]
+        public bool IsActive { get; set; }
         public Guid Id { get; set; }
 
         [Display(Name = "Firma Kayıt Sahibi")]
         [MaxLength(100)]
-        public string Owner { get; set; }//FirmaKayıtSahibi
+        public string Owner { get; set; }
 
+        [Display(Name="Firma Konumu")]
+        [MaxLength(100)]
+        public string CompanyLocation { get; set; }
 
         [Required]
         [Display(Name ="Firma Adı")]
@@ -118,5 +123,16 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
         public string Description { get; set; }
+
+        public string CompanyTypeName { get; set; }
+        public string DeliveryCityName { get; set; }
+        public string DeliveryCountryName { get; set; }
+        public string DeliveryRegionName { get; set; }
+        public string InvoiceCityName { get; set; }
+        public string InvoiceCountryName { get; set; }
+        public string InvoiceRegionName { get; set; }
+        public string MainCompanyOwner { get; set; }
+        public string SectorName { get; set; }
+
     }
 }
