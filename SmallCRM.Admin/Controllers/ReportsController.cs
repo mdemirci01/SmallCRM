@@ -6,19 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class ReportsController : Controller
     {
+        private readonly IReportService reportService;
+        public ReportsController(IReportService reportService)
+        {
+            this.reportService = reportService;
+        }
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reports
         public ActionResult Index()
         {
-            return View(db.Reports.ToList());
+            var report = Mapper.Map<IEnumerable<ReportViewModel>>(reportService.GetAll());
+            return View(report);
         }
 
         // GET: Reports/Details/5
@@ -28,7 +38,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = db.Reports.Find(id);
+            ReportViewModel report = Mapper.Map<ReportViewModel>(reportService.Get(id.Value));
             if (report == null)
             {
                 return HttpNotFound();
@@ -47,14 +57,15 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,LastExecutionDate,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Report report)
+        public ActionResult Create(ReportViewModel report)
         {
             if (ModelState.IsValid)
             {
-                report.Id = Guid.NewGuid();
-                db.Reports.Add(report);
-                db.SaveChanges();
+
+                var entity = Mapper.Map<Report>(report);
+                reportService.Insert(entity);
                 return RedirectToAction("Index");
+
             }
 
             return View(report);
@@ -67,7 +78,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = db.Reports.Find(id);
+              ReportViewModel report = Mapper.Map<ReportViewModel>(reportService.Get(id.Value));
             if (report == null)
             {
                 return HttpNotFound();
@@ -80,12 +91,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,LastExecutionDate,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Report report)
+        public ActionResult Edit(ReportViewModel report)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(report).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Report>(report);
+                reportService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(report);
@@ -98,7 +109,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = db.Reports.Find(id);
+            ReportViewModel report = Mapper.Map<ReportViewModel>(reportService.Get(id.Value));
             if (report == null)
             {
                 return HttpNotFound();
@@ -111,19 +122,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Report report = db.Reports.Find(id);
-            db.Reports.Remove(report);
-            db.SaveChanges();
+            reportService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      
     }
 }
