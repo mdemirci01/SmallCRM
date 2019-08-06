@@ -47,6 +47,7 @@
     <Compile Include="ActivityService.cs" />
     <Compile Include="CompanyTypeService.cs" />
     <Compile Include="CompanyService.cs" />
+    <Compile Include="CampaignService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="OpportunityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
