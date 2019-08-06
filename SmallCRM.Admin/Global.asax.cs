@@ -36,6 +36,8 @@ namespace SmallCRM.Admin
             builder.RegisterType<CampaignSourceService>().As<ICampaignSourceService>();
             builder.RegisterType<CountryService>().As<ICountryService>();
             builder.RegisterType<ReportService>().As<IReportService>();
+            builder.RegisterType<CompanyService>().As<ICompanyService>();
+            builder.RegisterType<CompanyTypeService>().As<ICompanyTypeService>();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
