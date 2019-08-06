@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityService.cs" />
+    <Compile Include="CompanyTypeService.cs" />
     <Compile Include="CompanyService.cs" />
     <Compile Include="CampaignService.cs" />
     <Compile Include="CampaignSourceService.cs" />
