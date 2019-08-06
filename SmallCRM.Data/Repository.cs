@@ -84,6 +84,7 @@ namespace SmallCRM.Data
 
         public void Insert(T entity)
         {
+            entity.Id = Guid.NewGuid();
             entity.CreatedAt = DateTime.Now;
             entity.CreatedBy = httpContext.User.Identity.GetUserId();
             entity.UpdatedAt = entity.CreatedAt;

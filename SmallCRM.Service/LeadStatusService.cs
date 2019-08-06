@@ -54,14 +54,14 @@ namespace SmallCRM.Service
             leadStatusRepository.Update(leadStatus);
             unitOfWork.SaveChanges();
         }
-        public interface ILeadStatusRepository
-        {
-            IEnumerable<LeadStatus> GetAll();
-            LeadStatus Get(Guid id);
-            void Insert(LeadStatus leadStatus);
-            void Update(LeadStatus leadStatus);
-            void Delete(Guid id);
-            bool Any(Guid id);
-        }
+    }
+    public interface ILeadStatusService
+    {
+        IEnumerable<LeadStatus> GetAll();
+        LeadStatus Get(Guid id);
+        void Insert(LeadStatus leadStatus);
+        void Update(LeadStatus leadStatus);
+        void Delete(Guid id);
+        bool Any(Guid id);
     }
 }

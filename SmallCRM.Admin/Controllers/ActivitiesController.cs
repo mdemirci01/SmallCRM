@@ -6,20 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class ActivitiesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IActivityService activityService;
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+        public ActivitiesController(IActivityService activityService)
+        {
+            this.activityService = activityService;
+        }
         // GET: Activities
         public ActionResult Index()
         {
-            var activities = db.Activities.Include(a => a.Campaign).Include(a => a.Company).Include(a => a.Contact).Include(a => a.Opportunity);
-            return View(activities.ToList());
+            var activities = Mapper.Map<IEnumerable<ActivityViewModel>>(activityService.GetAll());
+            return View(activities);
         }
 
         // GET: Activities/Details/5
@@ -29,7 +37,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            ActivityViewModel activity = Mapper.Map<ActivityViewModel>(activityService.Get(id.Value));
             if (activity == null)
             {
                 return HttpNotFound();
@@ -52,13 +60,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ContactFullName,Subject,CallReason,RelatedRecord,CallDirection,CallDetail,CallResult,ContactId,Description,CompanyName,CompanyTelephone,CompanyWebsite,CompanyId,OpportunityName,OpportunityAmount,OpportunityCloseDate,OpportunityType,OpportunityStage,OpportunityId,CampaignName,CampaignStatus,CampaignStartDate,CampaignEndDate,CampaignExpectedRevenue,CampaignId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Activity activity)
+        public ActionResult Create(ActivityViewModel activity)
         {
             if (ModelState.IsValid)
             {
-                activity.Id = Guid.NewGuid();
-                db.Activities.Add(activity);
-                db.SaveChanges();
+                var entity = Mapper.Map<Activity>(activity);
+                activityService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +83,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            ActivityViewModel activity = Mapper.Map<ActivityViewModel>(activityService.Get(id.Value));
             if (activity == null)
             {
                 return HttpNotFound();
@@ -93,12 +100,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ContactFullName,Subject,CallReason,RelatedRecord,CallDirection,CallDetail,CallResult,ContactId,Description,CompanyName,CompanyTelephone,CompanyWebsite,CompanyId,OpportunityName,OpportunityAmount,OpportunityCloseDate,OpportunityType,OpportunityStage,OpportunityId,CampaignName,CampaignStatus,CampaignStartDate,CampaignEndDate,CampaignExpectedRevenue,CampaignId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Activity activity)
+        public ActionResult Edit(ActivityViewModel activity)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(activity).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Activity>(activity);
+                activityService.Update(entity);
                 return RedirectToAction("Index");
             }
             ViewBag.CampaignId = new SelectList(db.Campaigns, "Id", "Owner", activity.CampaignId);
@@ -115,7 +122,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Activity activity = db.Activities.Find(id);
+            ActivityViewModel activity = Mapper.Map<ActivityViewModel>(activityService.Get(id.Value));
             if (activity == null)
             {
                 return HttpNotFound();
@@ -128,9 +135,7 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Activity activity = db.Activities.Find(id);
-            db.Activities.Remove(activity);
-            db.SaveChanges();
+            activityService.Delete(id);
             return RedirectToAction("Index");
         }
 
