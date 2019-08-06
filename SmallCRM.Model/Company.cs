@@ -10,7 +10,7 @@ namespace SmallCRM.Model
     {
         public string Owner { get; set; }//FirmaKayıtSahibi
         public string Name { get; set; }
-
+        public string CompanyLocation { get; set; }
         public Guid? MainCompanyId { get; set; }
         public virtual Company MainCompany { get; set; }
         public virtual ICollection<Company> ChildCompanies { get; set; }

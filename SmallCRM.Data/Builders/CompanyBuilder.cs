@@ -13,7 +13,7 @@ namespace SmallCRM.Data.Builders
         public CompanyBuilder(EntityTypeConfiguration<Company> builder)
         {
 
-
+            builder.Property(a => a.CompanyLocation).HasMaxLength(100);
             builder.Property(a => a.Location).HasMaxLength(100);
             builder.Property(a => a.Owner).HasMaxLength(100);
             builder.Property(a => a.CompanyNumber).HasMaxLength(20);
