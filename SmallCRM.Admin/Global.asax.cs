@@ -27,6 +27,8 @@ namespace SmallCRM.Admin
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ActivityService>().As<IActivityService>();
+            builder.RegisterType<RegionService>().As<IRegionService>();
+            builder.RegisterType<CityService>().As<ICityService>();
             builder.RegisterType<CampaignService>().As<ICampaignService>();
             builder.RegisterType<DocumentService>().As<IDocumentService>();
 
