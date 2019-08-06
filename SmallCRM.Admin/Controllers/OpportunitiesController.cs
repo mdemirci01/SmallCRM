@@ -133,7 +133,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpportunityViewModel opportunity = Mapper.Map<OpportunityViewModel>(opportunityService.Get(id.Value)); ;
+            OpportunityViewModel opportunity = Mapper.Map<OpportunityViewModel>(opportunityService.Get(id.Value));
             if (opportunity == null)
             {
                 return HttpNotFound();
