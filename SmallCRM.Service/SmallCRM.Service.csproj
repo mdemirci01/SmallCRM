@@ -45,11 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityService.cs" />
-    <Compile Include="CompanyTypeService.cs" />
-    <Compile Include="CompanyService.cs" />
-    <Compile Include="CampaignService.cs" />
-    <Compile Include="CampaignSourceService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="IRegionService.cs" />
     <Compile Include="OpportunityService.cs" />
     <Compile Include="ProjectService.cs" />
     <Compile Include="LeadService.cs" />
@@ -57,6 +54,7 @@
     <Compile Include="WorkItemService.cs" />
     <Compile Include="SectorService.cs" />
     <Compile Include="ReportService.cs" />
+    <Compile Include="RegionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmallCRM.Data\SmallCRM.Data.csproj">
