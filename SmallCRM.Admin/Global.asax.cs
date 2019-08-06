@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+
 namespace SmallCRM.Admin
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -43,6 +44,9 @@ namespace SmallCRM.Admin
             builder.RegisterType<CompanyService>().As<ICompanyService>();
             builder.RegisterType<CompanyTypeService>().As<ICompanyTypeService>();
             builder.RegisterType<SectorService>().As<ISectorService>();
+            builder.RegisterType<LeadSourceService>().As<ILeadSourceService>();
+            builder.RegisterType<ContactService>().As<IContactService>();
+            
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
