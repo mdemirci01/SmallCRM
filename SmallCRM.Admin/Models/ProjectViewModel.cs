@@ -32,5 +32,6 @@ namespace SmallCRM.Admin.Models
         public WorkItemStatus? WorkItemStatus { get; set; }
         [Display(Name = "Toplam Harcanan Zaman")]
         public decimal TotalTimeSpent { get; set; }
+        public bool IsActive { get; set; }
     }
 }
