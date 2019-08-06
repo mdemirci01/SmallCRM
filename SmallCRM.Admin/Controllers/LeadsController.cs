@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using SmallCRM.Admin.Models;
-using SmallCRM.Data;
 using SmallCRM.Model;
 using SmallCRM.Service;
 
