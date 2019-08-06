@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmallCRM.Model.Company>
+﻿@model IEnumerable<SmallCRM.Admin.Models.CompanyViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,31 +12,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CompanyType.Name)
+            @Html.DisplayNameFor(model => model.CompanyTypeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeliveryCity.Name)
+            @Html.DisplayNameFor(model => model.DeliveryCityName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeliveryCountry.Name)
+            @Html.DisplayNameFor(model => model.DeliveryCountryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DeliveryRegion.Name)
+            @Html.DisplayNameFor(model => model.DeliveryRegionName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InvoiceCity.Name)
+            @Html.DisplayNameFor(model => model.InvoiceCityName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InvoiceCountry.Name)
+            @Html.DisplayNameFor(model => model.InvoiceCountryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InvoiceRegion.Name)
+            @Html.DisplayNameFor(model => model.InvoiceRegionName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MainCompany.Owner)
+            @Html.DisplayNameFor(model => model.MainCompanyOwner)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Sector.Name)
+            @Html.DisplayNameFor(model => model.SectorName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Owner)
@@ -46,6 +46,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CompanyNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyLocation)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AnnualIncome)
@@ -84,164 +87,110 @@
         <th>
             @Html.DisplayNameFor(model => model.DeliveryPostalCode)
         </th>
-     
+
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.IsActive)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IpAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyType.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryCity.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryCountry.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryRegion.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceCity.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceCountry.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceRegion.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MainCompany.Owner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sector.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AnnualIncome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImkbCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerShip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NaceCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoiceAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InvoicePostalCode)
-        </td>
-    
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryPostalCode)
-        </td>
-   
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IpAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserAgent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CompanyTypeName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryCityName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryCountryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryRegionName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceCityName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceCountryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceRegionName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MainCompanyOwner)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SectorName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Owner)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CompanyNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CompanyLocation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AnnualIncome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Stage)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Telephone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fax)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Website)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ImkbCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OwnerShip)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NaceCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoiceAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InvoicePostalCode)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryPostalCode)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.IsActive)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>
