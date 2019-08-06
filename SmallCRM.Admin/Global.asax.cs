@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using static SmallCRM.Service.ContactService;
 
 namespace SmallCRM.Admin
 {
@@ -27,6 +28,7 @@ namespace SmallCRM.Admin
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ActivityService>().As<IActivityService>();
+            builder.RegisterType<ContactService>().As<IContactService>();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
