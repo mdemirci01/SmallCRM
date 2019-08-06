@@ -18,5 +18,11 @@ namespace SmallCRM.Admin.Models
 
         [Display(Name = "Ülke")]
         public Guid CountryId { get; set; }
+
+        [Display(Name = "Aktif Mi?")]
+        public bool IsActive { get; set; }
+
+        [Display(Name ="Ülke Adı")]
+        public string CountryName { get; set; }
     }
 }

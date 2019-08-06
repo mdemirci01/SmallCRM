@@ -11,6 +11,8 @@ namespace SmallCRM.Admin.Models
     {
 
         public Guid Id { get; set; }
+        [Display(Name = "Aktif Mi?")]
+        public bool IsActive { get; set; }
         [Display(Name = "İrtibat Adı")]
         public string ContactFullName { get; set; }
         [MaxLength(100)]
@@ -81,5 +83,14 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Kampanya")]
         public Guid? CampaignId { get; set; }
 
+        [Display(Name ="Kampanya Sahibi")]
+        public string CampaignOwner { get; set; }
+        [Display(Name = "Firma Sahibi")]
+        public string CompanyOwner { get; set; }
+
+        [Display(Name ="İletişim Sahibi")]
+        public string ContactOwner { get; set; }
+        [Display(Name ="Satış Fırsatı Sahibi")]
+        public string OpportunityOwner { get; set; }
     }
 }

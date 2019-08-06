@@ -14,5 +14,7 @@ namespace SmallCRM.Admin.Models
         [MaxLength(50)]
         [Display(Name="Sektör")]
         public string Name { get; set; }
+        [Display(Name = "Aktif Mi?")]
+        public bool IsActive { get; set; }
     }
 }

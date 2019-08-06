@@ -49,5 +49,15 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
         public string Description { get; set; }
+        [Display(Name ="Aktif Mi?")]
+        public bool IsActive { get; set; }
+        [Display(Name = "Kampanya Kaynağı Adı")]
+        public string CampaignSourceName { get; set; }
+        [Display(Name = "Şirket Kayıt Sahibi")]
+        public string CompanyOwner { get; set; }
+        [Display(Name = "Kişi Kayıt Sahibi")]
+        public string ContactOwner { get; set; }
+        [Display(Name = "Müşteri Kaynağı Adı")]
+        public string LeadSourceName { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model SmallCRM.Model.Company
+﻿@model SmallCRM.Admin.Models.CompanyViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,75 +12,75 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CompanyType.Name)
+            @Html.DisplayNameFor(model => model.CompanyTypeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CompanyType.Name)
+            @Html.DisplayFor(model => model.CompanyTypeName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DeliveryCity.Name)
+            @Html.DisplayNameFor(model => model.DeliveryCityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DeliveryCity.Name)
+            @Html.DisplayFor(model => model.DeliveryCityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DeliveryCountry.Name)
+            @Html.DisplayNameFor(model => model.DeliveryCountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DeliveryCountry.Name)
+            @Html.DisplayFor(model => model.DeliveryCountryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DeliveryRegion.Name)
+            @Html.DisplayNameFor(model => model.DeliveryRegionName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DeliveryRegion.Name)
+            @Html.DisplayFor(model => model.DeliveryRegionName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InvoiceCity.Name)
+            @Html.DisplayNameFor(model => model.InvoiceCityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InvoiceCity.Name)
+            @Html.DisplayFor(model => model.InvoiceCityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InvoiceCountry.Name)
+            @Html.DisplayNameFor(model => model.InvoiceCountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InvoiceCountry.Name)
+            @Html.DisplayFor(model => model.InvoiceCountryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InvoiceRegion.Name)
+            @Html.DisplayNameFor(model => model.InvoiceRegionName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InvoiceRegion.Name)
+            @Html.DisplayFor(model => model.InvoiceRegionName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MainCompany.Owner)
+            @Html.DisplayNameFor(model => model.MainCompanyOwner)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MainCompany.Owner)
+            @Html.DisplayFor(model => model.MainCompanyOwner)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Sector.Name)
+            @Html.DisplayNameFor(model => model.SectorName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sector.Name)
+            @Html.DisplayFor(model => model.SectorName)
         </dd>
 
         <dt>
@@ -105,6 +105,16 @@
 
         <dd>
             @Html.DisplayFor(model => model.CompanyNumber)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyLocation)
         </dd>
 
         <dt>
@@ -213,61 +223,6 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
@@ -275,30 +230,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IpAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IpAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserAgent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserAgent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
         </dd>
 
     </dl>
