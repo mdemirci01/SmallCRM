@@ -32,5 +32,9 @@ namespace SmallCRM.Admin.Models
         public Guid ProjectId { get; set; }
         [Display(Name = "Toplam Harcanan Zaman")]
         public decimal TotalTimeSpent { get; set; }
+        [Display(Name ="Aktif Mi?")]
+        public bool IsActive { get; set; }
+        [Display(Name ="Proje Adı")]
+        public string ProjectName { get; set; }
     }
 }
