@@ -55,6 +55,7 @@
     <Compile Include="CustomerService.cs" />
     <Compile Include="DocumentService.cs" />
     <Compile Include="FeedService.cs" />
+    <Compile Include="LeadService.cs" />
     <Compile Include="LeadSourceService.cs" />
     <Compile Include="LeadStatusService.cs" />
     <Compile Include="OpportunityService.cs" />
