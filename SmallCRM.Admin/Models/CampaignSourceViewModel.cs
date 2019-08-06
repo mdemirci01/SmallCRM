@@ -14,6 +14,7 @@ namespace SmallCRM.Admin.Models
         [MaxLength(100)]
         [Display(Name ="Kampanya Kaynağı Adı")]
         public string Name { get; set; }
+        [Display(Name = "Aktif mi?")]
         public bool IsActive { get; set; }
     }
 }
