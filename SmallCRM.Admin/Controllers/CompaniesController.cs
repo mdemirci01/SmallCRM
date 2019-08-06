@@ -17,10 +17,23 @@ namespace SmallCRM.Admin.Controllers
     public class CompaniesController : Controller
     {
         private readonly ICompanyService companyService;
+        private readonly ICompanyTypeService companyTypeService;
+        private readonly ICityService cityService;
+        private readonly ICountryService countryService;
+        private readonly IRegionService regionService;
+        private readonly ISectorService sectorService;
+
+
+
         private ApplicationDbContext db = new ApplicationDbContext();
-        public CompaniesController(ICompanyService companyService)
+        public CompaniesController(ICompanyService companyService, ICompanyTypeService companyTypeService, ICityService cityService, ICountryService countryService, IRegionService regionService, ISectorService sectorService)
         {
             this.companyService = companyService;
+            this.companyTypeService = companyTypeService;
+            this.cityService = cityService;
+            this.countryService = countryService;
+            this.regionService = regionService;
+            this.sectorService = sectorService;
         }
         // GET: Companies
         public ActionResult Index()
@@ -49,15 +62,15 @@ namespace SmallCRM.Admin.Controllers
         // GET: Companies/Create
         public ActionResult Create()
         {
-            ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name");
-            ViewBag.DeliveryCityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.DeliveryCountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.DeliveryRegionId = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.InvoiceCityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.InvoiceCountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.InvoiceRegionId = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.MainCompanyId = new SelectList(db.Companies, "Id", "Owner");
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name");
+            ViewBag.CompanyTypeId = new SelectList(companyTypeService.GetAll(), "Id", "Name");
+            ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
+            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -76,16 +89,15 @@ namespace SmallCRM.Admin.Controllers
             }
 
          
-            ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name", company.CompanyTypeId);
-
-            ViewBag.DeliveryCityId = new SelectList(db.Cities, "Id", "Name", company.DeliveryCityId);
-            ViewBag.DeliveryCountryId = new SelectList(db.Countries, "Id", "Name", company.DeliveryCountryId);
-            ViewBag.DeliveryRegionId = new SelectList(db.Regions, "Id", "Name", company.DeliveryRegionId);
-            ViewBag.InvoiceCityId = new SelectList(db.Cities, "Id", "Name", company.InvoiceCityId);
-            ViewBag.InvoiceCountryId = new SelectList(db.Countries, "Id", "Name", company.InvoiceCountryId);
-            ViewBag.InvoiceRegionId = new SelectList(db.Regions, "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(db.Companies, "Id", "Owner", company.MainCompanyId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", company.SectorId);
+            ViewBag.CompanyTypeId = new SelectList(companyTypeService.GetAll(), "Id", "Name", company.CompanyTypeId);
+            ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.DeliveryCityId);
+            ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.DeliveryCountryId);
+            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.DeliveryRegionId);
+            ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.InvoiceCityId);
+            ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
+            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.InvoiceRegionId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
 
@@ -101,15 +113,15 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name", company.CompanyTypeId);
-            ViewBag.DeliveryCityId = new SelectList(db.Cities, "Id", "Name", company.DeliveryCityId);
-            ViewBag.DeliveryCountryId = new SelectList(db.Countries, "Id", "Name", company.DeliveryCountryId);
-            ViewBag.DeliveryRegionId = new SelectList(db.Regions, "Id", "Name", company.DeliveryRegionId);
-            ViewBag.InvoiceCityId = new SelectList(db.Cities, "Id", "Name", company.InvoiceCityId);
-            ViewBag.InvoiceCountryId = new SelectList(db.Countries, "Id", "Name", company.InvoiceCountryId);
-            ViewBag.InvoiceRegionId = new SelectList(db.Regions, "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(db.Companies, "Id", "Owner", company.MainCompanyId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", company.SectorId);
+            ViewBag.CompanyTypeId = new SelectList(companyTypeService.GetAll(), "Id", "Name", company.CompanyTypeId);
+            ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.DeliveryCityId);
+            ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.DeliveryCountryId);
+            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.DeliveryRegionId);
+            ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.InvoiceCityId);
+            ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
+            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.InvoiceRegionId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
 
@@ -126,15 +138,15 @@ namespace SmallCRM.Admin.Controllers
                 companyService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name", company.CompanyTypeId);
-            ViewBag.DeliveryCityId = new SelectList(db.Cities, "Id", "Name", company.DeliveryCityId);
-            ViewBag.DeliveryCountryId = new SelectList(db.Countries, "Id", "Name", company.DeliveryCountryId);
-            ViewBag.DeliveryRegionId = new SelectList(db.Regions, "Id", "Name", company.DeliveryRegionId);
-            ViewBag.InvoiceCityId = new SelectList(db.Cities, "Id", "Name", company.InvoiceCityId);
-            ViewBag.InvoiceCountryId = new SelectList(db.Countries, "Id", "Name", company.InvoiceCountryId);
-            ViewBag.InvoiceRegionId = new SelectList(db.Regions, "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(db.Companies, "Id", "Owner", company.MainCompanyId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", company.SectorId);
+            ViewBag.CompanyTypeId = new SelectList(companyTypeService.GetAll(), "Id", "Name", company.CompanyTypeId);
+            ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.DeliveryCityId);
+            ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.DeliveryCountryId);
+            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.DeliveryRegionId);
+            ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.InvoiceCityId);
+            ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
+            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.InvoiceRegionId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
 
