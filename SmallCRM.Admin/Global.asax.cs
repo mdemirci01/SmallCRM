@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using SmallCRM.Data;
+using SmallCRM.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace SmallCRM.Admin
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            //builder.RegisterType<CustomerService>().As<ICustomerService>();
+            builder.RegisterType<ActivityService>().As<IActivityService>();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
