@@ -21,8 +21,9 @@ namespace SmallCRM.Admin.Controllers
         private readonly ICityService cityService;
 
         private ApplicationDbContext db = new ApplicationDbContext();
-        public CitiesController(ICityService cityService)
+        public CitiesController(ICityService cityService, ICountryService countryService)
         {
+            this.countryService = countryService;
             this.cityService = cityService;
         }
 
