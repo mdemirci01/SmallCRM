@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="ActivityService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="FeedService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeSpendingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmallCRM.Data\SmallCRM.Data.csproj">
