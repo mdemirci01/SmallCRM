@@ -23,6 +23,7 @@ namespace SmallCRM.Admin
         opt => opt.MapFrom(src => src.Contact.Owner)).ForMember(
         dest => dest.OpportunityOwner,
         opt => opt.MapFrom(src => src.Opportunity.Owner)).ReverseMap();
+            cfg.CreateMap<Campaign, CampaignViewModel>().ReverseMap();
 
             Mapper.Initialize(cfg);
         }
