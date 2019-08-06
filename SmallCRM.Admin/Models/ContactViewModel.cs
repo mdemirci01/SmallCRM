@@ -133,5 +133,27 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Açıklama")]
 
         public string Description { get; set; }
+
+        public bool IsActive { get; set; }
+        [Display(Name = "Şehir Adı")]
+        public string CityName { get; set; }
+        [Display(Name = "Şirket Sahibi")]
+
+        public string CompanyOwner { get; set; }
+        [Display(Name = "Ülke Adı")]
+        public string CountryName { get; set; }
+        [Display(Name = "Müşteri Kaynağı")]
+        public string LeadSourceName { get; set; }
+        [Display(Name = "Diğer Şehir Adı")]
+        public string OtherCityName { get; set; }
+        [Display(Name = "Diğer Ülke Adı")]
+        public string OtherCountryName { get; set; }
+        [Display(Name = "Diğer İlçe Adı")]
+        public string OtherRegionName { get; set; }
+        [Display(Name = "İlçe Adı")]
+        public string RegionName { get; set; }
+        [Display(Name = "Raporlama Yapılan Kişi")]
+        public string ReportsToContactOwner { get; set; }
+
     }
 }
