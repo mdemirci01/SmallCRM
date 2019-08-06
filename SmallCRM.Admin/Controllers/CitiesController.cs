@@ -16,11 +16,14 @@ namespace SmallCRM.Admin.Controllers
 {
     public class CitiesController : Controller     
     {
+
+        private readonly ICountryService countryService;
         private readonly ICityService cityService;
 
         private ApplicationDbContext db = new ApplicationDbContext();
-        public CitiesController(ICityService cityService)
+        public CitiesController(ICityService cityService, ICountryService countryService)
         {
+            this.countryService = countryService;
             this.cityService = cityService;
         }
 
@@ -50,7 +53,7 @@ namespace SmallCRM.Admin.Controllers
         // GET: Cities/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -68,7 +71,7 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CountryId = new SelectList(cityService.GetAll(), "Id", "Name", city.CountryId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
             return View(city);
         }
 
@@ -84,7 +87,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(cityService.GetAll(), "Id", "Name", city.CountryId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
             return View(city);
         }
 
@@ -101,7 +104,7 @@ namespace SmallCRM.Admin.Controllers
                 cityService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CountryId = new SelectList(cityService.GetAll(), "Id", "Name", city.CountryId);
+            ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", city.CountryId);
             return View(city);
         }
 

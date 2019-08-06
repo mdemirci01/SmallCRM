@@ -6,19 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class SectorsController : Controller
     {
+        private readonly ISectorService sectorService;
         private ApplicationDbContext db = new ApplicationDbContext();
+        public SectorsController(ISectorService sectorService)
+        {
+            this.sectorService = sectorService;
+        }
 
         // GET: Sectors
         public ActionResult Index()
         {
-            return View(db.Sectors.ToList());
+            var sectors = Mapper.Map<IEnumerable<SectorViewModel>>(sectorService.GetAll());
+            return View(sectors);
         }
 
         // GET: Sectors/Details/5
@@ -28,7 +37,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector sector = db.Sectors.Find(id);
+            SectorViewModel sector = Mapper.Map<SectorViewModel>(sectorService.Get(id.Value));
             if (sector == null)
             {
                 return HttpNotFound();
@@ -47,13 +56,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Sector sector)
+        public ActionResult Create(SectorViewModel sector)
         {
             if (ModelState.IsValid)
             {
-                sector.Id = Guid.NewGuid();
-                db.Sectors.Add(sector);
-                db.SaveChanges();
+                var entity = Mapper.Map<Sector>(sector);
+                sectorService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +75,8 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector sector = db.Sectors.Find(id);
+           
+            SectorViewModel sector = Mapper.Map<SectorViewModel>(sectorService.Get(id.Value));
             if (sector == null)
             {
                 return HttpNotFound();
@@ -80,12 +89,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Sector sector)
+        public ActionResult Edit(SectorViewModel sector)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sector).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Sector>(sector);
+                sectorService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(sector);
@@ -98,7 +107,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector sector = db.Sectors.Find(id);
+            SectorViewModel sector = Mapper.Map<SectorViewModel>(sectorService.Get(id.Value));
             if (sector == null)
             {
                 return HttpNotFound();
@@ -111,9 +120,7 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Sector sector = db.Sectors.Find(id);
-            db.Sectors.Remove(sector);
-            db.SaveChanges();
+            sectorService.Delete(id);
             return RedirectToAction("Index");
         }
 
