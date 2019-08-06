@@ -13,6 +13,7 @@ namespace SmallCRM.Admin.Controllers
 {
     public class ProjectsController : Controller
     {
+       
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
