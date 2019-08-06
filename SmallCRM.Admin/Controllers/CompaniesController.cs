@@ -6,20 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class CompaniesController : Controller
     {
+        private readonly ICompanyService companyService;
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public CompaniesController(ICompanyService companyService)
+        {
+            this.companyService = companyService;
+        }
         // GET: Companies
         public ActionResult Index()
         {
-            var companies = db.Companies.Include(c => c.CompanyType).Include(c => c.DeliveryCity).Include(c => c.DeliveryCountry).Include(c => c.DeliveryRegion).Include(c => c.InvoiceCity).Include(c => c.InvoiceCountry).Include(c => c.InvoiceRegion).Include(c => c.MainCompany).Include(c => c.Sector);
-            return View(companies.ToList());
+            var companies = Mapper.Map<IEnumerable<CompanyViewModel>>(companyService.GetAll());
+            return View(companies);
         }
 
         // GET: Companies/Details/5
@@ -29,7 +36,9 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+
+            CompanyViewModel company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
+
             if (company == null)
             {
                 return HttpNotFound();
@@ -57,17 +66,18 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Create(CompanyViewModel company)
         {
             if (ModelState.IsValid)
             {
-                company.Id = Guid.NewGuid();
-                db.Companies.Add(company);
-                db.SaveChanges();
+                var entity = Mapper.Map<Company>(company);
+                companyService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
+         
             ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name", company.CompanyTypeId);
+
             ViewBag.DeliveryCityId = new SelectList(db.Cities, "Id", "Name", company.DeliveryCityId);
             ViewBag.DeliveryCountryId = new SelectList(db.Countries, "Id", "Name", company.DeliveryCountryId);
             ViewBag.DeliveryRegionId = new SelectList(db.Regions, "Id", "Name", company.DeliveryRegionId);
@@ -86,7 +96,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            CompanyViewModel company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
             if (company == null)
             {
                 return HttpNotFound();
@@ -108,12 +118,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Owner,Name,MainCompanyId,CompanyNumber,CompanyTypeId,SectorId,AnnualIncome,Stage,Telephone,Fax,Website,ImkbCode,OwnerShip,NaceCode,InvoiceAddress,InvoiceCityId,InvoiceRegionId,InvoicePostalCode,InvoiceCountryId,DeliveryAddress,DeliveryCityId,DeliveryRegionId,DeliveryPostalCode,DeliveryCountryId,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Company company)
+        public ActionResult Edit(CompanyViewModel company)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Company>(company);
+                companyService.Update(entity);
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyTypeId = new SelectList(db.CompanyTypes, "Id", "Name", company.CompanyTypeId);
@@ -135,7 +145,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            CompanyViewModel company = Mapper.Map<CompanyViewModel>(companyService.Get(id.Value));
             if (company == null)
             {
                 return HttpNotFound();
@@ -148,19 +158,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Company company = db.Companies.Find(id);
-            db.Companies.Remove(company);
-            db.SaveChanges();
+            companyService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      
     }
 }
