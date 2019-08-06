@@ -27,6 +27,8 @@ namespace SmallCRM.Admin
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ActivityService>().As<IActivityService>();
+            builder.RegisterType<CampaignService>().As<ICampaignService>();
+            builder.RegisterType<DocumentService>().As<IDocumentService>();
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

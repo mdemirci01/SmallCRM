@@ -53,6 +53,7 @@
     <Compile Include="CampaignSourceService.cs" />
     <Compile Include="CityService.cs" />
     <Compile Include="CustomerService.cs" />
+    <Compile Include="DocumentService.cs" />
     <Compile Include="LeadSourceService.cs" />
     <Compile Include="LeadStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
