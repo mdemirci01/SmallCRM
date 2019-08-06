@@ -6,20 +6,38 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SmallCRM.Data;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class LeadsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ICityService _cityService;
+        private readonly ILeadService _leadService;
+        private readonly ILeadSourceService _leadSourceService;
+        private readonly ILeadStatusService _leadStatusService;
+        private readonly IRegionService _regionService;
+        private readonly ISectorService _sectorService;
+        private readonly ICountryService _countryService;
+        public LeadsController(ILeadService leadService,ICountryService countryService,ISectorService sectorService ,ICityService cityService,IRegionService regionService ,ILeadSourceService leadSourceService,ILeadStatusService leadStatusService)
+        {
+            this._leadService = leadService;
+            this._cityService = cityService;
+            this._leadSourceService = leadSourceService;
+            this._leadStatusService = leadStatusService;
+            this._regionService = regionService;
+            this._sectorService = sectorService;
+            this._countryService = countryService;
+        }
 
         // GET: Leads
         public ActionResult Index()
         {
-            var leads = db.Leads.Include(l => l.City).Include(l => l.Country).Include(l => l.LeadSource).Include(l => l.LeadStatus).Include(l => l.Region).Include(l => l.Sector);
-            return View(leads.ToList());
+            var leads = Mapper.Map<IEnumerable<LeadViewModel>>(_leadService.GetAll());
+            return View(leads);
         }
 
         // GET: Leads/Details/5
@@ -29,7 +47,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lead lead = db.Leads.Find(id);
+            LeadViewModel lead = Mapper.Map<LeadViewModel>(_leadService.Get(id.Value));
             if (lead == null)
             {
                 return HttpNotFound();
@@ -40,12 +58,12 @@ namespace SmallCRM.Admin.Controllers
         // GET: Leads/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name");
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name");
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name");
-            ViewBag.LeadStatusId = new SelectList(db.LeadStatuses, "Id", "Name");
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name");
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name");
+            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name");
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name");
+            ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name");
+            ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name");
+            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name");
+            ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -54,22 +72,21 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Owner,FirstName,LastName,Company,TitleOfCourtesy,Gender,Title,Telephone,MobilePhone,Email,Fax,LeadSourceId,SectorId,NotSendEmail,NotSendSms,Website,LeadStatusId,Stage,SkypeId,Twitter,SecondaryEmail,Photo,Address,CountryId,CityId,RegionId,PostalCode,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Lead lead)
+        public ActionResult Create(Lead lead)
         {
             if (ModelState.IsValid)
             {
-                lead.Id = Guid.NewGuid();
-                db.Leads.Add(lead);
-                db.SaveChanges();
+                var entity = Mapper.Map<Lead>(lead);
+                _leadService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", lead.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", lead.LeadSourceId);
-            ViewBag.LeadStatusId = new SelectList(db.LeadStatuses, "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", lead.RegionId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", lead.SectorId);
+            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
+            ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
+            ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
 
@@ -80,17 +97,17 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lead lead = db.Leads.Find(id);
+            LeadViewModel lead = Mapper.Map<LeadViewModel>(_leadService.Get(id.Value));
             if (lead == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", lead.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", lead.LeadSourceId);
-            ViewBag.LeadStatusId = new SelectList(db.LeadStatuses, "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", lead.RegionId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", lead.SectorId);
+            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
+            ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
+            ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
 
@@ -99,20 +116,20 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Owner,FirstName,LastName,Company,TitleOfCourtesy,Gender,Title,Telephone,MobilePhone,Email,Fax,LeadSourceId,SectorId,NotSendEmail,NotSendSms,Website,LeadStatusId,Stage,SkypeId,Twitter,SecondaryEmail,Photo,Address,CountryId,CityId,RegionId,PostalCode,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Lead lead)
+        public ActionResult Edit(Lead lead)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lead).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Lead>(lead);
+                _leadService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(db.Countries, "Id", "Name", lead.CountryId);
-            ViewBag.LeadSourceId = new SelectList(db.LeadSources, "Id", "Name", lead.LeadSourceId);
-            ViewBag.LeadStatusId = new SelectList(db.LeadStatuses, "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Name", lead.RegionId);
-            ViewBag.SectorId = new SelectList(db.Sectors, "Id", "Name", lead.SectorId);
+            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
+            ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
+            ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
 
@@ -123,7 +140,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lead lead = db.Leads.Find(id);
+            LeadViewModel lead = Mapper.Map<LeadViewModel>(_leadService.Get(id.Value));
             if (lead == null)
             {
                 return HttpNotFound();
@@ -136,19 +153,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Lead lead = db.Leads.Find(id);
-            db.Leads.Remove(lead);
-            db.SaveChanges();
+            _leadService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

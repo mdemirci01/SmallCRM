@@ -17,8 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class ActivitiesController : Controller
     {
         private readonly IActivityService activityService;
-
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
         public ActivitiesController(IActivityService activityService)
         {
             this.activityService = activityService;
@@ -139,13 +138,6 @@ namespace SmallCRM.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }
