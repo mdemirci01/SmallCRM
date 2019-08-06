@@ -44,7 +44,7 @@ namespace SmallCRM.Service
             return cityRepository.GetAll();
         }
 
-        public void insert(City city)
+        public void Insert(City city)
         {
             cityRepository.Insert(city);
             unitOfWork.SaveChanges();
