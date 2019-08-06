@@ -23,6 +23,14 @@ namespace SmallCRM.Admin
         opt => opt.MapFrom(src => src.Contact.Owner)).ForMember(
         dest => dest.OpportunityOwner,
         opt => opt.MapFrom(src => src.Opportunity.Owner)).ReverseMap();
+            cfg.CreateMap<Feed, FeedViewModel>().ForMember(
+       dest => dest.DocumentName,
+       opt => opt.MapFrom(src => src.Document.Name)).ReverseMap();
+            cfg.CreateMap<TimeSpending, TimeSpendingViewModel>().ForMember(
+       dest => dest.ProjectName,
+       opt => opt.MapFrom(src => src.Project.Name)).ForMember(
+       dest => dest.WorkItemName,
+       opt => opt.MapFrom(src => src.WorkItem.Name)).ReverseMap();
 
             Mapper.Initialize(cfg);
         }
