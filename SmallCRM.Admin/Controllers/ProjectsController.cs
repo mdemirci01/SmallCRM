@@ -6,20 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class ProjectsController : Controller
     {
-       
+        private readonly IProjectService projectService;
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public ProjectsController(IProjectService projectService)
+        {
+            this.projectService =projectService;
+        }
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            var projects = Mapper.Map<IEnumerable<ProjectViewModel>>(projectService.GetAll());
+            return View(projects);
         }
 
         // GET: Projects/Details/5
@@ -29,7 +36,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            ProjectViewModel project = Mapper.Map<ProjectViewModel>(projectService.Get(id.Value));
             if (project == null)
             {
                 return HttpNotFound();
@@ -48,13 +55,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Managers,BussinessAnalyists,Developers,StartDate,WorkItemStatus,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Project project)
+        public ActionResult Create(ProjectViewModel project)
         {
             if (ModelState.IsValid)
             {
-                project.Id = Guid.NewGuid();
-                db.Projects.Add(project);
-                db.SaveChanges();
+                var entity = Mapper.Map<Project>(project);
+                projectService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +74,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            ProjectViewModel project = Mapper.Map<ProjectViewModel>(projectService.Get(id.Value));
             if (project == null)
             {
                 return HttpNotFound();
@@ -81,12 +87,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Managers,BussinessAnalyists,Developers,StartDate,WorkItemStatus,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Project project)
+        public ActionResult Edit(Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Project>(project);
+                projectService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -99,7 +105,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            ProjectViewModel project = Mapper.Map<ProjectViewModel>(projectService.Get(id.Value));
             if (project == null)
             {
                 return HttpNotFound();
@@ -112,19 +118,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Project project = db.Projects.Find(id);
-            db.Projects.Remove(project);
-            db.SaveChanges();
+            projectService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }
