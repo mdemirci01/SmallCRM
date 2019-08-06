@@ -57,10 +57,8 @@ namespace SmallCRM.Service
             unitOfWork.SaveChanges();
         }
 
-       
+        
     }
-
-
     public interface IContactService
     {
         IEnumerable<Contact> GetAll();
@@ -70,5 +68,10 @@ namespace SmallCRM.Service
         void Delete(Guid id);
         bool Any(Guid id);
     }
+       
+    }
 
-}
+
+  
+
+

@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class ProjectsController : Controller
     {
         private readonly IProjectService projectService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+       
         public ProjectsController(IProjectService projectService)
         {
             this.projectService =projectService;
