@@ -6,20 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class RegionsController : Controller
     {
+        private readonly IRegionService regionService;
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public RegionsController(IRegionService regionService)
+        {
+            this.regionService = regionService;
+        }
         // GET: Regions
         public ActionResult Index()
         {
-            var regions = db.Regions.Include(r => r.City);
-            return View(regions.ToList());
+            var regions = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAll());
+            return View(regions);
         }
 
         // GET: Regions/Details/5
@@ -29,7 +37,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
+            RegionViewModel region = Mapper.Map<RegionViewModel>(regionService.Get(id.Value));
             if (region == null)
             {
                 return HttpNotFound();
@@ -49,13 +57,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CityId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Region region)
+        public ActionResult Create(RegionViewModel region)
         {
             if (ModelState.IsValid)
             {
-                region.Id = Guid.NewGuid();
-                db.Regions.Add(region);
-                db.SaveChanges();
+                var entity = Mapper.Map<Region>(region);
+                regionService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -70,7 +77,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
+            RegionViewModel region = Mapper.Map<RegionViewModel>(regionService.Get(id.Value));
             if (region == null)
             {
                 return HttpNotFound();
@@ -84,12 +91,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CityId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Region region)
+        public ActionResult Edit(RegionViewModel region)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(region).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Region>(region);
+                regionService.Update(entity);
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(db.Cities, "Id", "Name", region.CityId);
@@ -103,7 +110,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Region region = db.Regions.Find(id);
+            RegionViewModel region = Mapper.Map<RegionViewModel>(regionService.Get(id.Value)); ;
             if (region == null)
             {
                 return HttpNotFound();
@@ -116,19 +123,8 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Region region = db.Regions.Find(id);
-            db.Regions.Remove(region);
-            db.SaveChanges();
+            regionService.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
