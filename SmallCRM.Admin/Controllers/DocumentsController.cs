@@ -6,19 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class DocumentsController : Controller
     {
+        private readonly IDocumentService documentService;
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public DocumentsController(IDocumentService documentService)
+        {
+            this.documentService = documentService;
+        }
         // GET: Documents
         public ActionResult Index()
         {
-            return View(db.Documents.ToList());
+            var documents = Mapper.Map<IEnumerable<DocumentViewModel>>(documentService.GetAll());
+            return View(documents);
         }
 
         // GET: Documents/Details/5
@@ -28,7 +37,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
+            DocumentViewModel document = Mapper.Map<DocumentViewModel>(documentService.Get(id.Value));
             if (document == null)
             {
                 return HttpNotFound();
@@ -47,13 +56,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,File,Description,FileType,Extension,Size,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Document document)
+        public ActionResult Create(DocumentViewModel document)
         {
             if (ModelState.IsValid)
             {
-                document.Id = Guid.NewGuid();
-                db.Documents.Add(document);
-                db.SaveChanges();
+                var entity = Mapper.Map<Document>(document); //view modelden alınanı entity e dönüştürüyor.
+                documentService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +75,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
+            DocumentViewModel document = Mapper.Map<DocumentViewModel>(documentService.Get(id.Value));
             if (document == null)
             {
                 return HttpNotFound();
@@ -80,12 +88,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,File,Description,FileType,Extension,Size,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Document document)
+        public ActionResult Edit(DocumentViewModel document)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Document>(document);
+                documentService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(document);
@@ -98,7 +106,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
+            DocumentViewModel document = Mapper.Map<DocumentViewModel>(documentService.Get(id.Value));
             if (document == null)
             {
                 return HttpNotFound();
@@ -111,19 +119,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Document document = db.Documents.Find(id);
-            db.Documents.Remove(document);
-            db.SaveChanges();
+            documentService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

@@ -6,20 +6,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class WorkItemsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IWorkItemService _workItemService;
+        private readonly IProjectService _projectService;
+
+        public WorkItemsController(IWorkItemService workItemService,IProjectService projectService)
+        {
+            this._workItemService = workItemService;
+            this._projectService = projectService;
+        }
 
         // GET: WorkItems
         public ActionResult Index()
         {
-            var workItems = db.WorkItems.Include(w => w.Project);
-            return View(workItems.ToList());
+            var workItems = Mapper.Map<IEnumerable<WorkItemViewModel>>(_workItemService.GetAll());
+            return View(workItems);
         }
 
         // GET: WorkItems/Details/5
@@ -29,7 +39,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkItem workItem = db.WorkItems.Find(id);
+            WorkItemViewModel workItem = Mapper.Map<WorkItemViewModel>(_workItemService.Get(id.Value));
             if (workItem == null)
             {
                 return HttpNotFound();
@@ -40,7 +50,7 @@ namespace SmallCRM.Admin.Controllers
         // GET: WorkItems/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
+            ViewBag.ProjectId = new SelectList(_projectService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -53,13 +63,12 @@ namespace SmallCRM.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                workItem.Id = Guid.NewGuid();
-                db.WorkItems.Add(workItem);
-                db.SaveChanges();
+                var entity = Mapper.Map<WorkItem>(workItem);
+                _workItemService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", workItem.ProjectId);
+            ViewBag.ProjectId = new SelectList(_projectService.GetAll(), "Id", "Name", workItem.ProjectId);
             return View(workItem);
         }
 
@@ -70,12 +79,12 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkItem workItem = db.WorkItems.Find(id);
+            WorkItemViewModel workItem =Mapper.Map<WorkItemViewModel>(_workItemService.Get(id.Value));
             if (workItem == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", workItem.ProjectId);
+            ViewBag.ProjectId = new SelectList(_projectService.GetAll(), "Id", "Name", workItem.ProjectId);
             return View(workItem);
         }
 
@@ -88,11 +97,11 @@ namespace SmallCRM.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(workItem).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<WorkItem>(workItem);
+                _workItemService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", workItem.ProjectId);
+            ViewBag.ProjectId = new SelectList(_projectService.GetAll(), "Id", "Name", workItem.ProjectId);
             return View(workItem);
         }
 
@@ -103,7 +112,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WorkItem workItem = db.WorkItems.Find(id);
+            WorkItemViewModel workItem = Mapper.Map<WorkItemViewModel>(_workItemService.Get(id.Value)) ;
             if (workItem == null)
             {
                 return HttpNotFound();
@@ -116,19 +125,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            WorkItem workItem = db.WorkItems.Find(id);
-            db.WorkItems.Remove(workItem);
-            db.SaveChanges();
+            _workItemService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

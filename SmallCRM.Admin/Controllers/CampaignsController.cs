@@ -6,19 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class CampaignsController : Controller
     {
+        private readonly ICampaignService campaignService;
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public CampaignsController(ICampaignService campaignService)
+        {
+            this.campaignService = campaignService;
+        }
         // GET: Campaigns
         public ActionResult Index()
         {
-            return View(db.Campaigns.ToList());
+            var campaigns = Mapper.Map<IEnumerable<CampaignViewModel>>(campaignService.GetAll());
+            return View(campaigns);
         }
 
         // GET: Campaigns/Details/5
@@ -28,7 +36,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Campaign campaign = db.Campaigns.Find(id);
+            CampaignViewModel campaign = Mapper.Map<CampaignViewModel>(campaignService.Get(id.Value));
             if (campaign == null)
             {
                 return HttpNotFound();
@@ -47,13 +55,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Owner,OpportunityType,CampaignStatus,Name,StartDate,ExpectedRevenue,Cost,SendPhoneNumbers,EndDate,PlannedCost,ExpectedResponse,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Campaign campaign)
+        public ActionResult Create( CampaignViewModel campaign)
         {
             if (ModelState.IsValid)
             {
-                campaign.Id = Guid.NewGuid();
-                db.Campaigns.Add(campaign);
-                db.SaveChanges();
+                var entity = Mapper.Map<Campaign>(campaign);
+                campaignService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +74,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Campaign campaign = db.Campaigns.Find(id);
+            CampaignViewModel campaign = Mapper.Map<CampaignViewModel>(campaignService.Get(id.Value));
             if (campaign == null)
             {
                 return HttpNotFound();
@@ -80,12 +87,12 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Owner,OpportunityType,CampaignStatus,Name,StartDate,ExpectedRevenue,Cost,SendPhoneNumbers,EndDate,PlannedCost,ExpectedResponse,Description,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Campaign campaign)
+        public ActionResult Edit(CampaignViewModel campaign)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(campaign).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Campaign>(campaign);
+                campaignService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(campaign);
@@ -98,7 +105,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Campaign campaign = db.Campaigns.Find(id);
+            CampaignViewModel campaign = Mapper.Map<CampaignViewModel>(campaignService.Get(id.Value));
             if (campaign == null)
             {
                 return HttpNotFound();
@@ -111,19 +118,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Campaign campaign = db.Campaigns.Find(id);
-            db.Campaigns.Remove(campaign);
-            db.SaveChanges();
+            campaignService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+     
     }
 }

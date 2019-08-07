@@ -57,15 +57,21 @@ namespace SmallCRM.Service
             unitOfWork.SaveChanges();
         }
 
-        public interface IContactService
-        {
-            IEnumerable<Contact> GetAll();
-            Contact Get(Guid id);
-            void Insert(Contact contact);
-            void Update(Contact contact);
-            void Delete(Guid id);
-            bool Any(Guid id);
-        }
+        
+    }
+    public interface IContactService
+    {
+        IEnumerable<Contact> GetAll();
+        Contact Get(Guid id);
+        void Insert(Contact contact);
+        void Update(Contact contact);
+        void Delete(Guid id);
+        bool Any(Guid id);
+    }
+       
     }
 
-}
+
+  
+
+

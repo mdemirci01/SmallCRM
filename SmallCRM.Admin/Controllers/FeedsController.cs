@@ -6,20 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class FeedsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IFeedService feedService;
+        private readonly IDocumentService documentService;
 
+        private ApplicationDbContext db = new ApplicationDbContext();
+        public FeedsController(IFeedService feedService)
+        {
+            this.feedService = feedService;
+        }
         // GET: Feeds
         public ActionResult Index()
         {
-            var feeds = db.Feeds.Include(f => f.Document);
-            return View(feeds.ToList());
+            var feeds = Mapper.Map<IEnumerable<FeedViewModel>>(feedService.GetAll());
+            return View(feeds);
         }
 
         // GET: Feeds/Details/5
@@ -29,7 +38,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Feed feed = db.Feeds.Find(id);
+            FeedViewModel feed = Mapper.Map<FeedViewModel>(feedService.Get(id.Value));
             if (feed == null)
             {
                 return HttpNotFound();
@@ -40,7 +49,7 @@ namespace SmallCRM.Admin.Controllers
         // GET: Feeds/Create
         public ActionResult Create()
         {
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name");
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -49,17 +58,16 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Message,DocumentId,IsRead,TargetUser,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Feed feed)
+        public ActionResult Create(FeedViewModel feed)
         {
             if (ModelState.IsValid)
             {
-                feed.Id = Guid.NewGuid();
-                db.Feeds.Add(feed);
-                db.SaveChanges();
+                var entity = Mapper.Map<Feed>(feed);
+                feedService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -70,12 +78,12 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Feed feed = db.Feeds.Find(id);
+            FeedViewModel feed = Mapper.Map<FeedViewModel>(feedService.Get(id.Value));
             if (feed == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -84,15 +92,15 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Message,DocumentId,IsRead,TargetUser,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] Feed feed)
+        public ActionResult Edit(FeedViewModel feed)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(feed).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<Feed>(feed);
+                feedService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -103,7 +111,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Feed feed = db.Feeds.Find(id);
+            FeedViewModel feed = Mapper.Map<FeedViewModel>(feedService.Get(id.Value));
             if (feed == null)
             {
                 return HttpNotFound();
@@ -116,19 +124,8 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Feed feed = db.Feeds.Find(id);
-            db.Feeds.Remove(feed);
-            db.SaveChanges();
+            feedService.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

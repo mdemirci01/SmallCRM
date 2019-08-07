@@ -6,20 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class TimeSpendingsController : Controller
     {
+        private readonly ITimeSpendingService timeSpendingService;
+        private readonly IProjectService projectService;
+        private readonly IWorkItemService workItemService;
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public TimeSpendingsController(ITimeSpendingService timeSpendingService)
+        {
+            this.timeSpendingService = timeSpendingService;
+        }
         // GET: TimeSpendings
         public ActionResult Index()
         {
-            var timeSpendings = db.TimeSpendings.Include(t => t.Project).Include(t => t.WorkItem);
-            return View(timeSpendings.ToList());
+            var timeSpendings = Mapper.Map<IEnumerable<TimeSpendingViewModel>>(timeSpendingService.GetAll());
+            return View(timeSpendings);
         }
 
         // GET: TimeSpendings/Details/5
@@ -29,7 +38,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeSpending timeSpending = db.TimeSpendings.Find(id);
+            TimeSpendingViewModel timeSpending = Mapper.Map<TimeSpendingViewModel>(timeSpendingService.Get(id.Value));
             if (timeSpending == null)
             {
                 return HttpNotFound();
@@ -40,8 +49,8 @@ namespace SmallCRM.Admin.Controllers
         // GET: TimeSpendings/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name");
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name");
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -50,18 +59,17 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,ProjectId,WorkItemId,Worker,TimeSpent,WorkItemStatus,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] TimeSpending timeSpending)
+        public ActionResult Create(TimeSpendingViewModel timeSpending)
         {
             if (ModelState.IsValid)
             {
-                timeSpending.Id = Guid.NewGuid();
-                db.TimeSpendings.Add(timeSpending);
-                db.SaveChanges();
+                var entity = Mapper.Map<TimeSpending>(timeSpending);
+                timeSpendingService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -72,13 +80,13 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeSpending timeSpending = db.TimeSpendings.Find(id);
+            TimeSpendingViewModel timeSpending = Mapper.Map<TimeSpendingViewModel>(timeSpendingService.Get(id.Value));
             if (timeSpending == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -87,16 +95,16 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ProjectId,WorkItemId,Worker,TimeSpent,WorkItemStatus,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] TimeSpending timeSpending)
+        public ActionResult Edit(TimeSpendingViewModel timeSpending)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(timeSpending).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<TimeSpending>(timeSpending);
+                timeSpendingService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -107,7 +115,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TimeSpending timeSpending = db.TimeSpendings.Find(id);
+            TimeSpendingViewModel timeSpending = Mapper.Map<TimeSpendingViewModel>(timeSpendingService.Get(id.Value));
             if (timeSpending == null)
             {
                 return HttpNotFound();
@@ -120,19 +128,9 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            TimeSpending timeSpending = db.TimeSpendings.Find(id);
-            db.TimeSpendings.Remove(timeSpending);
-            db.SaveChanges();
+            timeSpendingService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
