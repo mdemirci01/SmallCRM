@@ -1,129 +1,131 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.ContactViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kişiler";
 }
 
-<h2>Index</h2>
+<h2>Kişiler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">Yeni Kişi</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LeadSourceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherCityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherCountryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherRegionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReportsToContactOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TitleOfCourtesy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telephone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AssistantName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AssistantPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Department)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotSendEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotSendSms)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SkypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Twitter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecondaryEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OtherPostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        
-        <th></th>
-    </tr>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeadSourceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherCityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherCountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherRegionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportsToContactOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleOfCourtesy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssistantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssistantPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotSendEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotSendSms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Twitter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherPostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
 
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+
+            <th>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
             @foreach (var item in Model) {
     <tr>
         <td>
@@ -237,11 +239,11 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+            @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+            @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
         </td>
     </tr>
 }
-
+    </tbody>
 </table>

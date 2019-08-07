@@ -1,184 +1,187 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.ActivityViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Aktiviteler";
 }
 
-<h2>Index</h2>
+<h2>Aktiviteler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">Yeni Aktivite</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityOwner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactFullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CallReason)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RelatedRecord)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CallDirection)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CallDetail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CallResult)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyTelephone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyWebsite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityAmount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityCloseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityStage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignStartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignExpectedRevenue)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>      
-        <th></th>
-    </tr>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityOwner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallReason)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RelatedRecord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallDirection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallDetail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CallResult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyTelephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyWebsite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityCloseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityStage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignExpectedRevenue)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignOwner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyOwner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactOwner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityOwner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactFullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CallReason)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RelatedRecord)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CallDirection)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CallDetail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CallResult)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyTelephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyWebsite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityCloseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityStage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignStartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignExpectedRevenue)
-        </td>      
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityOwner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallReason)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RelatedRecord)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallDirection)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CallResult)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyWebsite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityCloseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityStage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignExpectedRevenue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.RegionViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "İlçeler";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">İlçeler</a>
 </p>
-<table class="table">
+<table class="table" id="myTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CityName)
@@ -39,9 +39,9 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class ="btn btn-success btn-sm"}) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class ="btn btn-default btn-sm"}) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class ="btn btn-danger btn-sm"})
             </td>
         </tr>
     }
