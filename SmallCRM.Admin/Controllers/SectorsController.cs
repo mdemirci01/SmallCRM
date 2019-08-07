@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class SectorsController : Controller
     {
         private readonly ISectorService sectorService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
         public SectorsController(ISectorService sectorService)
         {
             this.sectorService = sectorService;
@@ -124,13 +124,6 @@ namespace SmallCRM.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }
