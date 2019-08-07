@@ -33,6 +33,7 @@ namespace SmallCRM.Admin
             builder.RegisterType<CampaignSourceService>().As<ICampaignSourceService>();
             builder.RegisterType<CityService>().As<ICityService>();
             builder.RegisterType<CompanyService>().As<ICompanyService>();
+            builder.RegisterType<CompanyTypeService>().As<ICompanyTypeService>();
             builder.RegisterType<ContactService>().As<IContactService>();
             builder.RegisterType<CountryService>().As<ICountryService>();
             builder.RegisterType<DocumentService>().As<IDocumentService>();
