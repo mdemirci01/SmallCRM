@@ -130,6 +130,7 @@ namespace SmallCRM.Admin.Models
         public string DeliveryCityName { get; set; }
         [Display(Name = "Teslimat Ülkesi")]
         public string DeliveryCountryName { get; set; }
+
         [Display(Name = "Teslimat İlçesi")]
         public string DeliveryRegionName { get; set; }
         [Display(Name = "Fatura Şehri")]
