@@ -29,28 +29,7 @@ namespace SmallCRM.Admin
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ActivityService>().As<IActivityService>();
-            builder.RegisterType<ContactService>().As<IContactService>();
-            builder.RegisterType<CompanyTypeService>().As<ICompanyTypeService>();
-            builder.RegisterType<FeedService>().As<IFeedService>();
-            builder.RegisterType<TimeSpendingService>().As<ITimeSpendingService>();
-
-            builder.RegisterType<RegionService>().As<IRegionService>();
-            builder.RegisterType<CityService>().As<ICityService>();
-            builder.RegisterType<CampaignService>().As<ICampaignService>();
-            builder.RegisterType<DocumentService>().As<IDocumentService>();
-            builder.RegisterType<OpportunityService>().As<IOpportunityService>();
-            builder.RegisterType<ProjectService>().As<IProjectService>();
-            builder.RegisterType<CampaignSourceService>().As<ICampaignSourceService>();
-            builder.RegisterType<CountryService>().As<ICountryService>();
-            builder.RegisterType<ReportService>().As<IReportService>();
-            builder.RegisterType<CompanyService>().As<ICompanyService>();
-            builder.RegisterType<CompanyTypeService>().As<ICompanyTypeService>();
-            builder.RegisterType<SectorService>().As<ISectorService>();
-            builder.RegisterType<WorkItemService>().As<IWorkItemService>();
-            builder.RegisterType<LeadService>().As<ILeadService>();
             builder.RegisterType<LeadSourceService>().As<ILeadSourceService>();
-            builder.RegisterType<ContactService>().As<IContactService>();
-            
 
             IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

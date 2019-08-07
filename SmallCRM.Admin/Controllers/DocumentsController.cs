@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class DocumentsController : Controller
     {
         private readonly IDocumentService documentService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+
 
         public DocumentsController(IDocumentService documentService)
         {

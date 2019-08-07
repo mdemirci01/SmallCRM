@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class CountriesController : Controller
     {
         private readonly ICountryService countryService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
         public CountriesController(ICountryService countryService)
         {
             this.countryService = countryService;

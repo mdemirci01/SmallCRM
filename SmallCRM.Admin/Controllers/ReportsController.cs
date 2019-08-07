@@ -22,7 +22,6 @@ namespace SmallCRM.Admin.Controllers
             this.reportService = reportService;
         }
 
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Reports
         public ActionResult Index()
