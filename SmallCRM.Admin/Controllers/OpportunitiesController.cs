@@ -22,7 +22,7 @@ namespace SmallCRM.Admin.Controllers
         private readonly ICompanyService companyService;
         private readonly IContactService contactService;
         private readonly ILeadSourceService leadSourceService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+       
 
         public OpportunitiesController(IOpportunityService opportunityService, ICampaignSourceService campaignSourceService, ICompanyService companyService, IContactService contactService, ILeadSourceService leadSourceService)
         {
