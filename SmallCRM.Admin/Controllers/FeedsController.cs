@@ -17,6 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class FeedsController : Controller
     {
         private readonly IFeedService feedService;
+        private readonly IDocumentService documentService;
 
         private ApplicationDbContext db = new ApplicationDbContext();
         public FeedsController(IFeedService feedService)
@@ -48,7 +49,7 @@ namespace SmallCRM.Admin.Controllers
         // GET: Feeds/Create
         public ActionResult Create()
         {
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name");
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -66,7 +67,7 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -82,7 +83,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -99,7 +100,7 @@ namespace SmallCRM.Admin.Controllers
                 feedService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.DocumentId = new SelectList(db.Documents, "Id", "Name", feed.DocumentId);
+            ViewBag.DocumentId = new SelectList(documentService.GetAll(), "Id", "Name", feed.DocumentId);
             return View(feed);
         }
 
@@ -125,15 +126,6 @@ namespace SmallCRM.Admin.Controllers
         {
             feedService.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
