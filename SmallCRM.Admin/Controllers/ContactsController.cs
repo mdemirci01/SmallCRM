@@ -27,7 +27,7 @@ namespace SmallCRM.Admin.Controllers
        
         
 
-        public ContactsController(IContactService contactService, ICityService cityService, ICompanyService companyService, ICountryService countryService, ILeadSourceService leadSourceService, IReportService reportService)
+        public ContactsController(IContactService contactService, ICityService cityService, ICompanyService companyService, ICountryService countryService, ILeadSourceService leadSourceService, IRegionService regionService, IReportService reportService)
         {
             this.contactService = contactService;
             this.cityService = cityService;
