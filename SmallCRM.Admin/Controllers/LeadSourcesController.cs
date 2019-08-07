@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class LeadSourcesController : Controller
     {
         private readonly ILeadSourceService leadSourceService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+       
 
         public LeadSourcesController(ILeadSourceService leadSourceService)
         {
