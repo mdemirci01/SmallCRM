@@ -130,8 +130,6 @@ namespace SmallCRM.Admin.Controllers
         {
             cityService.Delete(id);
             return RedirectToAction("Index");
-        }
-
-       
+        }      
     }
 }
