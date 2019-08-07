@@ -17,6 +17,8 @@ namespace SmallCRM.Admin.Controllers
     public class TimeSpendingsController : Controller
     {
         private readonly ITimeSpendingService timeSpendingService;
+        private readonly IProjectService projectService;
+        private readonly IWorkItemService workItemService;
         private ApplicationDbContext db = new ApplicationDbContext();
         public TimeSpendingsController(ITimeSpendingService timeSpendingService)
         {
@@ -47,8 +49,8 @@ namespace SmallCRM.Admin.Controllers
         // GET: TimeSpendings/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name");
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name");
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -66,8 +68,8 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -83,8 +85,8 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -101,8 +103,8 @@ namespace SmallCRM.Admin.Controllers
                 timeSpendingService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", timeSpending.ProjectId);
-            ViewBag.WorkItemId = new SelectList(db.WorkItems, "Id", "Name", timeSpending.WorkItemId);
+            ViewBag.ProjectId = new SelectList(projectService.GetAll(), "Id", "Name", timeSpending.ProjectId);
+            ViewBag.WorkItemId = new SelectList(workItemService.GetAll(), "Id", "Name", timeSpending.WorkItemId);
             return View(timeSpending);
         }
 
@@ -130,13 +132,5 @@ namespace SmallCRM.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

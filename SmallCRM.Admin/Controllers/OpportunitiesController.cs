@@ -22,7 +22,7 @@ namespace SmallCRM.Admin.Controllers
         private readonly ICompanyService companyService;
         private readonly IContactService contactService;
         private readonly ILeadSourceService leadSourceService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+       
 
         public OpportunitiesController(IOpportunityService opportunityService, ICampaignSourceService campaignSourceService, ICompanyService companyService, IContactService contactService, ILeadSourceService leadSourceService)
         {
@@ -133,7 +133,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OpportunityViewModel opportunity = Mapper.Map<OpportunityViewModel>(opportunityService.Get(id.Value)); ;
+            OpportunityViewModel opportunity = Mapper.Map<OpportunityViewModel>(opportunityService.Get(id.Value));
             if (opportunity == null)
             {
                 return HttpNotFound();

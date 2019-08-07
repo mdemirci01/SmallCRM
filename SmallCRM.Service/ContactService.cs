@@ -68,5 +68,10 @@ namespace SmallCRM.Service
         void Delete(Guid id);
         bool Any(Guid id);
     }
+       
+    }
 
-}
+
+  
+
+

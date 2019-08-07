@@ -17,10 +17,18 @@ namespace SmallCRM.Admin.Controllers
     public class ActivitiesController : Controller
     {
         private readonly IActivityService activityService;
-        
-        public ActivitiesController(IActivityService activityService)
+        private readonly ICampaignService campaignService;
+        private readonly ICompanyService companyService;
+        private readonly IContactService contactService;
+        private readonly IOpportunityService opportunityService;
+
+        public ActivitiesController(IActivityService activityService, ICampaignService campaignService, ICompanyService companyService, IContactService contactService, IOpportunityService opportunityService)
         {
             this.activityService = activityService;
+            this.campaignService = campaignService;
+            this.companyService = companyService;
+            this.contactService = contactService;
+            this.opportunityService = opportunityService;
         }
         // GET: Activities
         public ActionResult Index()
@@ -47,10 +55,10 @@ namespace SmallCRM.Admin.Controllers
         // GET: Activities/Create
         public ActionResult Create()
         {
-            ViewBag.CampaignId = new SelectList(db.Campaigns, "Id", "Owner");
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner");
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner");
-            ViewBag.OpportunityId = new SelectList(db.Opportunities, "Id", "Owner");
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner");
             return View();
         }
 
@@ -68,10 +76,10 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CampaignId = new SelectList(db.Campaigns, "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(db.Opportunities, "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
             return View(activity);
         }
 
@@ -87,10 +95,10 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CampaignId = new SelectList(db.Campaigns, "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(db.Opportunities, "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
             return View(activity);
         }
 
@@ -107,10 +115,10 @@ namespace SmallCRM.Admin.Controllers
                 activityService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CampaignId = new SelectList(db.Campaigns, "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(db.Opportunities, "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
             return View(activity);
         }
 

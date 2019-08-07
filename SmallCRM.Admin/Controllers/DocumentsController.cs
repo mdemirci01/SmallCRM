@@ -18,6 +18,7 @@ namespace SmallCRM.Admin.Controllers
     {
         private readonly IDocumentService documentService;
         private ApplicationDbContext db = new ApplicationDbContext();
+
         public DocumentsController(IDocumentService documentService)
         {
             this.documentService = documentService;
@@ -59,7 +60,7 @@ namespace SmallCRM.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var entity = Mapper.Map<Document>(document);
+                var entity = Mapper.Map<Document>(document); //view modelden alınanı entity e dönüştürüyor.
                 documentService.Insert(entity);
                 return RedirectToAction("Index");
             }
@@ -122,13 +123,6 @@ namespace SmallCRM.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }
