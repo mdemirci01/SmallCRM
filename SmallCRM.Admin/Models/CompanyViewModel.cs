@@ -124,14 +124,24 @@ namespace SmallCRM.Admin.Models
         [MaxLength(4000)]
         public string Description { get; set; }
 
+        [Display(Name="Firma Tipi")]
         public string CompanyTypeName { get; set; }
+        [Display(Name = "Teslimat Şehri")]
         public string DeliveryCityName { get; set; }
+        [Display(Name = "Teslimat Ülkesi")]
         public string DeliveryCountryName { get; set; }
+
+        [Display(Name = "Teslimat İlçesi")]
         public string DeliveryRegionName { get; set; }
+        [Display(Name = "Fatura Şehri")]
         public string InvoiceCityName { get; set; }
+        [Display(Name = "Fatura Ülkesi")]
         public string InvoiceCountryName { get; set; }
+        [Display(Name = "Fatura İlçesi")]
         public string InvoiceRegionName { get; set; }
+        [Display(Name = "Ana Şirket Sahibi")]
         public string MainCompanyOwner { get; set; }
+        [Display(Name = "Sektor Adı")]
         public string SectorName { get; set; }
 
     }
