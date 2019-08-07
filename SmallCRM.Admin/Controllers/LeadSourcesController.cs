@@ -6,19 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
+using SmallCRM.Admin.Models;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
     public class LeadSourcesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ILeadSourceService leadSourceService;
+       
 
+        public LeadSourcesController(ILeadSourceService leadSourceService)
+        {
+            this.leadSourceService = leadSourceService;
+        }
         // GET: LeadSources
         public ActionResult Index()
         {
-            return View(db.LeadSources.ToList());
+            var leadSources = Mapper.Map<IEnumerable<LeadSourceViewModel>>(leadSourceService.GetAll());
+            return View(leadSources);
         }
 
         // GET: LeadSources/Details/5
@@ -28,7 +37,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadSource leadSource = db.LeadSources.Find(id);
+            LeadSourceViewModel leadSource = Mapper.Map<LeadSourceViewModel>(leadSourceService.Get(id.Value));
             if (leadSource == null)
             {
                 return HttpNotFound();
@@ -47,13 +56,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] LeadSource leadSource)
+        public ActionResult Create(LeadSourceViewModel leadSource)
         {
             if (ModelState.IsValid)
             {
-                leadSource.Id = Guid.NewGuid();
-                db.LeadSources.Add(leadSource);
-                db.SaveChanges();
+                var entity = Mapper.Map<LeadSource>(leadSource);
+                leadSourceService.Insert(entity);
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +75,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadSource leadSource = db.LeadSources.Find(id);
+            LeadSourceViewModel leadSource = Mapper.Map<LeadSourceViewModel>(leadSourceService.Get(id.Value));
             if (leadSource == null)
             {
                 return HttpNotFound();
@@ -80,12 +88,12 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] LeadSource leadSource)
+        public ActionResult Edit(LeadSourceViewModel leadSource)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(leadSource).State = EntityState.Modified;
-                db.SaveChanges();
+                var entity = Mapper.Map<LeadSource>(leadSource);
+                leadSourceService.Update(entity);
                 return RedirectToAction("Index");
             }
             return View(leadSource);
@@ -98,7 +106,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadSource leadSource = db.LeadSources.Find(id);
+            LeadSourceViewModel leadSource = Mapper.Map<LeadSourceViewModel>(leadSourceService.Get(id.Value));
             if (leadSource == null)
             {
                 return HttpNotFound();
@@ -111,19 +119,10 @@ namespace SmallCRM.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            LeadSource leadSource = db.LeadSources.Find(id);
-            db.LeadSources.Remove(leadSource);
-            db.SaveChanges();
+            leadSourceService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

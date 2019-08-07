@@ -25,7 +25,7 @@ namespace SmallCRM.Admin.Controllers
 
 
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+  
         public CompaniesController(ICompanyService companyService, ICompanyTypeService companyTypeService, ICityService cityService, ICountryService countryService, IRegionService regionService, ISectorService sectorService)
         {
             this.companyService = companyService;

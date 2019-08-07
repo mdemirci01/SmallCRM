@@ -17,7 +17,7 @@ namespace SmallCRM.Admin.Controllers
     public class CampaignsController : Controller
     {
         private readonly ICampaignService campaignService;
-        private ApplicationDbContext db = new ApplicationDbContext();
+
         public CampaignsController(ICampaignService campaignService)
         {
             this.campaignService = campaignService;
