@@ -19,10 +19,11 @@ namespace SmallCRM.Admin.Controllers
         private readonly ITimeSpendingService timeSpendingService;
         private readonly IProjectService projectService;
         private readonly IWorkItemService workItemService;
-        private ApplicationDbContext db = new ApplicationDbContext();
-        public TimeSpendingsController(ITimeSpendingService timeSpendingService)
+        public TimeSpendingsController(ITimeSpendingService timeSpendingService, IProjectService projectService, IWorkItemService workItemService)
         {
             this.timeSpendingService = timeSpendingService;
+            this.projectService = projectService;
+            this.workItemService = workItemService;
         }
         // GET: TimeSpendings
         public ActionResult Index()
