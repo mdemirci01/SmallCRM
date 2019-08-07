@@ -19,10 +19,11 @@ namespace SmallCRM.Admin.Controllers
         private readonly IFeedService feedService;
         private readonly IDocumentService documentService;
 
-        private ApplicationDbContext db = new ApplicationDbContext();
-        public FeedsController(IFeedService feedService)
+  
+        public FeedsController(IFeedService feedService, IDocumentService documentService)
         {
             this.feedService = feedService;
+            this.documentService = documentService;
         }
         // GET: Feeds
         public ActionResult Index()
