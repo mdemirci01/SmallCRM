@@ -18,7 +18,7 @@ namespace SmallCRM.Admin.Controllers
     {
         private readonly ICompanyTypeService companyTypeService;
 
-        private ApplicationDbContext db = new ApplicationDbContext();
+        
 
         public CompanyTypesController(ICompanyTypeService companyTypeService)
         {
@@ -91,7 +91,7 @@ namespace SmallCRM.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] CompanyType companyType)
+        public ActionResult Edit(CompanyTypeViewModel companyType)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CompanyTypeViewModel companyType = Mapper.Map<CompanyTypeViewModel>(companyTypeService.Get(id.Value));            
+            CompanyTypeViewModel companyType = Mapper.Map<CompanyTypeViewModel>(companyTypeService.Get(id.Value));
             if (companyType == null)
             {
                 return HttpNotFound();
@@ -124,17 +124,6 @@ namespace SmallCRM.Admin.Controllers
         {
             companyTypeService.Delete(id);
             return RedirectToAction("Index");
-        }
-        
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
-
+        }      
     }
 }
