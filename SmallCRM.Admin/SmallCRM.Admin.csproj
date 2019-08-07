@@ -206,6 +206,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeadsController.cs" />
     <Compile Include="Controllers\LeadSourcesController.cs" />
+    <Compile Include="Controllers\LeadStatusController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OpportunitiesController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -393,6 +394,11 @@
     <Content Include="Views\CompanyTypes\Details.cshtml" />
     <Content Include="Views\CompanyTypes\Edit.cshtml" />
     <Content Include="Views\CompanyTypes\Index.cshtml" />
+    <Content Include="Views\LeadStatus\Create.cshtml" />
+    <Content Include="Views\LeadStatus\Delete.cshtml" />
+    <Content Include="Views\LeadStatus\Details.cshtml" />
+    <Content Include="Views\LeadStatus\Edit.cshtml" />
+    <Content Include="Views\LeadStatus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
