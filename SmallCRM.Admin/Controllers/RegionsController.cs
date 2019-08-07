@@ -17,7 +17,6 @@ namespace SmallCRM.Admin.Controllers
     public class RegionsController : Controller
     {
         private readonly IRegionService regionService;
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         public RegionsController(IRegionService regionService)
         {
