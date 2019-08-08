@@ -46,7 +46,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Campaign, CampaignViewModel>().ReverseMap();
 
-            cfg.CreateMap<CampaignSource, CampaignSourceViewModel>().ReverseMap();
+            cfg.CreateMap<CampaignSource, CampaignSourceViewModel>().ReverseMap().ForMember(dest => dest.Opportunities, opt => opt.Ignore());
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName,
@@ -107,7 +107,7 @@ namespace SmallCRM.Admin
             dest => dest.LeadSourceName,
             opt => opt.MapFrom(src => src.LeadSource.Name)).ReverseMap();
 
-            cfg.CreateMap<Project, ProjectViewModel>().ReverseMap();
+            cfg.CreateMap<Project, ProjectViewModel>().ReverseMap().ForMember(dest => dest.StartDate, opt => opt.Ignore()).ForMember(dest => dest.WorkItemStatus, opt => opt.Ignore()).ForMember(dest => dest.WorkItems, opt => opt.Ignore()).ForMember(dest => dest.TimeSpendings, opt => opt.Ignore());
 
             cfg.CreateMap<Region, RegionViewModel>().ForMember(
             dest => dest.CityName,
