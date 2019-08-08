@@ -14,7 +14,6 @@ namespace SmallCRM.Model
         public Guid CompanyId { get; set; } 
         public virtual Company Company { get; set; }
         public OpportunityType? OpportunityType { get; set; }
-
         public string NextStep { get; set; }
         public Guid? LeadSourceId { get; set; }
         public virtual LeadSource LeadSource { get; set; }
@@ -33,9 +32,8 @@ namespace SmallCRM.Model
 
         public decimal ExpectedRevenue { get; set; }
         public Guid? CampaignSourceId { get; set; }
-        public CampaignSource CampaignSource { get; set; }
+        public virtual CampaignSource CampaignSource { get; set; }
         public string Description { get; set; }
-
         public virtual ICollection<Activity> Activities { get; set; }
 
     }
