@@ -24,7 +24,11 @@ namespace SmallCRM.Admin
             dest => dest.ContactOwner,
             opt => opt.MapFrom(src => src.Contact.Owner)).ForMember(
             dest => dest.OpportunityOwner,
-            opt => opt.MapFrom(src => src.Opportunity.Owner)).ReverseMap();
+            opt => opt.MapFrom(src => src.Opportunity.Owner)).ReverseMap().ForMember(
+                dest => dest.Contact, opt => opt.Ignore()).ForMember(
+                dest => dest.Company, opt => opt.Ignore()).ForMember(
+                dest => dest.Opportunity, opt => opt.Ignore()).ForMember(
+                dest => dest.Campaign, opt => opt.Ignore());
 
             cfg.CreateMap<Contact, ContactViewModel>().ForMember(
             dest => dest.CityName,
