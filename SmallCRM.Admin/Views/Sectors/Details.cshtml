@@ -1,13 +1,13 @@
 ﻿@model SmallCRM.Admin.Models.SectorViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaylar";
 }
 
-<h2>Details</h2>
+<h2>Detaylar</h2>
 
 <div>
-    <h4>Sector</h4>
+    <h4>Sektör</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,6 +32,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Listeye geri dön", "Index")
 </p>

@@ -59,7 +59,7 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,AssignedTo,StartDate,EndDate,Category,WorkItemStatus,ProjectId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] WorkItem workItem)
+        public ActionResult Create(WorkItemViewModel workItem)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +93,7 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,AssignedTo,StartDate,EndDate,Category,WorkItemStatus,ProjectId,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsDeleted,DeletedBy,DeletedAt,IsActive,IpAddress,UserAgent,Location")] WorkItem workItem)
+        public ActionResult Edit(WorkItemViewModel workItem)
         {
             if (ModelState.IsValid)
             {
