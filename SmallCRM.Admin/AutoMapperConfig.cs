@@ -44,7 +44,7 @@ namespace SmallCRM.Admin
             dest => dest.ReportsToContactOwner,
             opt => opt.MapFrom(src => src.ReportsToContact.Owner)).ReverseMap();
 
-            cfg.CreateMap<Campaign, CampaignViewModel>().ReverseMap();
+            cfg.CreateMap<Campaign, CampaignViewModel>().ReverseMap().ForMember(dest => dest.Activities, opt => opt.Ignore());
 
             cfg.CreateMap<CampaignSource, CampaignSourceViewModel>().ReverseMap();
 
@@ -76,9 +76,9 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap();
 
-            cfg.CreateMap<Document, DocumentViewModel>().ReverseMap();
+            cfg.CreateMap<Document, DocumentViewModel>().ReverseMap().ForMember(dest => dest.Feeds, opt => opt.Ignore());
 
-           cfg.CreateMap<Lead, LeadViewModel>().ForMember(
+            cfg.CreateMap<Lead, LeadViewModel>().ForMember(
             dest => dest.RegionName,
             opt => opt.MapFrom(src => src.Region.Name)).ForMember(
             dest => dest.CityName,
@@ -130,7 +130,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Feed, FeedViewModel>().ForMember(
             dest => dest.DocumentName,
-            opt => opt.MapFrom(src => src.Document.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Document.Name)).ReverseMap().ForMember(dest => dest.Document, opt => opt.Ignore());
         }
     }
 }
