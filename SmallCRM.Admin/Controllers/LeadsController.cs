@@ -72,7 +72,7 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Lead lead)
+        public ActionResult Create(LeadViewModel lead)
         {
             if (ModelState.IsValid)
             {
@@ -116,7 +116,7 @@ namespace SmallCRM.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Lead lead)
+        public ActionResult Edit(LeadViewModel lead)
         {
             if (ModelState.IsValid)
             {

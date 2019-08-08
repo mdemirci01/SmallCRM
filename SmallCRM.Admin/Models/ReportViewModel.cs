@@ -20,6 +20,7 @@ namespace SmallCRM.Admin.Models
         public string Description { get; set; }
         [Required]
         [Display(Name="Son Değiştirme Tarihi")]
+        [DataType(DataType.DateTime)]
         public DateTime LastExecutionDate { get; set; }
         [Display(Name ="Aktif mi ?")]
         public bool IsActive { get; set; }
