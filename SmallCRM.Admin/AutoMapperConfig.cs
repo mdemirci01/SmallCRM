@@ -85,7 +85,7 @@ namespace SmallCRM.Admin
             ForMember(dest => dest.Opportunities, opt => opt.Ignore()).
             ForMember(dest => dest.Sector, opt => opt.Ignore());
 
-            cfg.CreateMap<CompanyType, CompanyTypeViewModel>().ReverseMap();
+            cfg.CreateMap<CompanyType, CompanyTypeViewModel>().ReverseMap().ForMember(dest=>dest.Companies,opt => opt.Ignore());
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap().ForMember(
                 dest => dest.Cities, opt => opt.Ignore()).ForMember(
