@@ -70,7 +70,20 @@ namespace SmallCRM.Admin
             dest => dest.MainCompanyOwner,
             opt => opt.MapFrom(src => src.MainCompany.Owner)).ForMember(
             dest => dest.SectorName,
-            opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap().
+            ForMember(dest => dest.MainCompany, opt => opt.Ignore()).
+            ForMember(dest => dest.ChildCompanies, opt => opt.Ignore()).
+            ForMember(dest => dest.CompanyType, opt => opt.Ignore()).
+            ForMember(dest => dest.InvoiceCity, opt => opt.Ignore()).
+            ForMember(dest => dest.InvoiceCountry, opt => opt.Ignore()).
+            ForMember(dest => dest.InvoiceRegion, opt => opt.Ignore()).
+            ForMember(dest => dest.DeliveryCity, opt => opt.Ignore()).
+            ForMember(dest => dest.DeliveryRegion, opt => opt.Ignore()).
+            ForMember(dest => dest.DeliveryCountry, opt => opt.Ignore()).
+            ForMember(dest => dest.Activities, opt => opt.Ignore()).
+            ForMember(dest => dest.Contacts, opt => opt.Ignore()).
+            ForMember(dest => dest.Opportunities, opt => opt.Ignore()).
+            ForMember(dest => dest.Sector, opt => opt.Ignore());
 
             cfg.CreateMap<CompanyType, CompanyTypeViewModel>().ReverseMap();
 
