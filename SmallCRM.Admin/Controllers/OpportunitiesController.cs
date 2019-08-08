@@ -59,8 +59,8 @@ namespace SmallCRM.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CampaignSourceId = new SelectList(campaignSourceService.GetAll(), "Id", "Name");
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
-            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName");
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             return View();
         }
