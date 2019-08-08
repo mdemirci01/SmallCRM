@@ -12,6 +12,7 @@ namespace SmallCRM.Data.Builders
     {
         public ContactBuilder(EntityTypeConfiguration<Contact> builder)
         {
+            builder.Ignore(b => b.FullName);
             builder.Property(b => b.FirstName).HasMaxLength(50).IsRequired();
             builder.Property(b => b.LastName).HasMaxLength(50);
             builder.HasOptional(a => a.Company).WithMany(b => b.Contacts).HasForeignKey(a => a.CompanyId);

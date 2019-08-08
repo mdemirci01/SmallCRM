@@ -24,6 +24,7 @@ namespace SmallCRM.Admin.Models
         public string FullName { get; set; }
         [MaxLength(100)]
         [Display(Name = "Firma")]
+        [Required]
         public string Company { get; set; } // required
         [Display(Name = "Nezaket Ünvanı")]
         public TitleOfCourtesy? TitleOfCourtesy { get; set; }
@@ -50,8 +51,10 @@ namespace SmallCRM.Admin.Models
         public string Fax { get; set; }
         [Display(Name = "Müşteri Adı Kaynağı")]
         public Guid? LeadSourceId { get; set; }
+        public virtual LeadSource LeadSource { get; set; }
         [Display(Name = "Sektör")]
         public Guid? SectorId { get; set; }
+        public virtual Sector Sector { get; set; }
         [Display(Name = "Eposta Gönderilmesin")]
         public bool NotSendEmail { get; set; }
         [Display(Name = "Sms Gönderilmesin")]
@@ -61,6 +64,7 @@ namespace SmallCRM.Admin.Models
         public string Website { get; set; }
         [Display(Name = "Durum")]
         public Guid? LeadStatusId { get; set; }
+        public virtual LeadStatus LeadStatus { get; set; }
         [Display(Name ="Aşama")]
         public Stage? Stage { get; set; }
         [MaxLength(100)]
@@ -81,10 +85,13 @@ namespace SmallCRM.Admin.Models
         public string Address { get; set; }
         [Display(Name = "Ülke")]
         public Guid? CountryId { get; set; }
+        public virtual Country Country { get; set; }
         [Display(Name = "Şehir")]
         public Guid? CityId { get; set; }
+        public virtual City City { get; set; }
         [Display(Name = "Mahalle")]
         public Guid? RegionId { get; set; }
+        public virtual Region Region { get; set; }
         [MaxLength(10)]
         [Display(Name = "Posta Kodu")]
         public string PostalCode { get; set; }

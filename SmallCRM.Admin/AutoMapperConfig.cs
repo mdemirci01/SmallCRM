@@ -14,6 +14,8 @@ namespace SmallCRM.Admin
         public void Initialize()
         {
             var cfg = new MapperConfigurationExpression();
+            cfg.AllowNullCollections = true;
+            cfg.AllowNullDestinationValues = true;
             cfg.CreateMap<Activity, ActivityViewModel>().ForMember(
             dest => dest.CampaignOwner,
             opt => opt.MapFrom(src => src.Campaign.Owner)).ForMember(
@@ -76,7 +78,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Document, DocumentViewModel>().ReverseMap();
 
-            cfg.CreateMap<Lead, LeadViewModel>().ForMember(
+            cfg.CreateMap<Lead, LeadViewModel>().ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(
             dest => dest.RegionName,
             opt => opt.MapFrom(src => src.Region.Name)).ForMember(
             dest => dest.CityName,

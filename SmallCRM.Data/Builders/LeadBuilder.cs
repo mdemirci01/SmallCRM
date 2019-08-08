@@ -13,6 +13,7 @@ namespace SmallCRM.Data.Builders
         public LeadBuilder(EntityTypeConfiguration<Lead> builder)
         {
             builder.Property(b => b.Owner).HasMaxLength(100);
+            builder.Ignore(b => b.FullName);
             builder.Property(b => b.FirstName).HasMaxLength(50).IsRequired();
             builder.Property(b => b.LastName).HasMaxLength(50);
             builder.Property(b => b.Company).HasMaxLength(100);

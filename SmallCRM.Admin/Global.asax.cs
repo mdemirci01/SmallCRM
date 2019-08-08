@@ -24,7 +24,7 @@ namespace SmallCRM.Admin
 
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<ApplicationDbContext>().AsSelf();
+            builder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerRequest();
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
             builder.Register(c => HttpContext.Current).InstancePerRequest();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
