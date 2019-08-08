@@ -93,9 +93,9 @@ namespace SmallCRM.Admin
             opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore());
 
 
-            cfg.CreateMap<LeadSource, LeadSourceViewModel>().ReverseMap();
+            cfg.CreateMap<LeadSource, LeadSourceViewModel>().ReverseMap().ForMember(dest => dest.Leads, opt => opt.Ignore()).ForMember(dest => dest.Contacts, opt => opt.Ignore()).ForMember(dest => dest.Opportunities, opt => opt.Ignore());
 
-            cfg.CreateMap<LeadStatus, LeadStatusViewModel>().ReverseMap();
+            cfg.CreateMap<LeadStatus, LeadStatusViewModel>().ReverseMap().ForMember(dest => dest.Leads, opt => opt.Ignore());
 
             cfg.CreateMap<Opportunity, OpportunityViewModel>().ForMember(
             dest => dest.CampaignSourceName,
