@@ -134,7 +134,8 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Feed, FeedViewModel>().ForMember(
             dest => dest.DocumentName,
-            opt => opt.MapFrom(src => src.Document.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Document.Name)).ReverseMap().ForMember(
+                dest => dest.Document, opt => opt.Ignore());
         }
     }
 }
