@@ -1,109 +1,113 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.CampaignViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kampanyalar";
 }
 
-<h2>Index</h2>
+    <h2>Kampanyalar</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">Yeni Kampanya</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OpportunityType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CampaignStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpectedRevenue)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendPhoneNumbers)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PlannedCost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpectedResponse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedRevenue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SendPhoneNumbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlannedCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedResponse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
 
-        <th></th>
-    </tr>
+            <th>Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpportunityType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CampaignStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedRevenue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SendPhoneNumbers)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlannedCost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedResponse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpportunityType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CampaignStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedRevenue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SendPhoneNumbers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlannedCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpectedResponse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+                <td>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) 
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) 
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
