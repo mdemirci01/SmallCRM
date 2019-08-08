@@ -2,10 +2,6 @@
 using AutoMapper.Configuration;
 using SmallCRM.Admin.Models;
 using SmallCRM.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace SmallCRM.Admin
 {
@@ -78,20 +74,25 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Document, DocumentViewModel>().ReverseMap();
 
-           cfg.CreateMap<Lead, LeadViewModel>().ForMember(
-            dest => dest.RegionName,
-            opt => opt.MapFrom(src => src.Region.Name)).ForMember(
-            dest => dest.CityName,
-            opt => opt.MapFrom(src => src.City.Name)).ForMember(
-            dest => dest.CountryName,
-            opt => opt.MapFrom(src => src.Country.Name)).ForMember(
-            dest => dest.LeadSourceName,
-            opt => opt.MapFrom(src => src.LeadSource.Name)).ForMember(
-            dest => dest.LeadStatusName,
-            opt => opt.MapFrom(src => src.LeadStatus.Name)).ForMember(
-            dest => dest.SectorName,
-            opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore());
-
+            cfg.CreateMap<Lead, LeadViewModel>().ForMember(
+                    dest => dest.RegionName,
+                    opt => opt.MapFrom(src => src.Region.Name)).ForMember(
+                    dest => dest.CityName,
+                    opt => opt.MapFrom(src => src.City.Name)).ForMember(
+                    dest => dest.CountryName,
+                    opt => opt.MapFrom(src => src.Country.Name)).ForMember(
+                    dest => dest.LeadSourceName,
+                    opt => opt.MapFrom(src => src.LeadSource.Name)).ForMember(
+                    dest => dest.LeadStatusName,
+                    opt => opt.MapFrom(src => src.LeadStatus.Name)).ForMember(
+                    dest => dest.SectorName,
+                    opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap()
+                .ForMember(dest => dest.Country, opt => opt.Ignore())
+                .ForMember(dest => dest.City, opt => opt.Ignore())
+                .ForMember(dest => dest.LeadSource, opt => opt.Ignore())
+                .ForMember(dest => dest.LeadStatus, opt => opt.Ignore())
+                .ForMember(dest => dest.Sector, opt => opt.Ignore())
+                .ForMember(dest => dest.Region, opt => opt.Ignore());
 
             cfg.CreateMap<LeadSource, LeadSourceViewModel>().ReverseMap();
 
@@ -119,7 +120,8 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<WorkItem, WorkItemViewModel>().ForMember(
             dest => dest.ProjectName,
-            opt => opt.MapFrom(src => src.Project.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Project.Name)).ReverseMap()
+                .ForMember(dest => dest.Project, opt => opt.Ignore()).ForMember(dest=>dest.TimeSpendings,opt=>opt.Ignore());
             Mapper.Initialize(cfg);
 
             cfg.CreateMap<TimeSpending, TimeSpendingViewModel>().ForMember(
