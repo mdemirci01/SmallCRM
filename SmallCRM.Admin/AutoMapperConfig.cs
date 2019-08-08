@@ -115,7 +115,8 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Report, ReportViewModel>().ReverseMap();
 
-            cfg.CreateMap<Sector, SectorViewModel>().ReverseMap();
+            cfg.CreateMap<Sector, SectorViewModel>().ReverseMap().ForMember(dest => dest.Leads, opt => opt.Ignore()).ForMember(
+            dest => dest.Companies, opt => opt.Ignore());
 
             cfg.CreateMap<WorkItem, WorkItemViewModel>().ForMember(
             dest => dest.ProjectName,
