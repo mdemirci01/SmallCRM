@@ -18,10 +18,10 @@ namespace SmallCRM.Model
         public string Managers { get; set; }        
         public string BussinessAnalyists { get; set; }        
         public string Developers { get; set; }        
-        public DateTime? StartDate { get; set; }   
-        public WorkItemStatus? WorkItemStatus { get; set; }
-        public ICollection<WorkItem> WorkItems { get; set; }
-        public ICollection<TimeSpending> TimeSpendings { get; set; }    
+        public virtual DateTime? StartDate { get; set; }   
+        public virtual  WorkItemStatus? WorkItemStatus { get; set; }
+        public virtual ICollection<WorkItem> WorkItems { get; set; }
+        public virtual ICollection<TimeSpending> TimeSpendings { get; set; }    
         public decimal TotalTimeSpent { get { return TimeSpendings.Sum(s => s.TimeSpent); } }
     }
 }
