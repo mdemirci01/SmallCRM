@@ -78,7 +78,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Document, DocumentViewModel>().ReverseMap();
 
-            cfg.CreateMap<Lead, LeadViewModel>().ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(
+           cfg.CreateMap<Lead, LeadViewModel>().ForMember(
             dest => dest.RegionName,
             opt => opt.MapFrom(src => src.Region.Name)).ForMember(
             dest => dest.CityName,
@@ -90,7 +90,7 @@ namespace SmallCRM.Admin
             dest => dest.LeadStatusName,
             opt => opt.MapFrom(src => src.LeadStatus.Name)).ForMember(
             dest => dest.SectorName,
-            opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore());
 
 
             cfg.CreateMap<LeadSource, LeadSourceViewModel>().ReverseMap();
