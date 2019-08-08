@@ -50,7 +50,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName,
-            opt => opt.MapFrom(src => src.Country.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Leads, opt => opt.Ignore()).ForMember(dest => dest.PostalContacts, opt => opt.Ignore()).ForMember(dest => dest.OtherContacts, opt => opt.Ignore()).ForMember(dest => dest.InvoiceCompanies, opt => opt.Ignore()).ForMember(dest => dest.DeliveryCompanies, opt => opt.Ignore());
 
             cfg.CreateMap<Company, CompanyViewModel>().ForMember(
             dest => dest.CompanyTypeName,
