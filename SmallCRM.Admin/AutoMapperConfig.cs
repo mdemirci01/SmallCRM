@@ -105,7 +105,7 @@ namespace SmallCRM.Admin
             dest => dest.ContactOwner,
             opt => opt.MapFrom(src => src.Contact.Owner)).ForMember(
             dest => dest.LeadSourceName,
-            opt => opt.MapFrom(src => src.LeadSource.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.LeadSource.Name)).ReverseMap().ForMember(dest => dest.Activities, opt => opt.Ignore()).ForMember(dest => dest.CampaignSource, opt => opt.Ignore()).ForMember(dest => dest.Contact, opt => opt.Ignore()).ForMember(dest => dest.LeadSource, opt => opt.Ignore()).ForMember(dest => dest.Company, opt => opt.Ignore());
 
             cfg.CreateMap<Project, ProjectViewModel>().ReverseMap();
 
