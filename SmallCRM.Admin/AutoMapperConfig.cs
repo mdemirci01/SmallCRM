@@ -111,7 +111,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<Region, RegionViewModel>().ForMember(
             dest => dest.CityName,
-            opt => opt.MapFrom(src => src.City.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.City.Name)).ReverseMap().ForMember(dest => dest.City, opt => opt.Ignore()).ForMember(dest => dest.Leads, opt => opt.Ignore()).ForMember(dest => dest.PostalContacts, opt => opt.Ignore()).ForMember(dest => dest.OtherContacts, opt => opt.Ignore()).ForMember(dest => dest.DeliveryCompanies, opt => opt.Ignore()).ForMember(dest => dest.InvoiceCompanies, opt => opt.Ignore());
 
             cfg.CreateMap<Report, ReportViewModel>().ReverseMap();
 
