@@ -25,10 +25,8 @@ namespace SmallCRM.Model
         public virtual LeadSource LeadSource { get; set; }
         public Guid? SectorId { get; set; }
         public virtual Sector Sector { get; set; }
-
         public bool NotSendEmail { get; set; }
         public bool NotSendSms { get; set; }
-
         public string Website { get; set; }
         public Guid? LeadStatusId { get; set; }
         public virtual LeadStatus LeadStatus { get; set; }
