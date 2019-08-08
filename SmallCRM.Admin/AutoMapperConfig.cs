@@ -46,7 +46,7 @@ namespace SmallCRM.Admin
             dest => dest.RegionName,
             opt => opt.MapFrom(src => src.Region.Name)).ForMember(
             dest => dest.ReportsToContactOwner,
-            opt => opt.MapFrom(src => src.ReportsToContact.Owner)).ReverseMap();
+            opt => opt.MapFrom(src => src.ReportsToContact.Owner)).ReverseMap().ForMember(dest => dest.Company, opt => opt.Ignore()).ForMember(dest => dest.LeadSource, opt => opt.Ignore()).ForMember(dest => dest.ReportsToContact, opt => opt.Ignore()).ForMember(dest => dest.ChildContacts, opt => opt.Ignore()).ForMember(dest => dest.Activities, opt => opt.Ignore()).ForMember(dest => dest.Opportunities, opt => opt.Ignore()).ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(dest => dest.City, opt => opt.Ignore()).ForMember(dest => dest.Region, opt => opt.Ignore()).ForMember(dest => dest.OtherCountry, opt => opt.Ignore()).ForMember(dest => dest.OtherCity, opt => opt.Ignore()).ForMember(dest => dest.OtherRegion, opt => opt.Ignore()).ForMember(dest => dest.Country, opt => opt.Ignore()); ;
 
             cfg.CreateMap<Campaign, CampaignViewModel>().ReverseMap();
 
@@ -54,7 +54,7 @@ namespace SmallCRM.Admin
 
             cfg.CreateMap<City, CityViewModel>().ForMember(
             dest => dest.CountryName,
-            opt => opt.MapFrom(src => src.Country.Name)).ReverseMap();
+            opt => opt.MapFrom(src => src.Country.Name)).ReverseMap().ForMember(dest => dest.Country, opt => opt.Ignore()).ForMember(dest => dest.Regions, opt => opt.Ignore()).ForMember(dest => dest.Leads, opt => opt.Ignore()).ForMember(dest => dest.PostalContacts, opt => opt.Ignore()).ForMember(dest => dest.OtherContacts, opt => opt.Ignore()).ForMember(dest => dest.InvoiceCompanies, opt => opt.Ignore()).ForMember(dest => dest.DeliveryCompanies, opt => opt.Ignore());
 
             cfg.CreateMap<Company, CompanyViewModel>().ForMember(
             dest => dest.CompanyTypeName,
