@@ -72,7 +72,7 @@ namespace SmallCRM.Admin
             dest => dest.SectorName,
             opt => opt.MapFrom(src => src.Sector.Name)).ReverseMap();
 
-            cfg.CreateMap<CompanyType, CompanyTypeViewModel>().ReverseMap();
+            cfg.CreateMap<CompanyType, CompanyTypeViewModel>().ReverseMap().ForMember(dest=>dest.Companies,opt => opt.Ignore());
 
             cfg.CreateMap<Country, CountryViewModel>().ReverseMap();
 

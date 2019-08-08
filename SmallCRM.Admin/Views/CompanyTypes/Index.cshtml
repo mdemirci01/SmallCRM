@@ -9,6 +9,7 @@
 <p>
     <a href="@Url.Action("Create")" class="btn btn-primary">Yeni Firma Türü</a>
 </p>
+
 <table class="table" id="myTable">
     <thead>
         <tr>
@@ -29,21 +30,21 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
 
-                <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                </td>
-            </tr>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
         }
     </tbody>
 
