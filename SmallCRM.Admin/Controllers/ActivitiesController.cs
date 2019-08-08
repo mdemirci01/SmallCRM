@@ -55,10 +55,10 @@ namespace SmallCRM.Admin.Controllers
         // GET: Activities/Create
         public ActionResult Create()
         {
-            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner");
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
-            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner");
-            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner");
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName");
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -76,10 +76,10 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
         }
 
@@ -95,10 +95,10 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
         }
 
@@ -115,10 +115,10 @@ namespace SmallCRM.Admin.Controllers
                 activityService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Owner", activity.CampaignId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", activity.CompanyId);
-            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "Owner", activity.ContactId);
-            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Owner", activity.OpportunityId);
+            ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
+            ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
         }
 
