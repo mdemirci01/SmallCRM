@@ -64,14 +64,14 @@ namespace SmallCRM.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CityId = new SelectList(contactService.GetAll(), "Id", "Name");
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
-            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner");
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -90,14 +90,14 @@ namespace SmallCRM.Admin.Controllers
             }
 
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", contact.CompanyId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name", contact.ReportsToContactId);
             return View(contact);
         }
 
@@ -114,14 +114,14 @@ namespace SmallCRM.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", contact.CompanyId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name", contact.ReportsToContactId);
             return View(contact);
         }
 
@@ -139,14 +139,14 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
-            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", contact.CompanyId);
+            ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", contact.CompanyId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
             ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
-            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Owner", contact.ReportsToContactId);
+            ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name", contact.ReportsToContactId);
             return View(contact);
         }
 
