@@ -14,6 +14,7 @@ using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
+    [Authorize]
     public class CompaniesController : Controller
     {
         private readonly ICompanyService companyService;
