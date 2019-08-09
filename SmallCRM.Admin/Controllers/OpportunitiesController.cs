@@ -15,6 +15,7 @@ using static SmallCRM.Service.ContactService;
 
 namespace SmallCRM.Admin.Controllers
 {
+    [Authorize]
     public class OpportunitiesController : Controller
     {
         private readonly IOpportunityService opportunityService;
