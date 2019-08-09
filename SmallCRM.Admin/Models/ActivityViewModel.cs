@@ -35,6 +35,7 @@ namespace SmallCRM.Admin.Models
 
         
         [Display(Name = "Açıklama")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [MaxLength(100)]
         [Display(Name = "Firma Adı")]
