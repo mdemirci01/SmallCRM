@@ -9,6 +9,7 @@ using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
+    [Authorize]
     public class CitiesController : Controller     
     {
 
