@@ -39,6 +39,7 @@ namespace SmallCRM.Admin.Models
         public string ExpectedResponse { get; set; } //Beklenen tepki
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
