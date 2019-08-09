@@ -48,6 +48,7 @@ namespace SmallCRM.Admin.Models
         public Guid? CampaignSourceId { get; set; }
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name ="Aktif Mi?")]
         public bool IsActive { get; set; }
