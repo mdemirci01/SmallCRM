@@ -105,95 +105,99 @@
         @foreach (var item in Model)
         {
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyTypeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryCityName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryCountryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryRegionName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceCityName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceCountryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceRegionName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MainCompanyOwner)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SectorName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Owner)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyLocation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AnnualIncome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fax)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Website)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ImkbCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OwnerShip)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NaceCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoiceAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InvoicePostalCode)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Owner)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Name)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryPostalCode)
-                </td>
+            <td>
+                @Html.DisplayNameFor(model => model.CompanyLocation)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.MainCompanyOwner)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(model => model.CompanyNumber)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.CompanyTypeName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.SectorName)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(model => model.AnnualIncome)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Stage)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Fax)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Website)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.ImkbCode)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.OwnerShip)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.NaceCode)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.DeliveryCityName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.DeliveryCountryName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.DeliveryRegionName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.InvoiceCityName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.InvoiceCountryName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.InvoiceRegionName)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.InvoiceAddress)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.InvoicePostalCode)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(model => model.DeliveryAddress)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.DeliveryPostalCode)
+            </td>
 
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-                <td class="text-nowrap">
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm " })
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm " })
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                </td>
-            </tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+
+            <td class="text-nowrap">
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm " })
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm " })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
 
         }
     </tbody>
