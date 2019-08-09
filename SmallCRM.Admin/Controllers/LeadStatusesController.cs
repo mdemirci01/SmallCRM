@@ -14,6 +14,7 @@ using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
+    [Authorize]
     public class LeadStatusesController : Controller
     {
         private readonly ILeadStatusService leadStatusService;
@@ -36,7 +37,8 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+
 (id.Value));
             if (leadStatus == null)
             {
@@ -75,7 +77,8 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+
 (id.Value));
             if (leadStatus == null)
             {
@@ -107,7 +110,8 @@ namespace SmallCRM.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+            LeadStatusViewModel leadStatus = Mapper.Map<LeadStatusViewModel>(leadStatusService.Get
+
 (id.Value));
             if (leadStatus == null)
             {
