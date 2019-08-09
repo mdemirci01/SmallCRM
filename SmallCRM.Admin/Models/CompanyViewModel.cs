@@ -120,6 +120,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "Teslimat Ülke")]
         public Guid? DeliveryCountryId { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Açıklama")]
         [MaxLength(4000)]
         public string Description { get; set; }

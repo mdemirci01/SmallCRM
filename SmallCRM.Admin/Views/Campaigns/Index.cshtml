@@ -16,12 +16,6 @@
                 @Html.DisplayNameFor(model => model.Owner)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OpportunityType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CampaignStatus)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -35,6 +29,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SendPhoneNumbers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpportunityType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignStatus)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EndDate)
@@ -53,61 +53,61 @@
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
 
-            <th>Eylemler</th>
+            <th class="all">Eylemler</th>
         </tr>
     </thead>
     <tbody>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Owner)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OpportunityType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CampaignStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExpectedRevenue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SendPhoneNumbers)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlannedCost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExpectedResponse)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedRevenue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendPhoneNumbers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpportunityType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlannedCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedResponse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
 
-                <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" }) 
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" }) 
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                </td>
-            </tr>
+            <td nowrap>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -20,6 +20,7 @@ namespace SmallCRM.Admin.Models
         public string File { get; set; }
         [Display(Name = "Açıklama")]
         [MaxLength(400)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name = "Tipi")]
         [Required]

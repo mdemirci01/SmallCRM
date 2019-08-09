@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201908080804055_dbFix2.Designer.cs">
       <DependentUpon>201908080804055_dbFix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908090612491_Deneme.cs" />
+    <Compile Include="Migrations\201908090612491_Deneme.Designer.cs">
+      <DependentUpon>201908090612491_Deneme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -131,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908080804055_dbFix2.resx">
       <DependentUpon>201908080804055_dbFix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090612491_Deneme.resx">
+      <DependentUpon>201908090612491_Deneme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

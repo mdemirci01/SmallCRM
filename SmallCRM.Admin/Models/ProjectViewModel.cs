@@ -16,6 +16,7 @@ namespace SmallCRM.Admin.Models
         [Display(Name ="Proje Adı")]
         public string Name { get; set; }
         [Display(Name = "Açıklama")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [MaxLength(4000)]
         [Display(Name = "Yöneticiler")]
