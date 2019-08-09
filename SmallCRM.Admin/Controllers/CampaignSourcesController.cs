@@ -14,6 +14,7 @@ using SmallCRM.Service;
 
 namespace SmallCRM.Admin.Controllers
 {
+    [Authorize]
     public class CampaignSourcesController : Controller
     {
         private readonly ICampaignSourceService campaignSourceService;
