@@ -14,23 +14,23 @@ namespace SmallCRM.Admin.Models
         public bool IsActive { get; set; }
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Harcanan Zaman")]
-
+        [Display(Name = "Ad")]
         public string Name { get; set; }
         [Display(Name = "Proje")]
-        public Guid ProjectId { get; set; }
-   
+        public Guid ProjectId { get; set; }   
         [Display(Name = "Taslak")]
         public Guid? WorkItemId { get; set; }
         [Required]
         [MaxLength(100)]
-        [Display(Name = "Çalışan")]
+        [Display(Name = "Çalışan Adı")]
         public string Worker { get; set; }
         [Display(Name = "Zaman Harcaması")]
         public decimal TimeSpent { get; set; }
-        [Display(Name = "Taslak Durumu")]
+        [Display(Name = "Görev Durumu")]
         public WorkItemStatus? WorkItemStatus { get; set; }
+        [Display(Name = "Proje Adı")]
         public string ProjectName { get; set; }
+        [Display(Name = "Görev Adı")]
         public string WorkItemName { get; set; }
     }
 }
