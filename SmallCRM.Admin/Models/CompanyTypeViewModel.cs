@@ -10,10 +10,10 @@ namespace SmallCRM.Admin.Models
     {
         public Guid Id { get; set; }
         [Required]
-        [Display(Name="Firma Tipi")]
+        [Display(Name="Firma Türü")]
         [MaxLength(100)]
         public string Name { get; set; }
-
+        [Display(Name = "Aktif mi?")]
         public bool IsActive { get; set; }
     }
 }
