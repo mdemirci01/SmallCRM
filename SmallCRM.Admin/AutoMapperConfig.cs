@@ -167,7 +167,7 @@ namespace SmallCRM.Admin
             dest => dest.ProjectName,
             opt => opt.MapFrom(src => src.Project.Name)).ForMember(
             dest => dest.WorkItemName,
-            opt => opt.MapFrom(src => src.WorkItem.Name. ? src.WorkItem.Name.Value.ToString():string.Empty )).ReverseMap();
+            opt => opt.MapFrom(src => src.WorkItem.Name)).ReverseMap();
 
             cfg.CreateMap<Feed, FeedViewModel>().ForMember(
             dest => dest.DocumentName,
