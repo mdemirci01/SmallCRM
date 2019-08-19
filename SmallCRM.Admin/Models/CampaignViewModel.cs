@@ -19,7 +19,6 @@ namespace SmallCRM.Admin.Models
         public string Name { get; set; }
         [Display(Name = "Başlangıç Tarihi")]
         public DateTime? StartDate { get; set; }
-        [MaxLength(100)]
         [Display(Name = "Beklenen Ciro")]
         public decimal? ExpectedRevenue { get; set; } //Beklenen ciro
         [Display(Name = "Gerçekleşen Masraf")]

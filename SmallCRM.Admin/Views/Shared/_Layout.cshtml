@@ -12,7 +12,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="tr-TR">
+<html lang="tr">
 
 <!-- begin::Head -->
 <head>
@@ -1261,9 +1261,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             2019&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/metronic" target="_blank" class="kt-link">SmallCRM</a>
                         </div>
                         <div class="kt-footer__menu">
-                            <a href="@Url.Action("About","Home")"  class="kt-footer__menu-link kt-link">Hakkında</a>
-                            <a href="@Url.Action("Team","Home")"  class="kt-footer__menu-link kt-link">Ekip</a>
-                            <a href="@Url.Action("Contact","Home")"  class="kt-footer__menu-link kt-link">İletişim</a>
+                            <a href="@Url.Action("About","Home")" class="kt-footer__menu-link kt-link">Hakkında</a>
+                            <a href="@Url.Action("Team","Home")" class="kt-footer__menu-link kt-link">Ekip</a>
+                            <a href="@Url.Action("Contact","Home")" class="kt-footer__menu-link kt-link">İletişim</a>
                         </div>
                     </div>
                 </div>
@@ -2172,6 +2172,22 @@ License: You must have a valid license purchased only from themeforest(the above
     </script>
     <!--end::Page Scripts -->
     @RenderSection("scripts", required: false)
+    <!-- cldr scripts (needed for globalize) -->
+    <script src="/Scripts/cldr.js"></script>
+    <script src="/Scripts/cldr/event.js"></script>
+    <script src="/Scripts/cldr/supplemental.js"></script>
+
+    <!-- globalize scripts -->
+    <script src="/Scripts/globalize.js"></script>
+    <script src="/Scripts/globalize/number.js"></script>
+    <script src="/Scripts/globalize/date.js"></script>
+
+    <script src="/Scripts/jquery.validate.globalize.js"></script>
+    <script>
+        $(function () {
+            Globalize.locale("tr");
+        });
+    </script>
 </body>
 
 <!-- end::Body -->
