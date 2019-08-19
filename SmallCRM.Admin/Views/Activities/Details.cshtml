@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.ActivityViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Details";
 }
@@ -63,7 +64,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallReason)
+            @(Model.CallReason?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -71,7 +72,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RelatedRecord)
+            @(Model.RelatedRecord?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -79,7 +80,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallDirection)
+            @(Model.CallDirection.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -87,7 +88,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallDetail)
+            @(Model.CallDetail?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -95,7 +96,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallResult)
+            @(Model.CallResult?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -210,7 +211,7 @@
             @Html.DisplayFor(model => model.CampaignExpectedRevenue)
         </dd>
 
-       
+
 
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
