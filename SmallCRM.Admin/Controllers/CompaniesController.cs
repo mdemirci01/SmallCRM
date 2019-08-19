@@ -36,6 +36,19 @@ namespace SmallCRM.Admin.Controllers
             this.regionService = regionService;
             this.sectorService = sectorService;
         }
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
+        [HttpPost]
+        public ActionResult GetRegions(Guid cityId)
+        {
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAllByCityId(cityId));
+            return Json(region);
+        }
+
         // GET: Companies
         public ActionResult Index()
         {
@@ -67,9 +80,10 @@ namespace SmallCRM.Admin.Controllers
             ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
-            ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
-            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.InvoiceCityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
+            ViewBag.InvoiceRegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
             ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
             ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name");
             return View();

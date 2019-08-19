@@ -44,6 +44,11 @@ namespace SmallCRM.Service
             return cityRepository.GetAll();
         }
 
+        public IEnumerable<City> GetAllByCountryId(Guid countryId)
+        {
+            return cityRepository.GetAll(x => x.CountryId == countryId, o => o.Name, false);
+        }
+
         public void Insert(City city)
         {
             cityRepository.Insert(city);
@@ -59,6 +64,7 @@ namespace SmallCRM.Service
     public interface ICityService
     {
         IEnumerable<City> GetAll();
+        IEnumerable<City> GetAllByCountryId(Guid countryId);
         City Get(Guid id);
         void Insert(City city);
         void Update(City city);

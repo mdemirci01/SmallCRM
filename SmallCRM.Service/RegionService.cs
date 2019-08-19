@@ -41,6 +41,10 @@ namespace SmallCRM.Service
         {
             return regionRepository.GetAll();
         }
+        public IEnumerable<Region> GetAllByCityId(Guid cityId)
+        {
+            return regionRepository.GetAll(x => x.CityId == cityId, o => o.Name, false);
+        }
 
         public void Insert(Region region)
         {
@@ -57,6 +61,7 @@ namespace SmallCRM.Service
     public interface IRegionService
     {
         IEnumerable<Region> GetAll();
+        IEnumerable<Region> GetAllByCityId(Guid cityId);
         Region Get(Guid id);
         void Insert(Region region);
         void Update(Region region);
