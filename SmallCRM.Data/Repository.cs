@@ -109,9 +109,6 @@ namespace SmallCRM.Data
             var orginalEntity = Get(entity.Id, true);
             entity.CreatedAt = orginalEntity.CreatedAt;
             entity.CreatedBy = orginalEntity.CreatedBy;
-            entity.DeletedAt = orginalEntity.DeletedAt;
-            entity.DeletedBy = orginalEntity.DeletedBy;
-            entity.IsDeleted = orginalEntity.IsDeleted;
             entity.UpdatedAt = DateTime.Now;
             entity.UpdatedBy = httpContext.User.Identity.GetUserId();
             entity.IpAddress = HttpContext.Current.Request.UserHostAddress;
