@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.LeadViewModel>
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Müşteri Adayları";
 }
@@ -11,195 +12,195 @@
 </p>
 <table class="table" id="myTable">
     <thead>
-    <tr>
+        <tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TitleOfCourtesy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telephone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MobilePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SkypeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Twitter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecondaryEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LeadSourceName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LeadStatusName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SectorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Company)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotSendEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NotSendSms)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stage)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleOfCourtesy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobilePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkypeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Twitter)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeadSourceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LeadStatusName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SectorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotSendEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotSendSms)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stage)
+            </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
 
-        <th class="all">Eylemler</th>
-    </tr>
+            <th class="all">Eylemler</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TitleOfCourtesy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MobilePhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Website)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SkypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Twitter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondaryEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeadSourceName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeadStatusName)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.SectorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photo)
+                </td>
+                <td>
+                    @(item.TitleOfCourtesy.GetAttribute<DisplayAttribute>().Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @(item.Gender.GetAttribute<DisplayAttribute>().Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobilePhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Website)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkypeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Twitter)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondaryEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeadSourceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeadStatusName)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-       
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SectorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.NotSendEmail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NotSendSms)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td nowrap>
-                @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
-                @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
-                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-            </td>
-        </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotSendEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotSendSms)
+                </td>
+                <td>
+                     @(item.Stage.GetAttribute<DisplayAttribute>().Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td nowrap>
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
         }
     </tbody>
 </table>
