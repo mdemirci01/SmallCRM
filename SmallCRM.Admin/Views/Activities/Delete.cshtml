@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.ActivityViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Delete";
 }
@@ -64,7 +65,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallReason)
+            @(Model.CallReason?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -72,7 +73,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RelatedRecord)
+            @(Model.RelatedRecord?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -80,7 +81,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallDirection)
+            @(Model.CallDirection.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -88,7 +89,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallDetail)
+            @(Model.CallDetail?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -96,7 +97,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CallResult)
+            @(Model.CallResult?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -222,7 +223,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
