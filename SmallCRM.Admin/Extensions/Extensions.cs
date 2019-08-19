@@ -18,8 +18,7 @@ namespace SmallCRM.Admin.Extensions
         {
             return enumValue.GetType()
                             .GetMember(enumValue.ToString())
-                            .First()
-                            .GetCustomAttribute<TAttribute>();
+                            .FirstOrDefault()?.GetCustomAttribute<TAttribute>();
         }
     }
 }
