@@ -118,6 +118,7 @@
                 @Html.LabelFor(model => model.CampaignSourceId, "Kampanya Kaynağı Adı", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.DropDownList("CampaignSourceId", null, htmlAttributes: new { @class = "form-control" })
+                   
                     @Html.ValidationMessageFor(model => model.CampaignSourceId, "", new { @class = "text-danger" })
                 </div>
             </div>
