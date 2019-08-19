@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.ActivityViewModel>
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Aktiviteler";
 }
@@ -117,19 +118,19 @@
                     @Html.DisplayFor(modelItem => item.Subject)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CallReason)
+                    @(item.CallReason.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RelatedRecord)
+                    @(item.RelatedRecord.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CallDirection)
+                    @(item.CallDirection.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CallDetail)
+                    @(item.CallDetail.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CallResult)
+                    @(item.CallResult.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
