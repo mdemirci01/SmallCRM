@@ -62,7 +62,7 @@
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
                 <td>
-                    @(item.WorkItemStatus.GetAttribute<DisplayAttribute>().Name)
+                    @(item.WorkItemStatus?.GetAttribute<DisplayAttribute>().Name)
                 </td>
 
                 <td>

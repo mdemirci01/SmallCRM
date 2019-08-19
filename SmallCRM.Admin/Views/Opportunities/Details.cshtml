@@ -1,4 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.OpportunityViewModel
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Details";
@@ -59,11 +61,13 @@
         </dd>
 
         <dt>
+            
             @Html.DisplayNameFor(model => model.OpportunityType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OpportunityType)
+           
+            @(Model.OpportunityType?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -95,7 +99,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OpportunityStage)
+            @(Model.OpportunityStage.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -122,7 +126,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-      
+
 
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
@@ -132,7 +136,7 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-       
+
 
     </dl>
 </div>

@@ -1,4 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.CompanyViewModel
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Details";
@@ -128,7 +130,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stage)
+         
+            @(Model.Stage?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -168,7 +171,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OwnerShip)
+            @(Model.OwnerShip?.GetAttribute<DisplayAttribute>().Name)
+
+
         </dd>
 
         <dt>

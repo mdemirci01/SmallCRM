@@ -118,19 +118,19 @@
                     @Html.DisplayFor(modelItem => item.Subject)
                 </td>
                 <td>
-                    @(item.CallReason.GetAttribute<DisplayAttribute>().Name)
+                    @(item.CallReason?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @(item.RelatedRecord.GetAttribute<DisplayAttribute>().Name)
+                    @(item.RelatedRecord?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @(item.CallDirection.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @(item.CallDetail.GetAttribute<DisplayAttribute>().Name)
+                    @(item.CallDetail?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @(item.CallResult.GetAttribute<DisplayAttribute>().Name)
+                    @(item.CallResult?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)

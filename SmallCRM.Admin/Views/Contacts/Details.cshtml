@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.ContactViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Detaylar";
 }
@@ -111,7 +112,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TitleOfCourtesy)
+            @(Model.TitleOfCourtesy?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -290,7 +291,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
@@ -299,7 +300,7 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-       
+
 
     </dl>
 </div>

@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.ContactViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Sil";
 }
@@ -12,75 +13,75 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.City.Name)
+            @Html.DisplayNameFor(model => model.CityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City.Name)
+            @Html.DisplayFor(model => model.CityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Company.Owner)
+            @Html.DisplayNameFor(model => model.CompanyOwner)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Company.Owner)
+            @Html.DisplayFor(model => model.CompanyOwner)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Country.Name)
+            @Html.DisplayNameFor(model => model.CountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Country.Name)
+            @Html.DisplayFor(model => model.CountryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LeadSource.Name)
+            @Html.DisplayNameFor(model => model.LeadSourceName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LeadSource.Name)
+            @Html.DisplayFor(model => model.LeadSourceName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OtherCity.Name)
+            @Html.DisplayNameFor(model => model.OtherCityName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OtherCity.Name)
+            @Html.DisplayFor(model => model.OtherCityName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OtherCountry.Name)
+            @Html.DisplayNameFor(model => model.OtherCountryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OtherCountry.Name)
+            @Html.DisplayFor(model => model.OtherCountryName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OtherRegion.Name)
+            @Html.DisplayNameFor(model => model.OtherRegionName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OtherRegion.Name)
+            @Html.DisplayFor(model => model.OtherRegionName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Region.Name)
+            @Html.DisplayNameFor(model => model.RegionName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Region.Name)
+            @Html.DisplayFor(model => model.RegionName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ReportsToContact.Owner)
+            @Html.DisplayNameFor(model => model.ReportsToContactOwner)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ReportsToContact.Owner)
+            @Html.DisplayFor(model => model.ReportsToContactOwner)
         </dd>
 
         <dt>
@@ -112,7 +113,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TitleOfCourtesy)
+            @(Model.TitleOfCourtesy?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -291,7 +292,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
@@ -300,10 +301,11 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-       
+
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

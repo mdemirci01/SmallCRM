@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Web;
 using SmallCRM.Data;
 using SmallCRM.Model;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace IdentitySample.Models
 {
@@ -90,6 +92,20 @@ namespace IdentitySample.Models
         {
             // Plug in your email service here to send an email.
             return Task.FromResult(0);
+        }
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var apiKey = System.Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+            var client = new SendGridClient(apiKey);
+
+            var msg = new SendGridMessage();
+
+            msg.AddTo(message.Destination);
+            msg.From = new EmailAddress("noreply.smallcrm@gmail.com", "SmallCRM");
+            msg.Subject = message.Subject;
+            msg.PlainTextContent = message.Body;
+            msg.HtmlContent = message.Body;
+            var response = await client.SendEmailAsync(msg);
         }
     }
 

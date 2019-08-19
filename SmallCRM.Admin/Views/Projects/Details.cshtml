@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.ProjectViewModel
-
+@using System.ComponentModel.DataAnnotations
+@using SmallCRM.Admin.Extensions
 @{
     ViewBag.Title = "Detaylar";
 }
@@ -63,10 +64,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkItemStatus)
+            @(Model.WorkItemStatus?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
@@ -75,11 +76,11 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
 
-       
+
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" }) 
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
     @Html.ActionLink("Listeye Geri Dön", "Index")
 </p>

@@ -1,4 +1,6 @@
-﻿﻿@model SmallCRM.Admin.Models.LeadViewModel
+﻿@using System.ComponentModel.DataAnnotations
+@using SmallCRM.Admin.Extensions
+﻿@model SmallCRM.Admin.Models.LeadViewModel
 @{
     ViewBag.Title = "Details";
 }
@@ -94,7 +96,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TitleOfCourtesy)
+            @(Model.TitleOfCourtesy?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -102,7 +104,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @(Model.Gender?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -174,7 +176,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stage)
+            @(Model.Stage?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
