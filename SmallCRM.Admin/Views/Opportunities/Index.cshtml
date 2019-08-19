@@ -95,7 +95,7 @@
                     @Html.DisplayFor(modelItem => item.CampaignSourceName)
                 </td>
                 <td>
-                    @(item.OpportunityType.GetAttribute<DisplayAttribute>().Name)
+                    @(item.OpportunityType?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NextStep)

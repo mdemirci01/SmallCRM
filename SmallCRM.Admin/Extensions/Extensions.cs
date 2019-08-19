@@ -16,7 +16,7 @@ namespace SmallCRM.Admin.Extensions
         public static TAttribute GetAttribute<TAttribute>(this Enum enumValue)
                 where TAttribute : Attribute
         {
-            return enumValue.GetType()
+            return enumValue?.GetType()
                             .GetMember(enumValue.ToString())
                             .FirstOrDefault()?.GetCustomAttribute<TAttribute>();
         }
