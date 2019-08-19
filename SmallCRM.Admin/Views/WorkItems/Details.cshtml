@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.WorkItemViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Details";
 }
@@ -71,16 +72,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorkItemStatus)
+            @(Model.WorkItemStatus?.GetAttribute<DisplayAttribute>().Name)
         </dd>
-       
+
         <dt>
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.IsActive)
-        </dd>       
+        </dd>
 
     </dl>
 </div>

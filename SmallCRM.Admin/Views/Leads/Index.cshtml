@@ -111,7 +111,7 @@
                     @Html.DisplayFor(modelItem => item.Photo)
                 </td>
                 <td>
-                    @(item.TitleOfCourtesy.GetAttribute<DisplayAttribute>().Name)
+                    @(item.TitleOfCourtesy?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -120,7 +120,7 @@
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
                 <td>
-                    @(item.Gender.GetAttribute<DisplayAttribute>().Name)
+                    @(item.Gender?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Telephone)
@@ -190,7 +190,7 @@
                     @Html.DisplayFor(modelItem => item.NotSendSms)
                 </td>
                 <td>
-                     @(item.Stage.GetAttribute<DisplayAttribute>().Name)
+                     @(item.Stage?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsActive)
