@@ -1,27 +1,19 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
+@if (Request.IsAuthenticated) {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
         @Html.AntiForgeryToken()
-        <div class="mt-3">
-            <ul class="nav navbar-nav navbar-right ">
-                <li>
-                    @Html.ActionLink("Merhaba " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                    <a href="javascript:document.getElementById('logoutForm').submit()">Çıkış Yap</a>
-                </li>
-            </ul>
-        </div>
-    }
-}
-else
-{
-    <div class="mt-3">
+
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Kullanıcı Oluştur | ", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "text-nowrap" })
-            @Html.ActionLink("Oturum Aç", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "text-nowrap" })
-        </li>
-    </ul>
-        </div>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
+}
+else {
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

@@ -1,8 +1,6 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(SmallCRM.Admin.Startup))]
-namespace SmallCRM.Admin
+namespace IdentitySample
 {
     public partial class Startup
     {

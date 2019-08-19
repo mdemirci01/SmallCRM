@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SmallCRM.Admin.Models
+namespace IdentitySample.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
@@ -29,11 +29,11 @@ namespace SmallCRM.Admin.Models
         public string Provider { get; set; }
 
         [Required]
-        [Display(Name = "Kod")]
+        [Display(Name = "Code")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Bu tarayıcı için hatırla")]
+        [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -42,23 +42,23 @@ namespace SmallCRM.Admin.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Beni Hatırla")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 
@@ -66,18 +66,18 @@ namespace SmallCRM.Admin.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} en az {2} karakter uzunluğunda olmalıdır.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Şifreyi Doğrulama")]
-        [Compare("Password", ErrorMessage = "Şifre ile şifre doğrulama değerleri eşleşmiyor.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -85,18 +85,18 @@ namespace SmallCRM.Admin.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = " {0} en az {2} karakter uzunluğunda olmalıdır.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Şifre Doğrulama")]
-        [Compare("Password", ErrorMessage = "Şifre ile şifre doğrulama değerleri eşleşmiyor.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -106,7 +106,7 @@ namespace SmallCRM.Admin.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "E-posta")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
     }
 }
