@@ -15,6 +15,7 @@ namespace SmallCRM.Data
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, SmallCRM.Data.Migrations.Configuration>());
         }
 
         public static ApplicationDbContext Create()

@@ -5,6 +5,8 @@ using Microsoft.Owin.Security.Cookies;
 using IdentitySample.Models;
 using Owin;
 using System;
+using SmallCRM.Data;
+using SmallCRM.Model;
 
 namespace IdentitySample
 {

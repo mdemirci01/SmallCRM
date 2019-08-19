@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using SmallCRM.Model;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
