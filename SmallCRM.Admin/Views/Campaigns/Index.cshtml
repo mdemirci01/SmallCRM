@@ -84,7 +84,7 @@
                     @(item.OpportunityType.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CampaignStatus)
+                    @(item.CampaignStatus?.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EndDate)
