@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SmallCRM.Admin.Models.WorkItemViewModel>
+﻿@using System.ComponentModel.DataAnnotations
+@using SmallCRM.Admin.Extensions
+@model IEnumerable<SmallCRM.Admin.Models.WorkItemViewModel>
 
 @{
     ViewBag.Title = "Görevler";
@@ -64,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkItemStatus)
+                @(item.WorkItemStatus.GetAttribute<DisplayAttribute>().Name)
             </td>
 
             <td>

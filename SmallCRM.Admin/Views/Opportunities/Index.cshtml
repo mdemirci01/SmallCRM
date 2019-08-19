@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SmallCRM.Admin.Models.OpportunityViewModel>
+﻿@model IEnumerable<SmallCRM.Admin.Models.OpportunityViewModel>   
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 
 @{
     ViewBag.Title = "Satış Fırsatları";
@@ -16,7 +18,8 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CampaignSourceName)
+                @Html.DisplayNameFor(model => model.Owner)
+             
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CompanyOwner)
@@ -28,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.LeadSourceName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Owner)
+                @Html.DisplayNameFor(model => model.CampaignSourceName)
             </th>
 
             <th>
@@ -70,25 +73,29 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CampaignSourceName)
+                    @Html.DisplayFor(modelItem => item.Name)
+                   
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                    
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyOwner)
+                   
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ContactOwner)
+                   
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LeadSourceName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Owner)
+                    @Html.DisplayFor(modelItem => item.CampaignSourceName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OpportunityType)
+                    @(item.OpportunityType.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.NextStep)
@@ -100,7 +107,7 @@
                     @Html.DisplayFor(modelItem => item.CloseDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.OpportunityStage)
+                    @(item.OpportunityStage.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Possibility)
@@ -119,9 +126,9 @@
 
 
                 <td class="text-nowrap">
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id },new {@class="btn btn-success btn-sm" }) 
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id },new {@class="btn btn-default btn-sm" }) 
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id },new {@class="btn btn-danger btn-sm" })
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

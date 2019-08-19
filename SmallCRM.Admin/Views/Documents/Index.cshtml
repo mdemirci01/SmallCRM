@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SmallCRM.Admin.Models.DocumentViewModel>
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Belgeler";
 }
@@ -52,7 +53,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FileType)
+                    @(item.FileType.GetAttribute<DisplayAttribute>().Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Extension)
@@ -66,9 +67,9 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new {@class="btn btn-success btn-sm" }) 
-                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new {@class="btn btn-default btn-sm" }) 
-                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new {@class="btn btn-danger btn-sm" })
+                    @Html.ActionLink("Düzenle", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    @Html.ActionLink("Detaylar", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                    @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }
