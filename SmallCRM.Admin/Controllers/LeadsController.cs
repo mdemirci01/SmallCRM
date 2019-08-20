@@ -41,6 +41,20 @@ namespace SmallCRM.Admin.Controllers
             return View(leads);
         }
 
+        [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(_cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
+        [HttpPost]
+        public ActionResult GetRegions(Guid cityId)
+        {
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(_regionService.GetAllByCityId(cityId));
+            return Json(region);
+        }
+
+
         // GET: Leads/Details/5
         public ActionResult Details(Guid? id)
         {

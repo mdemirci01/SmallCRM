@@ -213,15 +213,15 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CountryId, "Ülke", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                        @Html.DropDownList("CountryId", null, "Ülke Seçiniz",htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger", onchange="LoadCities(this)" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CityId, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.CityId, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" ,onchange="LoadRegions(this)"})
                     <div class="col-md-10">
-                        @Html.DropDownList("CityId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("CityId", null,"Şehir Seçiniz", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -229,7 +229,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.RegionId, "Mahallesi", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("RegionId", null,"İlçe Seçiniz", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -273,4 +273,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
