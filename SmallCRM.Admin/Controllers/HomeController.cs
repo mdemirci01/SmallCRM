@@ -2,6 +2,7 @@
 
 namespace IdentitySample.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         [HttpGet]

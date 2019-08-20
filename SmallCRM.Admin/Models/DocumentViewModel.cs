@@ -16,7 +16,7 @@ namespace SmallCRM.Admin.Models
         public string Name { get; set; }
         [Display(Name = "Dosya")]
         [MaxLength(200)]
-        [Required]
+        
         public string File { get; set; }
         [Display(Name = "Açıklama")]
         [MaxLength(400)]
