@@ -73,11 +73,11 @@ namespace SmallCRM.Admin.Controllers
         // GET: Leads/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name");
             ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(_cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
+            ViewBag.RegionId = new SelectList(_regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
             ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name");
             ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name");
-            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name");
             ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name");
             return View();
         }
