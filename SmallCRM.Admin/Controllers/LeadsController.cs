@@ -23,7 +23,7 @@ namespace SmallCRM.Admin.Controllers
         private readonly IRegionService _regionService;
         private readonly ISectorService _sectorService;
         private readonly ICountryService _countryService;
-        public LeadsController(ILeadService leadService,ICountryService countryService,ISectorService sectorService ,ICityService cityService,IRegionService regionService ,ILeadSourceService leadSourceService,ILeadStatusService leadStatusService)
+        public LeadsController(ILeadService leadService, ICountryService countryService, ISectorService sectorService, ICityService cityService, IRegionService regionService, ILeadSourceService leadSourceService, ILeadStatusService leadStatusService)
         {
             this._leadService = leadService;
             this._cityService = cityService;
@@ -96,11 +96,11 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name",lead.CountryId);
+            ViewBag.CityId = new SelectList(_cityService.GetAllByCountryId( lead.CountryId ?? Guid.NewGuid()) ,"Id", "Name",lead.CityId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAllByCityId(lead.CityId??Guid.NewGuid()), "Id", "Name",lead.RegionId);
             ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
             ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
             ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
@@ -117,11 +117,11 @@ namespace SmallCRM.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name",lead.CountryId);
+            ViewBag.CityId = new SelectList(_cityService.GetAllByCountryId( lead.CountryId ?? Guid.NewGuid()) ,"Id", "Name",lead.CityId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAllByCityId(lead.CityId??Guid.NewGuid()), "Id", "Name",lead.RegionId);
             ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
             ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
             ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
@@ -139,11 +139,11 @@ namespace SmallCRM.Admin.Controllers
                 _leadService.Update(entity);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(_cityService.GetAll(), "Id", "Name", lead.CityId);
-            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name", lead.CountryId);
+            ViewBag.CountryId = new SelectList(_countryService.GetAll(), "Id", "Name",lead.CountryId);
+            ViewBag.CityId = new SelectList(_cityService.GetAllByCountryId( lead.CountryId ?? Guid.NewGuid()) ,"Id", "Name",lead.CityId);
+            ViewBag.RegionId = new SelectList(_regionService.GetAllByCityId(lead.CityId??Guid.NewGuid()), "Id", "Name",lead.RegionId);
             ViewBag.LeadSourceId = new SelectList(_leadSourceService.GetAll(), "Id", "Name", lead.LeadSourceId);
             ViewBag.LeadStatusId = new SelectList(_leadStatusService.GetAll(), "Id", "Name", lead.LeadStatusId);
-            ViewBag.RegionId = new SelectList(_regionService.GetAll(), "Id", "Name", lead.RegionId);
             ViewBag.SectorId = new SelectList(_sectorService.GetAll(), "Id", "Name", lead.SectorId);
             return View(lead);
         }
@@ -172,6 +172,6 @@ namespace SmallCRM.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
     }
 }
