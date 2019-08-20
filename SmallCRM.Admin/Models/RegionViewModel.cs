@@ -11,14 +11,14 @@ namespace SmallCRM.Admin.Models
         public Guid Id { get; set; }
         [Required]
         [MaxLength(50)]
-        [Display(Name = "İlçe Adı")]
+        [Display(Name = "Şehir Adı")]
         public string Name { get; set; }
 
-        [Display(Name = "Şehir")]
+        
         public Guid CityId { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
-        [Display(Name="Şehir Adı")]
+        [Display(Name="İlçe Adı")]
         public string CityName { get; set; }
     }
 }
