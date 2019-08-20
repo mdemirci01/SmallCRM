@@ -103,14 +103,14 @@ namespace SmallCRM.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.CityId);
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name", contact.CityId);
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", contact.CompanyId);
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.CountryId);
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name", contact.LeadSourceId);
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name", contact.OtherCityId);
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name", contact.OtherCountryId);
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.OtherRegionId);
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name", contact.RegionId);
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name", contact.RegionId);
             ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name", contact.ReportsToContactId);
             return View(contact);
         }
