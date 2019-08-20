@@ -213,15 +213,15 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.CountryId, "Ülke", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("CountryId", null, "Ülke Seçiniz",htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger", onchange="LoadCities(this)" })
+                        @Html.DropDownList("CountryId", null, "Ülke Seçiniz",htmlAttributes: new { @class = "form-control" , onchange="LoadCities(this)" })
+                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger"})
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CityId, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" ,onchange="LoadRegions(this)"})
+                    @Html.LabelFor(model => model.CityId, "Şehir", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("CityId", null,"Şehir Seçiniz", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("CityId", null,"Şehir Seçiniz", htmlAttributes: new { @class = "form-control" ,onchange="LoadRegions(this)"})
                         @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -276,24 +276,24 @@
     <script>
         function LoadCities(countrySelect) {
             var selectedCountryId = $(countrySelect).val();
-            $("#InvoiceCityId").empty();
-            $("#InvoiceCityId").append('<option value="">Şehir seçiniz</option>');
+            $("#CityId").empty();
+            $("#CityId").append('<option value="">Şehir seçiniz</option>');
             $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
                 $.each(data, function (index, value) {
-                    $("#InvoiceCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    $("#CityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                 });
-                LoadRegions($("#InvoiceCityId"));
+                LoadRegions($("#CityId"));
             });
         }
 
         function LoadRegions(citySelect) {
             var selectedCityId = $(citySelect).val();
-            $("#InvoiceRegionId").empty();
-            $("#InvoiceRegionId").append('<option value="">İlçe seçiniz</option>');
+            $("#RegionId").empty();
+            $("#RegionId").append('<option value="">İlçe seçiniz</option>');
             $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
                 
                 $.each(data, function (index, value) {
-                    $("#InvoiceRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    $("#RegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                 });
             });
         }
