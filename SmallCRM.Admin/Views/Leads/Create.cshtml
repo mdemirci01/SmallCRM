@@ -273,28 +273,31 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    function DeliveryLoadCities(countrySelect) {
-    var selectedCountryId = $(countrySelect).val();
-    $("#DeliveryCityId").empty();
-    $("#DeliveryCityId").append('<option value="">Şehir seçiniz</option>');
-    $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
-    $.each(data, function (index, value) {
-    $("#DeliveryCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
-    });
-    LoadRegions($("#DeliveryCityId"));
-    });
-    }
+    <script>
+        function DeliveryLoadCities(countrySelect) {
+            var selectedCountryId = $(countrySelect).val();
+            $("#DeliveryCityId").empty();
+            $("#DeliveryCityId").append('<option value="">Şehir seçiniz</option>');
+            $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
+                $.each(data, function (index, value) {
+                    $("#DeliveryCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+                LoadRegions($("#DeliveryCityId"));
+            });
+        }
 
-    function DeliveryLoadRegion(citySelect) {
-    var selectedCityId = $(citySelect).val();
-    $("#DeliveryRegionId").empty();
-    $("#DeliveryRegionId").append('<option value="">İlçe seçiniz</option>');
-    $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
+        function DeliveryLoadRegion(citySelect) {
+            var selectedCityId = $(citySelect).val();
+            $("#DeliveryRegionId").empty();
+            $("#DeliveryRegionId").append('<option value="">İlçe seçiniz</option>');
+            $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
                 
-    $.each(data, function (index, value) {
-    $("#DeliveryRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
-    });
-    });
-    }
+                $.each(data, function (index, value) {
+                    $("#DeliveryRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+            });
+        }
+    </script>
+   
 
 }
