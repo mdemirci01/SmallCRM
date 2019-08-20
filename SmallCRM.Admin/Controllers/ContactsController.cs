@@ -38,6 +38,19 @@ namespace SmallCRM.Admin.Controllers
             this.regionService = regionService;
             this.reportService = reportService;
         }
+         [HttpPost]
+        public ActionResult GetCities(Guid countryId)
+        {
+            var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
+            return Json(cities);
+        }
+        [HttpPost]
+        public ActionResult GetRegions(Guid cityId)
+        {
+            var region = Mapper.Map<IEnumerable<RegionViewModel>>(regionService.GetAllByCityId(cityId));
+            return Json(region);
+        }
+
 
         // GET: Contacts
         public ActionResult Index()
@@ -64,14 +77,14 @@ namespace SmallCRM.Admin.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
             ViewBag.OtherCityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.OtherCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.OtherRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
-            ViewBag.RegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.RegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
             ViewBag.ReportsToContactId = new SelectList(reportService.GetAll(), "Id", "Name");
             return View();
         }
