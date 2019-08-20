@@ -274,26 +274,26 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        function DeliveryLoadCities(countrySelect) {
+        function LoadCities(countrySelect) {
             var selectedCountryId = $(countrySelect).val();
-            $("#DeliveryCityId").empty();
-            $("#DeliveryCityId").append('<option value="">Şehir seçiniz</option>');
+            $("#InvoiceCityId").empty();
+            $("#InvoiceCityId").append('<option value="">Şehir seçiniz</option>');
             $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
                 $.each(data, function (index, value) {
-                    $("#DeliveryCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    $("#InvoiceCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                 });
-                LoadRegions($("#DeliveryCityId"));
+                LoadRegions($("#InvoiceCityId"));
             });
         }
 
-        function DeliveryLoadRegion(citySelect) {
+        function LoadRegions(citySelect) {
             var selectedCityId = $(citySelect).val();
-            $("#DeliveryRegionId").empty();
-            $("#DeliveryRegionId").append('<option value="">İlçe seçiniz</option>');
+            $("#InvoiceRegionId").empty();
+            $("#InvoiceRegionId").append('<option value="">İlçe seçiniz</option>');
             $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
                 
                 $.each(data, function (index, value) {
-                    $("#DeliveryRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    $("#InvoiceRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                 });
             });
         }
