@@ -77,9 +77,9 @@ namespace SmallCRM.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyTypeId = new SelectList(companyTypeService.GetAll(), "Id", "Name");
-            ViewBag.DeliveryCityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.DeliveryCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
-            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAll(), "Id", "Name");
+            ViewBag.DeliveryCityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");            
+            ViewBag.DeliveryRegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
             
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.InvoiceCityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");

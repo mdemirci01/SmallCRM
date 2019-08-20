@@ -164,14 +164,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.InvoiceCountryId, "Fatura Ülkesi", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("InvoiceCountryId", null, "Ülke seçiniz", htmlAttributes: new { @class = "form-control", onchange="LoadCities(this)" })
+                    @Html.DropDownList("InvoiceCountryId", null, "Ülke seçiniz", htmlAttributes: new { @class = "form-control", onchange = "LoadCities(this)" })
                     @Html.ValidationMessageFor(model => model.InvoiceCountryId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.InvoiceCityId, "Fatura Şehir", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("InvoiceCityId", null, "Şehir seçiniz", htmlAttributes: new { @class = "form-control", onchange="LoadRegions(this)" })
+                    @Html.DropDownList("InvoiceCityId", null, "Şehir seçiniz", htmlAttributes: new { @class = "form-control", onchange = "LoadRegions(this)" })
                     @Html.ValidationMessageFor(model => model.InvoiceCityId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -203,11 +203,17 @@
                     @Html.ValidationMessageFor(model => model.DeliveryAddress, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeliveryCountryId, "Teslimat Ülkesi", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.DropDownList("DeliveryCountryId", null,"Ülke Seçiniz", htmlAttributes: new { @class = "form-control" ,  onchange = "DeliveryLoadCities(this)"})
+                    @Html.ValidationMessageFor(model => model.DeliveryCountryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.DeliveryCityId, "Teslimat Şehri", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DeliveryCityId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("DeliveryCityId", null,"Şehir Seçiniz", htmlAttributes: new { @class = "form-control" ,  onchange = "DeliveryLoadRegion(this)"})
                     @Html.ValidationMessageFor(model => model.DeliveryCityId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -215,7 +221,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.DeliveryRegionId, "Teslimat İlçesi", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("DeliveryRegionId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("DeliveryRegionId", null, "İlçe Seçiniz",htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.DeliveryRegionId, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -230,13 +236,7 @@
 
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DeliveryCountryId, "Teslimat Ülkesi", htmlAttributes: new { @class = "control-label col-md-4" })
-                <div class="col-md-10">
-                    @Html.DropDownList("DeliveryCountryId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.DeliveryCountryId, "", new { @class = "text-danger" })
-                </div>
-            </div>
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, "Açıklama", htmlAttributes: new { @class = "control-label col-md-4" })
@@ -296,6 +296,30 @@
                 
                 $.each(data, function (index, value) {
                     $("#InvoiceRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+            });
+        }
+
+        function DeliveryLoadCities(countrySelect) {
+            var selectedCountryId = $(countrySelect).val();
+            $("#DeliveryCityId").empty();
+            $("#DeliveryCityId").append('<option value="">Şehir seçiniz</option>');
+            $.post("@Url.Action("GetCities")", { countryId: selectedCountryId }, function (data) {
+                $.each(data, function (index, value) {
+                    $("#DeliveryCityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                });
+                LoadRegions($("#DeliveryCityId"));
+            });
+        }
+
+        function DeliveryLoadRegion(citySelect) {
+            var selectedCityId = $(citySelect).val();
+            $("#DeliveryRegionId").empty();
+            $("#DeliveryRegionId").append('<option value="">İlçe seçiniz</option>');
+            $.post("@Url.Action("GetRegions")", { cityId: selectedCityId }, function (data) {
+                
+                $.each(data, function (index, value) {
+                    $("#DeliveryRegionId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
                 });
             });
         }

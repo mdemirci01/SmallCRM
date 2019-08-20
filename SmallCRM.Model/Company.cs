@@ -63,10 +63,8 @@ namespace SmallCRM.Model
 
         public Guid? DeliveryRegionId { get; set; }
         public virtual Region DeliveryRegion { get; set; }
-
      
         public string DeliveryPostalCode { get; set; }
-
 
         public Guid? DeliveryCountryId { get; set; }
         public virtual Country DeliveryCountry { get; set; }

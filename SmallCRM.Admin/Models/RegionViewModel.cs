@@ -14,7 +14,6 @@ namespace SmallCRM.Admin.Models
         [Display(Name = "İlçe Adı")]
         public string Name { get; set; }
 
-        [Display(Name = "Şehir")]
         public Guid CityId { get; set; }
         [Display(Name = "Aktif Mi?")]
         public bool IsActive { get; set; }
