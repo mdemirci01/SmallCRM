@@ -1,5 +1,6 @@
 ﻿@model SmallCRM.Admin.Models.CampaignViewModel
-
+@using SmallCRM.Admin.Extensions
+@using System.ComponentModel.DataAnnotations
 @{
     ViewBag.Title = "Detaylar";
 }
@@ -23,7 +24,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OpportunityType)
+            @(Model.OpportunityType.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>
@@ -31,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CampaignStatus)
+            @(Model.CampaignStatus?.GetAttribute<DisplayAttribute>().Name)
         </dd>
 
         <dt>

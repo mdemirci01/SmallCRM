@@ -64,7 +64,7 @@ namespace SmallCRM.Admin.Controllers
         // GET: Contacts/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(contactService.GetAll(), "Id", "Name");
+            ViewBag.CityId = new SelectList(cityService.GetAll(), "Id", "Name");
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
             ViewBag.CountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.LeadSourceId = new SelectList(leadSourceService.GetAll(), "Id", "Name");
