@@ -37,6 +37,26 @@ namespace SmallCRM.Admin.Controllers
             this.sectorService = sectorService;
         }
         [HttpPost]
+        public ActionResult AddCompany(string companyName, string companyPhone, string companyWebsite)
+        {
+            try { 
+                var company = new Company();
+                company.Name = companyName;
+                company.Telephone = companyPhone;
+                company.Website = companyWebsite;
+                companyService.Insert(company);
+                return Json(true);
+            } catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+        [HttpPost]
+        public ActionResult GetCompanies()
+        {
+            return Json(Mapper.Map<IEnumerable<CompanyViewModel>>(companyService.GetAll()));
+        }
+        [HttpPost]
         public ActionResult GetCities(Guid countryId)
         {
             var cities = Mapper.Map<IEnumerable<CityViewModel>>(cityService.GetAllByCountryId(countryId));
@@ -84,7 +104,7 @@ namespace SmallCRM.Admin.Controllers
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name");
             ViewBag.InvoiceCityId = new SelectList(cityService.GetAllByCountryId(Guid.NewGuid()), "Id", "Name");
             ViewBag.InvoiceRegionId = new SelectList(regionService.GetAllByCityId(Guid.NewGuid()), "Id", "Name");
-            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner");
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
             ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name");
             return View();
         }
@@ -111,7 +131,7 @@ namespace SmallCRM.Admin.Controllers
             ViewBag.InvoiceCityId = new SelectList(cityService.GetAllByCountryId(company.InvoiceCountryId ?? Guid.NewGuid()), "Id", "Name", company.InvoiceCityId);
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
             ViewBag.InvoiceRegionId = new SelectList(regionService.GetAllByCityId(company.InvoiceCityId ?? Guid.NewGuid()), "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Name", company.MainCompanyId);
             ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
@@ -137,7 +157,7 @@ namespace SmallCRM.Admin.Controllers
             ViewBag.InvoiceCityId = new SelectList(cityService.GetAllByCountryId(company.InvoiceCountryId ?? Guid.NewGuid()), "Id", "Name", company.InvoiceCityId);
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
             ViewBag.InvoiceRegionId = new SelectList(regionService.GetAllByCityId(company.InvoiceCityId ?? Guid.NewGuid()), "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Name", company.MainCompanyId);
             ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
@@ -162,7 +182,7 @@ namespace SmallCRM.Admin.Controllers
             ViewBag.InvoiceCityId = new SelectList(cityService.GetAll(), "Id", "Name", company.InvoiceCityId);
             ViewBag.InvoiceCountryId = new SelectList(countryService.GetAll(), "Id", "Name", company.InvoiceCountryId);
             ViewBag.InvoiceRegionId = new SelectList(regionService.GetAll(), "Id", "Name", company.InvoiceRegionId);
-            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Owner", company.MainCompanyId);
+            ViewBag.MainCompanyId = new SelectList(companyService.GetAll(), "Id", "Name", company.MainCompanyId);
             ViewBag.SectorId = new SelectList(sectorService.GetAll(), "Id", "Name", company.SectorId);
             return View(company);
         }
