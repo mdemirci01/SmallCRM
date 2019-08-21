@@ -38,7 +38,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.MainCompanyId, "Ana Firma", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("MainCompanyId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("MainCompanyId", null, "Ana firma seçiniz", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.MainCompanyId, "", new { @class = "text-danger" })
                     <br />
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">Yeni Firma</a>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                            <button type="button" class="btn btn-primary">Firma Ekle</button>
+                            <button type="button" class="btn btn-primary" onclick="FirmaEkle()">Firma Ekle</button>
                         </div>
                     </div>
                 </div>
@@ -316,6 +316,29 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+    function FirmaEkle() {
+        var firmaAdi = $("#companyName").val();
+        var firmaTelefon = $("#companyPhone").val();
+        var firmaWebsitesi = $("#companyWebsite").val();
+
+        $.post("@Url.Action("AddCompany")", { companyName: firmaAdi, companyPhone: firmaTelefon, companyWebsite: firmaWebsitesi }, function (data) {
+            if (data == true) {
+                alert("Firma başarıyla eklendi.");
+                $("#exampleModal").modal("hide");
+
+                $.post("@Url.Action("GetCompanies")", null, function (data) {
+                    $("#MainCompanyId").empty();
+                    $("#MainCompanyId").append('<option value="">Ana Firma Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#MainCompanyId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    });
+
+                });
+                // TODO: modal'ı kapat
+                // TODO: ana firma selectini yenile
+            }
+        });
+    }
         function LoadCities(countrySelect) {
             var selectedCountryId = $(countrySelect).val();
             $("#InvoiceCityId").empty();
