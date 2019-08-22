@@ -39,8 +39,49 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.MainCompanyId, "Ana Firma", htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-10">
-                        @Html.DropDownList("MainCompanyId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("MainCompanyId", null, "Ana Firma Seçiniz", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.MainCompanyId, "", new { @class = "text-danger" })
+                        <br />
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">Yeni Firma</a>
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hızlı Firma Oluştur</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">Firma Adı</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="text" id="companyName" name="companyName" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">Telefon</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="tel" id="companyPhone" name="companyPhone" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 control-label">Web Sitesi</label>
+                                    <div class="col-md-9">
+                                        <input class="form-control" type="tel" id="companyWebsite" name="companyWebsite" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                <button type="button" class="btn btn-primary" onclick="FirmaEkle()">Firma Ekle</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -259,6 +300,33 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+
+           function FirmaEkle()
+    {
+        var firmaAdi = $("#companyName").val();
+        var firmaTelefon = $("#companyPhone").val();
+        var firmaWebsitesi = $("#companyWebsite").val();
+
+        $.post("@Url.Action("AddCompany")", { companyName: firmaAdi, companyPhone: firmaTelefon, companyWebsite: firmaWebsitesi }, function (data) {
+            if (data == true) {
+                alert("Firma başarıyla eklendi.");
+                $("#exampleModal").modal("hide");
+
+                $.post("@Url.Action("GetCompanies")", null, function (data) {
+                    $("#MainCompanyId").empty();
+                    $("#MainCompanyId").append('<option value="">Ana Firma Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#MainCompanyId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    });
+
+                });
+                // TODO: modal'ı kapat
+                // TODO: ana firma selectini yenile
+            }
+        });
+    }
+
+
         function LoadCities(countrySelect) {
             var selectedCountryId = $(countrySelect).val();
             $("#InvoiceCityId").empty();
@@ -305,5 +373,11 @@
                 });
             });
         }
+
+
+
+
+
+      
     </script>
 }
