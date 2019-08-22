@@ -58,6 +58,7 @@ namespace SmallCRM.Admin.Controllers
         {
             ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name");
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name");
+            ViewBag.Companies = companyService.GetAll();
             ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName");
             ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name");
             return View();
@@ -79,6 +80,7 @@ namespace SmallCRM.Admin.Controllers
 
             ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.Companies = companyService.GetAll();
             ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
             ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
@@ -98,6 +100,7 @@ namespace SmallCRM.Admin.Controllers
             }
             ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.Companies = companyService.GetAll();
             ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
             ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
@@ -118,11 +121,85 @@ namespace SmallCRM.Admin.Controllers
             }
             ViewBag.CampaignId = new SelectList(campaignService.GetAll(), "Id", "Name", activity.CampaignId);
             ViewBag.CompanyId = new SelectList(companyService.GetAll(), "Id", "Name", activity.CompanyId);
+            ViewBag.Companies = companyService.GetAll();
             ViewBag.ContactId = new SelectList(contactService.GetAll(), "Id", "FullName", activity.ContactId);
             ViewBag.OpportunityId = new SelectList(opportunityService.GetAll(), "Id", "Name", activity.OpportunityId);
             return View(activity);
         }
 
+        [HttpPost]
+        public ActionResult AddCompany(string companyName, string companyPhone, string companyWebsite)
+        {
+            try
+            {
+                var company = new Company();
+                company.Name = companyName;
+                company.Telephone = companyPhone;
+                company.Website = companyWebsite;
+                companyService.Insert(company);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+        [HttpPost]
+        public ActionResult GetCompanies()
+        {
+            return Json(Mapper.Map<IEnumerable<CompanyViewModel>>(companyService.GetAll()));
+        }
+
+        [HttpPost]
+        public ActionResult AddOpportunity(decimal opportunityAmount, OpportunityStage opportunityStage, DateTime opportunityCloseDate, Guid companyId , string opportunityName)
+        {
+            try
+            {
+                var opportunity = new Opportunity();
+
+                opportunity.Amount = opportunityAmount;
+                opportunity.OpportunityStage = opportunityStage;
+                opportunity.CloseDate = opportunityCloseDate;
+                opportunity.CompanyId = companyId;
+                opportunity.Name = opportunityName;
+                opportunityService.Insert(opportunity);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+        [HttpPost]
+        public ActionResult GetOpportunities()
+        {
+            return Json(Mapper.Map<IEnumerable<OpportunityViewModel>>(opportunityService.GetAll()));
+        }
+        public ActionResult AddCampaign(OpportunityType opportunityType, string campaignName, CampaignStatus? campaignStatus, DateTime startDate, DateTime endDate, decimal expectedRevenue)
+        {
+            try
+            {
+                var campaign = new Campaign();
+
+                campaign.OpportunityType = opportunityType;
+                campaign.Name = campaignName;
+                campaign.CampaignStatus = campaignStatus;
+                campaign.StartDate = startDate;
+                campaign.EndDate = endDate;
+                campaign.ExpectedRevenue = expectedRevenue;
+                campaignService.Insert(campaign);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+        [HttpPost]
+        public ActionResult GetCampaigns()
+        {
+            return Json(Mapper.Map<IEnumerable<CampaignViewModel>>(campaignService.GetAll()));
+        }
         // GET: Activities/Delete/5
         public ActionResult Delete(Guid? id)
         {

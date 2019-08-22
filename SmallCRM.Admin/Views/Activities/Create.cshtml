@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Aktiviteler";
+    
 }
 
 <h2>Oluştur</h2>
@@ -108,11 +109,52 @@
                 </div>
             </div>
 
+          
+
             <div class="form-group">
-                @Html.LabelFor(model => model.CompanyId, "Firma", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CompanyId, "Firma", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("CompanyId", null, "Firma seçiniz", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                    <br />
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal">Yeni Firma</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Firma Oluştur</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Firma Adı</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="companyName" name="companyName" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Telefon</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="companyPhone" name="companyPhone" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Web Sitesi</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="companyWebsite" name="companyWebsite" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <button type="button" class="btn btn-primary" onclick="FirmaEkle()">Kaydet</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -151,10 +193,77 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.OpportunityId, "Satış Fırsatı", htmlAttributes: new { @class = "control-label col-md-6" })
+                @Html.LabelFor(model => model.OpportunityId, "Satış Fırsatı", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("OpportunityId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("OpportunityId", null, "Satış Fırsatı Oluştur", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.OpportunityId, "", new { @class = "text-danger" })
+                    <br />
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal2">Yeni Satış Fırsatı</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Satış Fırsatı Oluştur</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Tutar</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="text" id="opportunityAmount" name="opportunityAmount" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Satış Fırsatı Adı</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="opportunityName" name="opportunityName" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Kapanış Tarihi</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="opportunityCloseDate" name="opportunityCloseDate" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Firma Adı</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="companyId" name="companyId">
+                                        @foreach (var item in ViewBag.Companies)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Aşama</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="opportunityStage" name="opportunityStage">
+                                        <option value="0">Yok</option>
+                                        <option value="1">Görüşülüyor/Değerlendiriliyor</option>
+                                        <option value="2">Analiz Gerekiyor</option>
+                                        <option value="3">Değer Öneriliyor</option>
+                                        <option value="4">Karar Verenleri Tanımla</option>
+                                        <option value="5">Fiyat Teklifi</option>
+                                        <option value="6">Kapandı-Kazanıldı</option>
+                                        <option value="7">Kapandı-Kaybedildi</option>
+                                        <option value="8">Rekabette Kapandı-Kaybedildi</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <button type="button" class="btn btn-primary" onclick="SatisFirsatiEkle()">Kaydet</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -198,11 +307,90 @@
                 </div>
             </div>
 
+
             <div class="form-group">
-                @Html.LabelFor(model => model.CampaignId, "Kampanya", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.CampaignId, "Kampanya", htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.DropDownList("CampaignId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("CampaignId", null, "Kampanya Oluştur", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CampaignId, "", new { @class = "text-danger" })
+                    <br />
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModal3">Yeni Kampanya</a>
+                </div>
+            </div>
+            <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Kampanya Oluştur</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Tip</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="opportunityType" name="opportunityType">
+                                        <option value="0">Yok</option>
+                                        <option value="1">Konferans</option>
+                                        <option value="2">Webiner</option>
+                                        <option value="3">Ticari Fuar</option>
+                                        <option value="4">Halkla İlişkiler</option>
+                                        <option value="5">Ortaklar</option>
+                                        <option value="6">Yönlendirme Programları</option>
+                                        <option value="7">Reklam</option>
+                                        <option value="8">Banner Reklamları</option>
+                                        <option value="9">Direkt Gönderi</option>
+                                        <option value="10">E-Posta</option>
+                                        <option value="11">Telefonla Pazarlama</option>
+                                        <option value="12">Diğerleri</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Kampanya Adı</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="campaignName" name="campaignName" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Durum</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" id="campaignStatus" name="campaignStatus">
+                                        <option value="0">Yok</option>
+                                        <option value="1">Planlanıyor</option>
+                                        <option value="2">Aktif</option>
+                                        <option value="3">Aktif Değil</option>
+                                        <option value="4">Tamamlandı</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Başlangıç Tarihi</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="startDate" name="startDate" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Bitiş Tarihi</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="endDate" name="endDate" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">Beklenen Ciro</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" type="tel" id="expectedRevenue" name="expectedRevenue" />
+                                </div>
+                            </div>
+                           
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                            <button type="button" class="btn btn-primary" onclick="KampanyaEkle()">Kaydet</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -248,4 +436,76 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+  <script>
+     function FirmaEkle() {
+        var firmaAdi = $("#companyName").val();
+        var firmaTelefon = $("#companyPhone").val();
+        var firmaWebsitesi = $("#companyWebsite").val();
+
+        $.post("@Url.Action("AddCompany")", { companyName: firmaAdi, companyPhone: firmaTelefon, companyWebsite: firmaWebsitesi }, function (data) {
+            if (data == true) {
+                alert("Firma başarıyla eklendi.");
+                $("#exampleModal").modal("hide");
+
+                $.post("@Url.Action("GetCompanies")", null, function (data) {
+                    $("#CompanyId").empty();
+                    $("#CompanyId").append('<option value="">Firma Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#CompanyId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    });
+
+                });
+                // TODO: modal'ı kapat
+                // TODO: ana firma selectini yenile
+            }
+        });
+          }
+    function SatisFirsatiEkle() {
+        var miktar = $("#opportunityAmount").val();
+        var asama = $("#opportunityStage").val();
+        var kapanisTarihi = $("#opportunityCloseDate").val();
+        var firmaAdi = $("#companyId").val();
+        var satisFirsatiAdi = $("#opportunityName").val();
+
+        $.post("@Url.Action("AddOpportunity")", { opportunityAmount: miktar, opportunityStage: asama, opportunityCloseDate: kapanisTarihi, companyId: firmaAdi, opportunityName: satisFirsatiAdi }, function (data) {
+            if (data == true) {
+                alert("Satış Fırsatı başarıyla eklendi.");
+                $("#exampleModal2").modal("hide");
+
+                $.post("@Url.Action("GetOpportunities")", null, function (data) {
+                    $("#OpportunityId").empty();
+                    $("#OpportunityId").append('<option value="">Satış Fırsatı Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#OpportunityId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    });
+
+                });
+            }
+        });
+          }
+    function KampanyaEkle() {
+        var tip = $("#opportunityType").val();
+        var kampanyaAdi = $("#campaignName").val();
+        var durum = $("#campaignStatus").val();
+        var baslangicTarihi = $("#startDate").val();
+        var bitisTarihi = $("#endDate").val();
+        var beklenenCiro = $("#expectedRevenue").val();
+
+        $.post("@Url.Action("AddCampaign")", { opportunityType: tip, campaignName: kampanyaAdi, campaignStatus: durum, startDate: baslangicTarihi, endDate: bitisTarihi, expectedRevenue: beklenenCiro }, function (data) {
+            if (data == true) {
+                alert("Kampanya başarıyla eklendi.");
+                $("#exampleModal3").modal("hide");
+
+                $.post("@Url.Action("GetCampaigns")", null, function (data) {
+                    $("#CampaignId").empty();
+                    $("#CampaignId").append('<option value="">Kampanya Seçiniz</option>');
+                    $.each(data, function (index, value) {
+                        $("#CampaignId").append('<option value="' + value.Id + '">' + value.Name + '</option>');
+                    });
+
+                });
+            }
+        });
+    }
+   </script>
 }
