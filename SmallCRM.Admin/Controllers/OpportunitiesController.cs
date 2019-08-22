@@ -22,18 +22,70 @@ namespace SmallCRM.Admin.Controllers
         private readonly ICampaignSourceService campaignSourceService;
         private readonly ICompanyService companyService;
         private readonly IContactService contactService;
+        private readonly ICampaignService campaignService;
         private readonly ILeadSourceService leadSourceService;
        
 
-        public OpportunitiesController(IOpportunityService opportunityService, ICampaignSourceService campaignSourceService, ICompanyService companyService, IContactService contactService, ILeadSourceService leadSourceService)
+        public OpportunitiesController(IOpportunityService opportunityService, ICampaignSourceService campaignSourceService, ICompanyService companyService, IContactService contactService, ILeadSourceService leadSourceService, ICampaignService campaignService)
         {
             this.opportunityService = opportunityService;
             this.campaignSourceService = campaignSourceService;
             this.companyService = companyService;
             this.contactService = contactService;
             this.leadSourceService = leadSourceService;
+            this.campaignService = campaignService;
         }
 
+        [HttpPost]
+        public ActionResult AddCampaignSource(OpportunityType opportunityType,string campaignName, CampaignStatus campaignStatus, DateTime startDate,DateTime finishDate,decimal expectedRevenue)
+        {
+            try
+            {   
+                var campaign = new Campaign();
+                campaign.Name = campaignName;
+                campaign.CampaignStatus = campaignStatus;
+                campaign.OpportunityType = opportunityType;
+                campaign.ExpectedRevenue = expectedRevenue;
+                campaign.EndDate = finishDate;
+                campaign.StartDate = startDate;
+                campaignService.Insert(campaign);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetCampaigns()
+        {
+            return Json(Mapper.Map<IEnumerable<CampaignViewModel>>(campaignService.GetAll()));
+        }
+        [HttpPost]
+        public ActionResult AddContact(string firstName, string lastName, Company contactCompany, string contactPosta,string contactPhone )
+        {
+            try
+            {
+                var contact = new Contact();
+                contact.FirstName = firstName;
+                contact.LastName = lastName;
+                contact.Company = contactCompany;
+                contact.Email = contactPosta;
+                contactService.Insert(contact);
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                return Json(false);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GetContacts()
+        {
+            return Json(Mapper.Map<IEnumerable<ContactViewModel>>(contactService.GetAll()));
+        }
         // GET: Opportunities
         public ActionResult Index()
         {
